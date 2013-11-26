@@ -1,0 +1,89 @@
+<h3 class="bar">Record and play back a web service call</h3>
+<p>Use the <a href="?page=BeanRecorder.html">BeanRecorder</a> to record a web service call.
+  The <a href="?page=BeanRecorder.html">BeanRecorder</a> supports Date, Calendar and URL object instance creation using the
+   <a href="?page=tutorials/customize_objects.html">customized object creation</a> API.</p>
+  
+<p>The <a href="?page=BeanRecorder.html">BeanRecorder</a> works by using reflection to inspect the accessor (getter / setter) methods
+of an object tree and recording the object state in a factory class that will reproduce the object state.</p>
+
+<p>For this tutorial, we're going to call a web service that creates a postage label, record the response, then use the generated factory to implement a unit test.
+The object we are recording is the web service response, an instance of com.advancedpwr.endicia.webservice.LabelRequestResponse.  This object was generated from
+a WSDL using Apache Axis.</p>
+
+
+
+<p>First, make a call to the web service so that we have a live instance of the LabelRequestResponse:</p>
+
+<pre class="brush: java; highlight: 22;">
+EwsLabelServiceLocator locator = new EwsLabelServiceLocator();
+EwsLabelServiceSoap_PortType service = locator.getEwsLabelServiceSoap();
+LabelRequest request = new LabelRequest();
+
+request.setAccountID( "999999" );
+request.setPassPhrase( "abcd" );
+
+request.setContentsExplanation( "laptop" );
+request.setCustomsCountry1( "US" );
+request.setFromCity( "Tampa" );
+request.setFromCompany( "Laptop Computers Technology" );
+request.setFromCountry( "US" );
+.
+.
+
+request.setToAddress1( "1234 Fake Street" );
+request.setToCity( "Middletown" );
+request.setToCountryCode( "US" );
+request.setImageFormat( "PNG" );
+.
+.
+LabelRequestResponse response = service.getPostageLabel( request );
+</pre>
+
+
+<p>Next, use the recorder to take a snapshot of the <i>state</i> of the LabelRequestResponse object:</p>
+
+<pre class="brush: java; first-line: 23; highlight: 27;">
+BeanRecorder recorder = new BeanRecorder();
+
+//Set the output directory for generated source code
+recorder.setDestination( "recordings" );
+recorder.record( response );
+</pre>
+
+<p>Which will produce the factory class <a href="?page=tutorials/LabelRequestResponseFactory.java.html"><code>com.advancedpwr.endicia.webservice.generated.LabelRequestResponseFactory</code></a></p>
+
+<p>Let's assume that some piece of our code is dependent on the <code>LabelRequestResponse</code> to operate.  Assume we have a class <code>LabelPrintout</code> that has a print method that requires an instance of a <code>LabelRequestResponse</code> as an argument:
+</p>
+
+<pre class="brush: java;">
+public void print( LabelRequestResponse inResponse ) throws Exception
+{
+    PdfPTable table = createTable();
+    if ( inResponse.getErrorMessage() != null )
+    {
+        PdfPCell cell = new PdfPCell( new Phrase( inResponse.getErrorMessage() ) );
+        table.addCell( cell );
+    }
+    else
+    {
+        table.addCell( Image.getInstance( Base64.decode( inResponse.getBase64LabelImage() ) ) );
+    }
+    getDocument().add( table );
+    if ( newPageNeeded() )
+    {
+        getDocument().newPage();
+    }
+}
+</pre>
+
+<p>In the unit test, instead of calling the label printing web service, we can instead use the factory to recreate a valid <code>LabelRequestResponse</code>:</p>
+
+<pre class="brush: java;">
+public void testPrint() throws Exception
+{
+    LabelPrintout printout = new LabelPrintout();
+    LabelRequestResponse response = new LabelRequestResponseFactory().buildLabelRequestResponse();
+    printout.print( response );
+    // Make assertions
+}
+</pre>

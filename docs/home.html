@@ -1,0 +1,30 @@
+<h3 class="bar">About this project</h3>
+<p>Record the state or behavior of live Java objects for playback during unit testing.</p>
+
+<p>This tool was developed to help <a href="?page=book.html">increase test coverage</a>.  The ThOR project currently has <a href="?page=coverage.html">98% unit test coverage</a> as reported by <a href="http://www.eclemma.org/">EclEmma</a>.</p>
+
+<p>The latest release is version 1.4.0.  Recent changes include:
+	<ul>
+	<li>Addition of the <code>MockBeanRecorder</code></li>
+	<li><code>ClassWriter.setSuperClass()</code> method to control the factory super class</li>
+	<li><code>MockBehaviorRecorder.setNice()</code> method to create "nice" mock objects instead of the default "strict" mocks</li>
+	<li>Default support for <code>BigDecimal</code> and <code>BigInteger</code> object creation in state recorders</li>
+	<li>Objenesis object creation support in state recorders</li>
+	<li><code>BeanRecorder.stopDescent( Class )</code> method to prevent inspection from continuing descent on a class</li>
+	</ul></p>
+ 	<h3 class="bar">Getting started</h3>
+<p>Two types of object recorders are provided, <i>state</i> and <i>behavior</i> recorders.</p>
+
+<p>Download the zip file and add all jars to your classpath, then follow the links to see how to record objects and what to expect.</p>
+	<ul>Object <i>state</i> recorders:
+	<li><a href="?page=BeanRecorder.html">BeanRecorder</a> - requires Objenesis</li>
+	<li><a href="?page=MockBeanRecorder.html">MockBeanRecorder</a> - requires Objenesis and EasyMock</li>
+	<li><a href="?page=XstreamRecorder.html">XstreamRecorder</a> - requires XStream and Objenesis</li>
+	</ul>
+	
+	<ul>Object <i>behavior</i> recorder:
+	<li><a href="?page=MockBehaviorRecorder.html">MockBehaviorRecorder</a> - requires EasyMock</li>
+	</ul>
+</p>
+
+<p>See the <a href="?page=tutorials.html">Tutorials</a> to learn how to use more advanced features.</p>

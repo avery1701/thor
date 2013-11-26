@@ -1,0 +1,83 @@
+<h3 class="bar header">MockBeanRecorder</h3>
+<p>In many instances it is not practical to attempt to reconstruct the object tree using the actual classes.  
+It may be the case that an object method makes a database call, but all the programmer needs is the <i>result</i> of that method call 
+and in reality wants to avoid connecting to a database during unit testing.</p>
+
+<p>The <a href="?page=MockBeanRecorderDoc.html"><code>MockBeanRecorder</code></a> extends the BeanRecorder and adds a method to specify classes that should recreated by
+the factory as <i>mock objects</i> rather than objects of the original type.</p>
+
+<p>The following example specifies that instances of type <code>Person</code> should be recreated as mock objects.</p>
+
+<pre class="brush: java; highlight: 5;">
+		MockBeanRecorder recorder = new MockBeanRecorder();
+		recorder.setDestination( "recordings" );
+		// Specify a different factory name
+		recorder.setClassName( "com.example.mock.MockPersonFactory" );
+		recorder.mock( Person.class );
+		
+		Person jim = new Person();
+		jim.setName( "Jim" );
+		
+		Person bob = new Person();
+		bob.setName( "Bob" );
+		
+		jim.setDad( bob );
+		
+		recorder.record( jim );
+</pre>
+
+<p>The above code results in the factory:</p>
+
+<pre class="brush: java;">
+package com.example.mock;
+
+import com.advancedpwr.record.factory.MockBeanFactory;
+import com.advancedpwr.samples.Person;
+
+public class MockPersonFactory extends MockBeanFactory
+{
+
+	protected Person person;
+
+	public Person buildPerson()
+	{
+		if ( person != null ) 
+		{
+			return person;
+		}
+		person = createNiceMock( Person.class );
+		expect( person.getDad( ) ).andReturn( buildPerson_1_1() );
+		expect( person.getName( ) ).andReturn( "Jim" );
+		replay( person );
+		return person;
+	}
+
+	protected Person person_1_1;
+
+	protected Person buildPerson_1_1()
+	{
+		if ( person_1_1 != null ) 
+		{
+			return person_1_1;
+		}
+		person_1_1 = createNiceMock( Person.class );
+		expect( person_1_1.getName( ) ).andReturn( "Bob" );
+		replay( person_1_1 );
+		return person_1_1;
+	}
+
+}</pre>
+
+<p>Note that this factory extends <a href="?page=MockBeanFactoryDoc.html"><code>MockBeanFactory</code></a>. </p>
+
+<p>The factory can now be used in a unit test to reconstruct the object state.</p>
+
+<pre class="brush: java;">
+	public void testPerson()
+	{
+		Person person = new MockPersonFactory().buildPerson();
+		
+		assertEquals( "Jim", person.getName() );
+		assertEquals( "Bob", person.getDad().getName() );
+	}
+</pre>

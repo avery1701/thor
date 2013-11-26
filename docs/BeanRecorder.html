@@ -1,0 +1,71 @@
+<h3 class="bar header">BeanRecorder</h3>
+<p>This example constructs a <code>Person</code> object and uses the <a href="?page=BeanRecorderDoc.html"><code>BeanRecorder</code></a> to record the object state.</p>
+
+<pre class="brush: java;">
+	BeanRecorder recorder = new BeanRecorder();
+	// set the output directory
+	recorder.setDestination( "recordings" );
+	
+	Person jim = new Person();
+	jim.setName( "Jim" );
+	
+	Person bob = new Person();
+	bob.setName( "Bob" );
+	
+	jim.setDad( bob );
+	
+	recorder.record( jim );
+</pre>
+
+<p>The recorder uses reflection to walk down the object tree and create a factory file in the "recordings" directory.
+If the class being recorded is <code>com.example.Person</code>, the default factory name will be <code>com.example.person.generated.PersonFactory</code>.</p>
+
+<pre class="brush: java;">
+package com.example.generated;
+
+import com.advancedpwr.record.factory.BaseFactory;
+import com.example.Person;
+
+public class PersonFactory extends BaseFactory
+{
+
+	protected Person person;
+
+	public Person buildPerson()
+	{
+		if ( person != null ) 
+		{
+			return person;
+		}
+		person = new Person();
+		person.setDad( buildPerson_1_1() );
+		person.setName( "Jim" );
+		return person;
+	}
+
+	protected Person person_1_1;
+
+	protected Person buildPerson_1_1()
+	{
+		if ( person_1_1 != null ) 
+		{
+			return person_1_1;
+		}
+		person_1_1 = new Person();
+		person_1_1.setName( "Bob" );
+		return person_1_1;
+	}
+
+}</pre>
+
+<p>The factory can now be used in a unit test to reconstruct the object state.</p>
+
+<pre class="brush: java;">
+	public void testPerson()
+	{
+		Person person = new PersonFactory().buildPerson();
+		
+		assertEquals( "Jim", person.getName() );
+		assertEquals( "Bob", person.getDad().getName() );
+	}
+</pre>

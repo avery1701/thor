@@ -1,0 +1,90 @@
+<p>The <a href="?page=MockBehaviorRecorder.html"><code>MockBehaviorRecorder</code></a> can be configured to use preferred interfaces.  
+Adding preferred interfaces will cause the recorder to generate factory code that mocks the "preferred" interface rather 
+than the concrete class.</p>
+
+<p>For this example, we have a concrete <code>Person</code> class that implements the <code>Being</code> interface.  By default the recorder will
+record an interaction with an instance of <code>Person</code> as a factory that returns a <code>Person</code> object:</p>
+
+<pre class="brush: java;">
+recorder.setClassName( "com.advancedpwr.record.mock.generated.MockPersonFactory");
+
+Person person = new Person();
+
+person = recorder.record( person );
+
+person.setName( "Joe" );
+person.getName();
+
+recorder.endRecording();
+</pre>
+
+
+<p>Will generate the factory:</p>
+
+<pre class="brush: java;">
+package com.advancedpwr.record.mock.generated;
+
+import com.advancedpwr.record.examples.Person;
+import com.advancedpwr.record.mock.MockFactory;
+
+public class MockPersonFactory extends MockFactory
+{
+
+    protected Person person;
+
+    public Person buildPerson()
+    {
+        if ( person != null )
+        {
+            return person;
+        }
+        person = createStrictMock( Person.class );
+        expect( person.getName() ).andReturn( "Joe" );
+        replay( person );
+        return person;
+    }
+}
+</pre>
+
+<p>We can use the <span class="bold"><code>addPreferredInterace()</code></span> method to generate mocks from the <code>Being</code> interface instead:</p>
+
+<pre class="brush: java; highlight: 2;">
+recorder.setClassName( "com.advancedpwr.record.mock.generated.MockPersonFactory");
+recorder.addPreferredInterface( Being.class );
+
+Person person = new Person();
+person.setName(  "Joe" );
+
+Being instrumentedPerson = recorder.record( person );
+
+instrumentedPerson.getName();
+
+recorder.endRecording();
+</pre>
+
+<p>Which will now generate the factory:</p>
+
+<pre class="brush: java; highlight: 9;">
+package com.advancedpwr.record.mock.generated;
+
+import com.advancedpwr.record.examples.Being;
+import com.advancedpwr.record.mock.MockFactory;
+
+public class MockBeingFactory extends MockFactory
+{
+
+    protected Being being;
+
+    public Being buildBeing()
+    {
+        if ( being != null )
+        {
+            return being;
+        }
+        being = createStrictMock( Being.class );
+        expect( being.getName() ).andReturn( "Joe" );
+        replay( being );
+        return being;
+    }
+}
+</pre>

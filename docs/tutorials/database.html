@@ -1,0 +1,77 @@
+<h3 class="bar">Record and play back a database interaction</h3>
+<p>Use the <a href="?page=MockBehaviorRecorder.html"><code>MockBehaviorRecorder</code></a> to record a SQL database call.
+  The <a href="?page=MockBehaviorRecorder.html"><code>MockBehaviorRecorder</code></a> is pre-configured to use
+   <a href="?page=tutorials/preferred_interfaces.html">preferred interfaces</a> for <code>java.sql.*</code> 
+  interfaces, e.g. <code>Connection, PreparedStatement, ResultSet</code>.</p>
+  
+<p>The <a href="?page=MockBehaviorRecorder.html"><code>MockBehaviorRecorder</code></a> works by instrumenting an object, listening to 
+method calls, and recording those interactions as EasyMock mock objects in the resulting factory.</p>
+
+<p>For this tutorial, we're going to assume we are using a <code>SqlOrderSearch</code> class that connects to a database and performs a text search over several
+columns of a database table of orders.  First we must instantiate and configure the recorder to tell it where to output the
+generated factory class:</p>
+
+<p>
+
+<pre class="brush: java;">
+MockBehaviorRecorder recorder = new MockBehaviorRecorder();
+
+//Set the output directory for generated source code
+recorder.setDestination( "recordings" );
+
+//Set a class name for the recording, otherwise the recorder will default to "java.sql.generated.ConnectionFactory"
+recorder.setClassName( "com.tampalaptops.search.generated.SqlOrderSearchConnectionFactory");
+</pre>
+
+<p>Next we want to instrument the <code>java.sql.Connection</code> class, then use the <i>instrumented</i> <code>Connection</code> just like we would use the real <code>Connection</code>. </p>
+
+<pre class="brush: java; first-line: 8;">
+SqlOrderSearch search = new SqlOrderSearch();
+Connection connection = search.createConnection();
+Connection instrumentedConnection = recorder.record( connection );
+search.setConnection( instrumentedConnection );
+
+search.setSearchText( "Kirk" );
+List orderDetails = search.searchDetails();
+</pre>
+
+<p>Finally, we must tell the recorder that we are finished recording so that it can write out our factory:</p>
+
+<pre class="brush: java; first-line: 15;">
+recorder.endRecording();
+</pre>
+
+
+<p>Behind the scenes, <code>SqlOrderSearch</code> is doing real work with <code>java.sql.*</code> interfaces, such as <code>PreparedStatement</code> and <code>ResultSet</code>,
+something like:</p>
+
+<pre class="brush: java;">
+PreparedStatement statement = getConnection().prepareStatement( "select * from orders where name like ?" );
+statement.setString( 1, "%Kirk%" );
+ResultSet resultSet = statement.executeQuery();
+List names = new ArrayList();
+while( resultSet.next() )
+{
+    names.add( resultSet.getString( "name" ) );
+}
+getConnection().close();
+</pre>
+
+<p>The method call <code>recorder.endRecording()</code> in the code above will produce a factory, in this case <a href="?page=tutorials/sqlfactory.html"><code>com.tampalaptops.search.generated.SqlOrderSearchConnectionFactory</code></a>
+that can be used in a unit test to produce a <i>mock</i> <code>Connection</code> that will emulate and verify the database interaction as EasyMock objects:</p>
+
+
+<pre class="brush: java;">
+public void testSearch() throws Exception
+{
+    SqlOrderSearch search = new SqlOrderSearch();
+    search.setConnection( new SqlOrderSearchConnectionFactory().buildConnection() );
+    search.setSearchText( "Kirk" );
+    List orderDetails = search.searchDetails();
+    assertEquals( 1, orderDetails.size() );
+}
+</pre>
+
+<p>Note that the EasyMock mock objects are going to verify all interactions with the <code>java.sql.*</code> interfaces internal to
+<code>SqlOrderSearch</code>, so even a unit test with <b>no</b> explicit assertions is going to test the class fairly thoroughly.
+For instance, if <code>SqlOrderSearch</code> is subsequently changed so that it fails to close the <code>Connection</code>, the unit test will fail.</p>

@@ -1,0 +1,69 @@
+<h3 class="bar header">XstreamRecorder</h3>
+<p>The <a href="page=XstreamRecorderDoc.html">XstreamRecorder</a> uses the <a href="http://xstream.codehaus.org/">XStream</a> project to record an object tree as an XML file.</p>
+
+<p>The recording API and resulting factory API are identical to the other state recorders.</p>
+
+<pre class="brush: java;">
+		XstreamRecorder recorder = new XstreamRecorder();
+		recorder.setDestination( "recordings" );
+		recorder.setClassName( "com.example.XstreamPersonFactory" );
+		
+		Person jim = new Person();
+		jim.setName( "Jim" );
+		
+		Person bob = new Person();
+		bob.setName( "Bob" );
+		
+		jim.setDad( bob );
+		
+		recorder.record( jim );
+</pre>
+
+<p>The recorder generates a factory and an XML file.  The factory loads the XML file from the classpath, so <b>moving the resulting factory to a new package in your IDE will break the factory.</b> </p>
+
+<p>The generated code for the XStream factory:</p>
+
+<pre class="brush: java;">
+package com.example;
+
+import java.io.InputStream;
+import com.thoughtworks.xstream.XStream;
+import com.advancedpwr.samples.Person;
+
+public class XstreamPersonFactory
+{
+
+	public Person buildPerson()
+	{
+		XStream xstream = new XStream();
+		InputStream in = getClass().getResourceAsStream( "/com/example/XstreamPersonFactory.xml" );
+		return (Person)xstream.fromXML( in );
+	}
+
+}
+</pre>
+
+<p>And the parallel XML:</p>
+
+<pre class="brush: xml;">
+<com.advancedpwr.samples.Person>
+  <fieldDad>
+    <fieldName>Bob</fieldName>
+  </fieldDad>
+  <fieldName>Jim</fieldName>
+</com.advancedpwr.samples.Person>
+</pre>
+
+<p>The XStream recorder is able to record and recreate arbitrary object graphs based on the XStream API.</p>
+
+<p>The factory can now be used in a unit test in the same manner as the other state recorders.</p>
+
+<pre class="brush: java;">
+	public void testPerson()
+	{
+		Person person = new XstreamPersonFactory().buildPerson();
+		
+		assertEquals( "Jim", person.getName() );
+		assertEquals( "Bob", person.getDad().getName() );
+	}
+</pre>

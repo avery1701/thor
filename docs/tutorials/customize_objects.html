@@ -1,0 +1,146 @@
+
+
+<h3 class="bar">How to customize object creation</h3>
+<p>The <a href="?page=BeanRecorder.html"><code>BeanRecorder</code></a> can be customized to produce a factory
+capable of instantiating objects using alternate code. By default, objects will be instantiated
+using the default constructor, but if a default constructor does not exist, it is necessary to
+provide the BeanRecorder with a customized method builder that is able to write the "builder" method
+required to instantiate the object.
+
+<p>The <a href="?page=MockBehaviorRecorder.html"><code>MockBehaviorRecorder</code></a> extends <a
+	href="?page=BeanRecorder.html"><code>BeanRecorder</code></a> and can be customized using the same approach.</p>
+<p>For this tutorial, we are going to attempt to record an instance of java.util.Locale which
+does not have a default constructor. The class LocaleHolder is a java bean convention class that has
+Locale field and accessor methods.</p>
+
+<pre class="brush: java;">
+LocaleHolder holder = new LocaleHolder();
+holder.setLocale( Locale.CANADA );
+
+BeanRecorder recorder = new BeanRecorder();
+recorder.setDestination( "recordings" );
+recorder.record( holder );
+</pre>
+
+<p>We quickly discover that the resulting <code>LocaleHolderFactory</code> will not compile because the <code>Locale</code> object does not have a default constructor (line 21):</p>
+
+<pre class="brush: java; highlight: 21;">
+package com.advancedpwr.record.examples.generated;
+
+import com.advancedpwr.record.examples.LocaleHolder;
+import java.util.Locale;
+
+public class LocaleHolderFactory
+{
+    protected LocaleHolder localeholder;
+
+    public LocaleHolder buildLocaleHolder()
+    {
+        localeholder = new LocaleHolder();
+        localeholder.setLocale( buildLocale_1_1() );
+        return localeholder;
+    }
+
+    protected Locale locale_1_1;
+
+    protected Locale buildLocale_1_1()
+    {
+        locale_1_1 = new Locale();
+        return locale_1_1;
+    }
+}
+</pre>
+
+<p>To fix this problem, we first need to create a customized <code>BuildMethodWriter</code>.  Note that a <code>BuildMethodWriter</code> will have access
+to the instance of the object that needs to be recreated.</p>
+
+<pre class="brush: java;">
+package com.advancedpwr.record.methods;
+
+import java.util.Locale;
+
+public class LocaleBuilder extends BuildMethodWriter
+{
+
+	protected void writeInstance()
+	{
+		writeIfNotNullReturnInstance();
+		writeLine( instanceName() + " = new " + instanceType() + "( \"" + locale().getLanguage()
+				+ "\", \"" + locale().getCountry() + "\" )" );
+	}
+
+	protected Locale locale()
+	{
+		return (Locale) getAccessPath().getResult();
+	}
+}
+</pre>
+
+<p>Next we need a <code>MethodWriterFactory</code> that knows when to use this <code>BuildMethodWriter</code>.  The <code>accept( Class )</code> indicates when to use our custom <code>BuildMethodWriter</code>. </p>
+
+<pre class="brush: java; highlight: 9;">
+package com.advancedpwr.record.methods;
+
+import java.util.Locale;
+
+import com.advancedpwr.record.AccessPath;
+
+public class LocaleBuilderFactory implements MethodWriterFactory 
+{
+	public boolean accept( Class inClass )
+	{
+		return Locale.class.equals( inClass );
+	}
+	
+	public BuildMethodWriter createMethodBuilder( AccessPath inPath )
+	{
+		return new LocaleBuilder();
+	}
+}
+</pre>
+
+<p>Finally, add the <code>MethodWriterFactory</code> to the recorder before recording:</p>
+
+<pre class="brush: java; highlight: 6;">
+LocaleHolder holder = new LocaleHolder();
+holder.setLocale( Locale.CANADA );
+
+BeanRecorder recorder = new BeanRecorder();
+recorder.setDestination( "recordings" );
+recorder.addBuilderFactory( new LocaleBuilderFactory() );
+recorder.record( holder );
+</pre>
+
+<p>Which produces the resulting <code>LocaleHolderFactory</code>:</p>
+
+<pre class="brush: java;">
+public class LocaleHolderFactory
+{
+    protected LocaleHolder localeholder;
+
+    public LocaleHolder buildLocaleHolder()
+    {
+        localeholder = new LocaleHolder();
+        localeholder.setLocale( buildLocale_1_1() );
+        return localeholder;
+    }
+
+    protected Locale locale_1_1;
+
+    protected Locale buildLocale_1_1()
+    {
+        if ( locale_1_1 != null ) 
+        {
+            return locale_1_1;
+        }
+        locale_1_1 = new Locale( "en", "CA" );
+        return locale_1_1;
+    }
+}
+</pre>
+
+<p>Note that the <a href="?page=BeanRecorder.html"><code>BeanRecorder</code></a> is pre-configured to include
+the <code>LocaleBuilderFactory</code>.</p>
+
+<p>See the <a href="?page=tutorials/URLBuilderFactory.html"><code>URLBuilderFactory</code></a> and <a
+	href="?page=tutorials/URLBuilder.html"><code>URLBuilder</code></a> for another good example.</p>
