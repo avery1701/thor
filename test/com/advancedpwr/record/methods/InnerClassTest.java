@@ -17,7 +17,7 @@ public class InnerClassTest extends AbstractRecorderTest
 		InnerClass obj = example.new InnerClass();
 		obj.setName( "Joe" );
 		example.setInnerInstance( obj );
-		recorder.setClassName( "com.examples.inner.InnerClassFactory" );
+		recorder.setClassName( "com.example.inner.InnerClassFactory" );
 		recorder.record( example );
 		assertResult();
 	}

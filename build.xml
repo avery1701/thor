@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="build" name="thor">
+<project basedir="." default="build" name="thor" xmlns:jacoco="antlib:org.jacoco.ant">
+
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="${ant.home}/lib/jacocoant.jar"/>
+    </taskdef>
 
 	<property name="appname" value="${ant.project.name}"/>
 	<property name="deployDir" location="${basedir}/deploy" />
-	<property name="build" location="${basedir}/build" />
+	<property name="build" location="${basedir}/build/src" />
+	<property name="build.test" location="${basedir}/build/test" />
 	<property name="org" value="Advanced Power"/>
 	<property name="lib" location="${basedir}/lib"/>
 	
@@ -20,7 +25,7 @@
 	
 	  <path id="classpath">
         <fileset dir="${lib}">
-          <include name="*.jar"/>
+          <include name="**/*.jar"/>
         </fileset>
 	  </path>
 
@@ -30,15 +35,16 @@
 	<target name="build" depends="clean, compile, jar, publish"/>
 
 	<target name="clean">
-		<delete dir="${deployDir}" />
 		<delete dir="${build}"/>
+		<delete dir="${build.test}"/>
 		<mkdir dir="${deployDir}" />
 		<mkdir dir="${build}"/>
+		<mkdir dir="${build.test}"/>
 	</target>
 		
 	<target name="compile">
 		<javac srcdir="src"
-         destdir="build" source="1.5" target="1.5">
+         destdir="${build}" debug="on" debuglevel="lines,vars,source" >
 		      <classpath refid="classpath"/>
 		</javac>
 	</target>
@@ -130,40 +136,43 @@
 
 	</target>
 	
-	<!-- directory that contains emma.jar and emma_ant.jar: -->
-	  <property name="emma.dir" value="/home/avery/opt/apache-ant-1.7.1/lib" />
-
-	  <!-- path element used by EMMA taskdef below: -->
-	  <path id="emma.lib" >
-	    <pathelement location="${emma.dir}/emma.jar" />
-	    <pathelement location="${emma.dir}/emma_ant.jar" />
-	  </path>
-
-	  <!-- this loads <emma> and <emmajava> custom tasks: -->
-	  <taskdef resource="emma_ant.properties" classpathref="emma.lib" />
-	
 	  <path id="coverage_classpath">
 	      <fileset dir="${lib}">
-	        <include name="*.jar"/>
+	        <include name="**/*.jar"/>
 	      </fileset>
-			<pathelement location="build"/>
+			<pathelement location="${build}"/>
 	  </path>
 	
-	<target name="coverage">
-		<javac srcdir="src:test"
-		         destdir="build" source="1.5" target="1.5" debug="on">
-				      <classpath refid="classpath"/>
+	<target name="test">
+		<mkdir dir="docs/test_coverage"/>
+		<javac srcdir="test"
+		         destdir="${build.test}" debug="on" debuglevel="lines,vars,source">
+				      <classpath refid="coverage_classpath"/>
 				</javac>
-	    <emmajava enabled="true" libclasspathref="emma.lib" 
-	              fullmetadata="yes" sourcepath="src:test"
-	              classname="com.advancedpwr.TestMain"
-	              classpathref="coverage_classpath"
-	    >
+		
+		<junit fork="true" printsummary="on" haltonerror="false" filtertrace="true">
+			<classpath>
+				<path refid="coverage_classpath"/>
+				<pathelement location="${build.test}"/>
+			</classpath>
 
-	      <!-- <emmajava> option extensions [see the reference manual for
-	           complete details]: -->
-	      <html outfile="docs/test_coverage/index.html"  />
-	    </emmajava>
+			<test name="com.advancedpwr.AllTests" haltonfailure="no" outfile="docs/test_coverage/report">
+				<formatter type="xml" />
+			</test>
+		</junit>
+		
+		<jacoco:coverage>
+			<junit fork="true" printsummary="on" haltonerror="false" filtertrace="true">
+				<classpath>
+					<path refid="coverage_classpath"/>
+					<pathelement location="${build.test}"/>
+				</classpath>
+
+				<test name="com.advancedpwr.AllTests" haltonfailure="no">
+				</test>
+			</junit>
+		</jacoco:coverage>
+		
 	</target>
 	
 </project> 

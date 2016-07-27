@@ -144,4 +144,28 @@ public class ArrayTest extends AbstractRecorderTest
 		recorder.record( array );
 		assertResult();
 	}
+	
+	public void testArray_string() throws Exception
+	{
+		String[] array = new String[]{ "Joe", "Fred", "Bob" };
+		recorder.setClassName( "com.example.array.StringArrayFactory" );
+		recorder.record( array );
+		assertResult();
+	}
+	
+	public void testArray_bytes() throws Exception
+	{
+		byte[] array = "Hello World!".getBytes();
+		recorder.setClassName( "com.example.array.ByteArrayFactory" );
+		recorder.record( array );
+		assertResult();
+	}
+	
+	public void testArray_int() throws Exception
+	{
+		int[] array = new int[]{ 10, 12, 14};
+		recorder.setClassName( "com.example.array.IntArrayFactory" );
+		recorder.record( array );
+		assertResult();
+	}
 }

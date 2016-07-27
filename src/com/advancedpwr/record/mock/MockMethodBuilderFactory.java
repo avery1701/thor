@@ -24,7 +24,6 @@ import com.advancedpwr.record.methods.BuildMethodWriter;
 
 public class MockMethodBuilderFactory extends AbstractDefaultFactory
 {
-	protected boolean fieldNice;
 	
 	protected Map fieldBuilderCache;
 
@@ -42,10 +41,6 @@ public class MockMethodBuilderFactory extends AbstractDefaultFactory
 
 	protected MockMethodBuilder newMethodWriter()
 	{
-		if ( isNice() )
-		{
-			return new NiceMockMethodBuilder();
-		}
 		return new MockMethodBuilder();
 	}
 
@@ -69,13 +64,4 @@ public class MockMethodBuilderFactory extends AbstractDefaultFactory
 		return fieldBuilderCache;
 	}
 
-	public boolean isNice()
-	{
-		return fieldNice;
-	}
-
-	public void setNice( boolean nice )
-	{
-		fieldNice = nice;
-	}
 }

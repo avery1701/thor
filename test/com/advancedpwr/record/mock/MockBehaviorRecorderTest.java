@@ -15,6 +15,9 @@
  */
 package com.advancedpwr.record.mock;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+
 import com.advancedpwr.record.SimpleClassDescriptor;
 //import com.advancedpwr.record.examples.generated.PersonFactory;
 import com.advancedpwr.samples.Being;
@@ -293,6 +296,20 @@ public class MockBehaviorRecorderTest extends AbstractMockRecorderTest
 		assertTrue( recorder.isPublic( privatePerson ) );
 	}
 	
+	public void testOutputStream_preferred_class() throws Exception
+	{
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		recorder.addPreferredInterface( OutputStream.class );
+		recorder.setClassName( "com.example.mock.MockPreferredClassFactory" );
+
+		out = recorder.record( out );
+	
+		out.write( "Hello world".getBytes() );
+		out.flush();
+		out.close();
+		recorder.endRecording();
+		assertResult();
+	}
 	public void XtestRecordJavadocExample()
 	{
 		MockBehaviorRecorder recorder = new MockBehaviorRecorder();

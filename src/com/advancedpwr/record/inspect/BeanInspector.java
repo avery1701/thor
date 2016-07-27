@@ -4,9 +4,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
@@ -126,7 +124,8 @@ public class BeanInspector extends Inspector
 	{
 		try
 		{
-			 return getter.invoke( getObject() );
+			getter.setAccessible( true );
+			return getter.invoke( getObject() );
 		}
 		catch ( Exception e )
 		{

@@ -16,15 +16,16 @@
 package com.advancedpwr.record.mock;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.easymock.internal.IProxyFactory;
 
 import com.advancedpwr.record.BeanRecorder;
 import com.advancedpwr.record.InstanceTree;
@@ -173,16 +174,14 @@ public class MockBehaviorRecorder extends BeanRecorder
 {
 	protected Set<Class> fieldPreferredInterfaces;
 	
+	protected Set<Class> fieldPreferredClasses;
+	
 	public MockBehaviorRecorder()
 	{
 		setSuperClass( MockFactory.class );
-		addPreferredInterface( java.sql.Connection.class );
-		addPreferredInterface( java.sql.PreparedStatement.class );
-		addPreferredInterface( java.sql.Statement.class );
-		addPreferredInterface( java.sql.ResultSet.class );
-		
+		getPreferredInterfaces().addAll( new SqlInterfaces() );
 	}
-	protected Set<Class> getPreferredInterfaces()
+	public Set<Class> getPreferredInterfaces()
 	{
 		if ( fieldPreferredInterfaces == null )
 		{
@@ -191,13 +190,27 @@ public class MockBehaviorRecorder extends BeanRecorder
 		return fieldPreferredInterfaces;
 	}
 	
+	public Set<Class> getPreferredClasses()
+	{
+		if( fieldPreferredClasses == null )
+		{
+			fieldPreferredClasses = new LinkedHashSet<Class>();
+		}
+		return fieldPreferredClasses;
+	}
+	
 	public void addPreferredInterface( Class inClass )
 	{
-		if( inClass.isInterface() )
+		if ( inClass.isInterface() )
 		{
 			getPreferredInterfaces().add( inClass );
 		}
+		else
+		{
+			getPreferredClasses().add( inClass );
+		}
 	}
+	
 	
 	protected Set<Class> classes()
 	{
@@ -246,21 +259,25 @@ public class MockBehaviorRecorder extends BeanRecorder
 		}
 		final BehaviorInstanceTree tree = newInstanceTree( inObject );
 
-		IProxyFactory<T> factory = createProxyFactory( objectClass );
+		ProxyFactory factory = createProxyFactory( objectClass );
 		return factory.createProxy( (Class<T>) objectClass, new MockRecordingInvocationHandler( this, tree ) );
 
 	}
 	
-	protected <T> IProxyFactory<T> createProxyFactory( Class<T> inClass )
+	protected ProxyFactory createProxyFactory( Class inClass )
 	{
 		if ( hasPreferedInterface( inClass ) )
 		{
 			Class preferedInterace = preferredInterface( inClass );
-			return new InterfaceProxyFactory<T>( preferedInterace );
+			if ( preferedInterace.isInterface() )
+			{
+				return new InterfaceProxyFactory( preferedInterace );
+			}
+			return new ClassProxyFactory();
 		}
 		else
 		{
-			return new ClassProxyFactory<T>();
+			return new ClassProxyFactory();
 		}
 	}
 	
@@ -271,6 +288,13 @@ public class MockBehaviorRecorder extends BeanRecorder
 
 	protected Class preferredInterface( Class inClass )
 	{
+		for ( Class superClass : getPreferredClasses() )
+		{
+			if( superClass.isAssignableFrom( inClass ) )
+			{
+				return superClass;
+			}
+		}
 		Set interfaces = new Interfaces().findInterfaces( inClass );
 		for ( Iterator iterator = interfaces.iterator(); iterator.hasNext(); )
 		{
@@ -280,6 +304,7 @@ public class MockBehaviorRecorder extends BeanRecorder
 				return currentInterface;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -371,10 +396,17 @@ public class MockBehaviorRecorder extends BeanRecorder
 	protected MethodBuilderFactory createMethodBuilderFactory()
 	{
 		MethodBuilderFactory factory = new MethodBuilderFactory();
-		MockMethodBuilderFactory mockFactory = new MockMethodBuilderFactory();
-		mockFactory.setNice( isNice() );
+		MockMethodBuilderFactory mockFactory = createMockMethodBuilderFactory();
 		factory.setDefaultFactory( mockFactory );
 		return factory;
+	}
+	protected MockMethodBuilderFactory createMockMethodBuilderFactory()
+	{
+		if ( isNice() )
+		{
+			return new NiceMockMethodBuilderFactory();
+		}
+		return new MockMethodBuilderFactory();
 	}
 
 	protected InstanceTree createInstanceTree( Object object )

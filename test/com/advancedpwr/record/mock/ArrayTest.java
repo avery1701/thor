@@ -34,8 +34,13 @@ public class ArrayTest extends AbstractMockRecorderTest
 	{
 		Person person = Person.createExamplePerson();
 		Person[] array = new Person[]{person.getDad(), person.getMom(), person };
+		assertEquals( "mom", array[1].getName() );
+		
 		recorder.setClassName( "com.example.array.mock.ArrayFactory" );
 		array = recorder.record( array );
+//		System.out.println( array[0].getName() );
+//		System.out.println( array[1].getName() );
+//		System.out.println( array[2].getName() );
 		assertEquals( "mom", array[1].getName() );
 		
 		recorder.endRecording();

@@ -135,4 +135,5 @@ public class Person implements Being
 	{
 		getRestricted().synced();
 	}
+
 }

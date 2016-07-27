@@ -26,6 +26,7 @@ public class AllTests
 		TestSuite suite = new TestSuite( "Test for com.advancedpwr.record.methods" );
 		//$JUnit-BEGIN$
 		suite.addTestSuite( AbstractDefaultFactoryTest.class );
+		suite.addTestSuite( AnonymousClassTest.class );
 		suite.addTestSuite( DateBuilderFactoryTest.class );
 		suite.addTestSuite( DateBuilderTest.class );
 		suite.addTestSuite( InnerClassTest.class );

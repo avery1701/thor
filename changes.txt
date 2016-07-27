@@ -1,0 +1,5 @@
+EasyMock 3.2
+Support for Anonymous classes
+Support for arrays of primatives
+Support for abstract classes on the addPreferredInterfaces() method
+Added class substitution for BeanRecording

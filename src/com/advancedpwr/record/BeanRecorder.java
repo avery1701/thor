@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -31,7 +32,6 @@ import com.advancedpwr.record.methods.CollectionBuilderFactory;
 import com.advancedpwr.record.methods.MapBuilderFactory;
 import com.advancedpwr.record.methods.MethodBuilderFactory;
 import com.advancedpwr.record.methods.MethodWriterFactory;
-import com.advancedpwr.record.methods.MockMethodWriterFactory;
 
 /**
  * An {@link ObjectRecorder} that records the <i>state</i> of an object tree as a Java class file. This recorder uses 
@@ -98,12 +98,31 @@ public class BeanRecorder extends AbstractRecorder
 	protected InstanceTree fieldInstanceTree;
 	protected MethodBuilderFactory fieldFactoryBuilder;
 	protected Set<Class> fieldStopClasses;
+	protected Map<Class,Class> fieldClassesForInterfaces;
 	
 	public BeanRecorder()
 	{
 		setSuperClass( BaseFactory.class );
 	}
-	
+	/**
+	 * Use this method to substitute one class for another if they both implement the same interface.
+	 * For example, if an object has an instance of a java.util.Vector, use this method to force the 
+	 * recorder to record the list as a java.util.ArrayList, e.g.
+	 * 
+	 * 	<code>useTypeForInterface( List.class, ArrayList.class );</code>
+	 * 
+	 * @param inInterface
+	 * @param inClass
+	 */
+	public void useTypeForInterface( Class inInterface, Class inClass )
+	{
+		if ( !inInterface.isAssignableFrom( inClass ) )
+		{
+			throw new RuntimeException( inClass + " cannot be used for " + inInterface );
+		}
+		getClassesForInterfaces().put( inInterface, inClass );
+		
+	}
 	protected void setObject( Object object )
 	{
 		if ( object == null )
@@ -115,7 +134,7 @@ public class BeanRecorder extends AbstractRecorder
 
 	protected InstanceTree createInstanceTree( Object object )
 	{
-		return new InstanceTree( getStopClasses(), object );
+		return new InstanceTree( getStopClasses(), getClassesForInterfaces(), object );
 	}
 
 	/* (non-Javadoc)
@@ -227,6 +246,15 @@ public class BeanRecorder extends AbstractRecorder
 			fieldStopClasses.add( GregorianCalendar.class );
 		}
 		return fieldStopClasses;
+	}
+	
+	public Map getClassesForInterfaces()
+	{
+		if( fieldClassesForInterfaces == null )
+		{
+			fieldClassesForInterfaces = new HashMap();
+		}
+		return fieldClassesForInterfaces;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.advancedpwr.record.inspect;
 
+import java.lang.reflect.Array;
+
 import com.advancedpwr.record.InstanceTree;
 
 public class ArrayInspector extends Inspector
@@ -13,23 +15,17 @@ public class ArrayInspector extends Inspector
 
 	protected void addArrayAccessPaths()
 	{
-		if ( isArray() )
+		if ( objectClass().isArray() )
 		{
-			Object[] array = (Object[]) getObject();
-		
-			for ( int i = 0; i < array.length; i++ )
+			int length = Array.getLength( getObject() );
+			for ( int i = 0; i < length; i++ )
 			{
-				Object member = array[i];
+				Object member = Array.get( getObject(), i );
 				MultiPath path = new MultiPath();
 				path.setTree( createInstanceTree( member ) );
 				path.setInstanceName( objectClass().getComponentType().getSimpleName() );
 				addAccessPath( path );
 			}
 		}
-	}
-
-	protected boolean isArray()
-	{
-		return objectClass().isArray() && !objectClass().getComponentType().isPrimitive();
 	}
 }

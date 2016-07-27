@@ -18,9 +18,7 @@ package com.advancedpwr.record.mock;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-import org.easymock.internal.IProxyFactory;
-
-public class InterfaceProxyFactory<T> implements IProxyFactory<T>
+public class InterfaceProxyFactory implements ProxyFactory
 {
 	protected Class fieldInterface;
 	
@@ -35,7 +33,7 @@ public class InterfaceProxyFactory<T> implements IProxyFactory<T>
 	}
 
 	@SuppressWarnings( "unchecked" )
-	public T createProxy( final Class<T> inClass, final InvocationHandler handler )
+	public <T> T createProxy( final Class<T> inClass, final InvocationHandler handler )
 	{
 		return (T)Proxy.newProxyInstance( inClass.getClassLoader(), new Class[]{ getInterface() }, handler );
 	}

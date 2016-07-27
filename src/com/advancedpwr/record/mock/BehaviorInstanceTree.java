@@ -24,10 +24,7 @@ import java.util.Set;
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
 import com.advancedpwr.record.inspect.ArrayInspector;
-import com.advancedpwr.record.inspect.BeanInspector;
-import com.advancedpwr.record.inspect.CollectionInspector;
 import com.advancedpwr.record.inspect.InspectorList;
-import com.advancedpwr.record.inspect.MapInspector;
 
 public class BehaviorInstanceTree extends InstanceTree
 {

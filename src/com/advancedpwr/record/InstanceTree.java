@@ -16,9 +16,12 @@
 package com.advancedpwr.record;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,6 +45,7 @@ public class InstanceTree
 	protected int fieldIndex;
 	
 	protected Set fieldStopClasses;
+	protected Map fieldClassesForInterface;
 	
 	public InstanceTree getParent()
 	{
@@ -82,10 +86,11 @@ public class InstanceTree
 		fieldCurrentMethod = currentMethod;
 	}
 
-	public InstanceTree( Set<Class> stopClasses, Object object )
+	public InstanceTree( Set<Class> stopClasses, Map<Class,Class> classForInterface, Object object )
 	{
 		this( object, null );
 		setStopClasses( stopClasses );
+		setClassesForInterface( classForInterface );
 		getFactory().getTrees().put( object, this );
 		setIndex( getFactory().count++ );
 		inspectObject();
@@ -106,6 +111,7 @@ public class InstanceTree
 		{
 			setFactory( inTree.getFactory() );
 			setStopClasses( inTree.getStopClasses() );
+			setClassesForInterface( inTree.getClassesForInterface() );
 		}
 		setObject( object );
 	}
@@ -153,7 +159,28 @@ public class InstanceTree
 
 	public Class<? extends Object> objectClass()
 	{
+		List<Class> interfaces = interfacesForObject();
+		for ( Class i : interfaces )
+		{
+			if (getClassesForInterface().containsKey( i ) )
+			{
+				return (Class)getClassesForInterface().get( i );
+			}
+		}
+		
 		return getObject().getClass();
+	}
+
+	protected List<Class> interfacesForObject()
+	{
+		List<Class> interfaces = new ArrayList<Class>();
+		Class currentClass = getObject().getClass();
+		while( currentClass != Object.class )
+		{
+			interfaces.addAll( Arrays.asList( currentClass.getInterfaces() ) );
+			currentClass = currentClass.getSuperclass();
+		}
+		return interfaces;
 	}
 
 	public InstanceTree createInstanceTree( Object result )
@@ -195,7 +222,7 @@ public class InstanceTree
 	protected Set<Class> classes()
 	{
 		Set<Class> classes = new LinkedHashSet<Class>();
-		if ( !objectClass().isArray() )
+		if ( !objectClass().isArray() && !objectClass().isAnonymousClass() )
 		{
 			addClass( classes, objectClass() );
 		}
@@ -220,6 +247,10 @@ public class InstanceTree
 		if ( inClass.isArray() )
 		{
 			inClass = inClass.getComponentType();
+			if ( inClass.isPrimitive() )
+			{
+				return;
+			}
 		}
 		classes.add( inClass );
 	}
@@ -227,14 +258,7 @@ public class InstanceTree
 	public boolean ignoredClass( Class param )
 	{
 		return param == null
-			|| short.class.isAssignableFrom( param ) 
-		    || int.class.isAssignableFrom( param )
-		    || long.class.isAssignableFrom( param )
-		    || float.class.isAssignableFrom( param )
-		    || double.class.isAssignableFrom( param )
-		    || boolean.class.isAssignableFrom( param )
-		    || byte.class.isAssignableFrom( param )
-		    || char.class.isAssignableFrom( param )
+			|| param.isPrimitive()
 		    || void.class.isAssignableFrom( param )
 		    || Null.class.isAssignableFrom( param )
 		    || param.getName().startsWith( "java.lang." );
@@ -317,6 +341,20 @@ public class InstanceTree
 	public void setStopClasses( Set stopClasses )
 	{
 		fieldStopClasses = stopClasses;
+	}
+
+	public Map getClassesForInterface()
+	{
+		if ( fieldClassesForInterface == null )
+		{
+			fieldClassesForInterface = new HashMap();
+		}
+		return fieldClassesForInterface;
+	}
+
+	public void setClassesForInterface( Map classForInterface )
+	{
+		fieldClassesForInterface = classForInterface;
 	}
 	
 }

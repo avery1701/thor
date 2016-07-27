@@ -43,6 +43,11 @@ public class AccessPath
 	// Type of the result object, e.g. ArrayList
 	public Class getResultClass()
 	{
+		String type = getInstanceTree().objectClass().getSimpleName();
+		if ( type.isEmpty() )
+		{
+			return getInstanceTree().objectClass().getSuperclass();
+		}
 		return getInstanceTree().objectClass();
 	}
 	
