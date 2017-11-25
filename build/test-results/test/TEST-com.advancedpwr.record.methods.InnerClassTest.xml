@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.advancedpwr.record.methods.InnerClassTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.002">
-  <properties/>
-  <testcase name="testRecordInnerClass" classname="com.advancedpwr.record.methods.InnerClassTest" time="0.002"/>
-  <system-out><![CDATA[/home/avery/git/thor/reference/com/example/inner/InnerClassFactory.java matches src/generated/java/com/example/inner/InnerClassFactory.java
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
