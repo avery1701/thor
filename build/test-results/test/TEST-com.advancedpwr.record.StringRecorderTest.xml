@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.StringRecorderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.001">
+  <properties/>
+  <testcase name="testWriteObject_String" classname="com.advancedpwr.record.StringRecorderTest" time="0.001"/>
+  <system-out><![CDATA[/home/avery/git/thor/reference/com/advancedpwr/samples/generated/StringExampleFactory.java matches src/generated/java/com/advancedpwr/samples/generated/StringExampleFactory.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

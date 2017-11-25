@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.methods.AnonymousClassTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.003">
+  <properties/>
+  <testcase name="testRecordNestedClass" classname="com.advancedpwr.record.methods.AnonymousClassTest" time="0.003"/>
+  <system-out><![CDATA[/home/avery/git/thor/reference/com/example/anonymous/AnonymousClassFactory.java matches src/generated/java/com/example/anonymous/AnonymousClassFactory.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

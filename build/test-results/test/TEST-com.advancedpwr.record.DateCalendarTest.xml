@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.DateCalendarTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.09">
+  <properties/>
+  <testcase name="testRecordPerson" classname="com.advancedpwr.record.DateCalendarTest" time="0.075"/>
+  <testcase name="testRecordPerson_sql_date" classname="com.advancedpwr.record.DateCalendarTest" time="0.014"/>
+  <system-out><![CDATA[/home/avery/git/thor/reference/com/example/date/PersonFactory1.java matches src/generated/java/com/example/date/PersonFactory1.java
+/home/avery/git/thor/reference/com/example/date/PersonFactory2.java matches src/generated/java/com/example/date/PersonFactory2.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

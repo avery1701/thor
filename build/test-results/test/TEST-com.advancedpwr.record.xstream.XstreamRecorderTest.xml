@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.xstream.XstreamRecorderTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.083">
+  <properties/>
+  <testcase name="testRecordPerson" classname="com.advancedpwr.record.xstream.XstreamRecorderTest" time="0.083"/>
+  <testcase name="testXmlFile" classname="com.advancedpwr.record.xstream.XstreamRecorderTest" time="0.0"/>
+  <system-out><![CDATA[/home/avery/git/thor/src/generated/java/com/advancedpwr/record/examples/xstream/generated/XstreamPersonFactory.xml
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,450 @@
+Ñ/home/avery/git/thor/reference/com/example/date/PersonFactory1.java matches src/generated/java/com/example/date/PersonFactory1.java
+Ñ/home/avery/git/thor/reference/com/example/date/PersonFactory2.java matches src/generated/java/com/example/date/PersonFactory2.java
+é/home/avery/git/thor/reference/com/example/recursion/PersonFactory3.java matches src/generated/java/com/example/recursion/PersonFactory3.java
+é/home/avery/git/thor/reference/com/example/recursion/PersonFactory4.java matches src/generated/java/com/example/recursion/PersonFactory4.java
+é/home/avery/git/thor/reference/com/example/recursion/PersonFactory1.java matches src/generated/java/com/example/recursion/PersonFactory1.java
+é/home/avery/git/thor/reference/com/example/recursion/PersonFactory2.java matches src/generated/java/com/example/recursion/PersonFactory2.java
+
+	|/home/avery/git/thor/reference/com/example/map/MapFactory1.java matches src/generated/java/com/example/map/MapFactory1.java
+
+é/home/avery/git/thor/reference/com/example/map/LinkedHashMapFactory.java matches src/generated/java/com/example/map/LinkedHashMapFactory.java
+ê/home/avery/git/thor/reference/com/example/array/PersonArrayFactory2.java matches src/generated/java/com/example/array/PersonArrayFactory2.java
+ê/home/avery/git/thor/reference/com/example/array/PersonArrayFactory4.java matches src/generated/java/com/example/array/PersonArrayFactory4.java
+†/home/avery/git/thor/reference/com/example/array/PersonArrayFactoryRecursion.java matches src/generated/java/com/example/array/PersonArrayFactoryRecursion.java
+ú/home/avery/git/thor/reference/com/example/array/PersonArrayFactoryImports.java matches src/generated/java/com/example/array/PersonArrayFactoryImports.java
+Ñ/home/avery/git/thor/reference/com/example/array/ArrayFactory5.java matches src/generated/java/com/example/array/ArrayFactory5.java
+Æ/home/avery/git/thor/reference/com/advancedpwr/samples/generated/PersonArrayFactory.java matches src/generated/java/com/advancedpwr/samples/generated/PersonArrayFactory.java
+é/home/avery/git/thor/reference/com/example/array/StringArrayFactory.java matches src/generated/java/com/example/array/StringArrayFactory.java
+ä/home/avery/git/thor/reference/com/example/array/ByteArrayFactory.java matches src/generated/java/com/example/array/ByteArrayFactory.java
+ê/home/avery/git/thor/reference/com/example/array/PersonArrayFactory1.java matches src/generated/java/com/example/array/PersonArrayFactory1.java
+à/home/avery/git/thor/reference/com/example/array/IntArrayFactory.java matches src/generated/java/com/example/array/IntArrayFactory.java
+! §/home/avery/git/thor/reference/com/example/list/ListExampleSubstitutionFactory.java matches src/generated/java/com/example/list/ListExampleSubstitutionFactory.java
+!"ò/home/avery/git/thor/reference/com/example/list/ListExampleVectorFactory.java matches src/generated/java/com/example/list/ListExampleVectorFactory.java
+%$≤/home/avery/git/thor/reference/com/advancedpwr/samples/generated/StringExampleFactory.java matches src/generated/java/com/advancedpwr/samples/generated/StringExampleFactory.java
+)1à/home/avery/git/thor/reference/java/lang/generated/ObjectFactory.java matches src/generated/java/java/lang/generated/ObjectFactory.java
+)2ú/home/avery/git/thor/reference/com/example/recorded/ObjenesisPersonFactory.java matches src/generated/java/com/example/recorded/ObjenesisPersonFactory.java
+;:7Instrumenting class com.advancedpwr.samples.Primitives
+;:%Invoking method Primitives.setChar()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:'Invoking method Primitives.setDouble()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:&Invoking method Primitives.setFloat()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:$Invoking method Primitives.setInt()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:%Invoking method Primitives.setLong()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:&Invoking method Primitives.setShort()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:'Invoking method Primitives.setString()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:(Invoking method Primitives.setBoolean()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:%Invoking method Primitives.setByte()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;:#Not able to instrument object null
+;:$Invoking method Primitives.getInt()
+;:}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;: Not able to instrument object 5
+;:]Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.PrimitiveFactory
+;:à/home/avery/git/thor/reference/com/example/mock/PrimitiveFactory.java matches src/generated/java/com/example/mock/PrimitiveFactory.java
+;<(Instrumenting class java.util.ArrayList
+;< Invoking method ArrayList.get()
+;<`Proxy: class $java.util.ArrayList$$EnhancerByCGLIB$$b5855c01, Source: class java.util.ArrayList
+;<7Instrumenting class com.advancedpwr.samples.Primitives
+;<%Invoking method Primitives.setChar()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<'Invoking method Primitives.setDouble()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<&Invoking method Primitives.setFloat()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<$Invoking method Primitives.setInt()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<%Invoking method Primitives.setLong()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<&Invoking method Primitives.setShort()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<'Invoking method Primitives.setString()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<(Invoking method Primitives.setBoolean()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<%Invoking method Primitives.setByte()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;<#Not able to instrument object null
+;<$Invoking method Primitives.getInt()
+;<}Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+;< Not able to instrument object 5
+;<^Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.PrimitiveFactory2
+;<ä/home/avery/git/thor/reference/com/example/mock/PrimitiveFactory2.java matches src/generated/java/com/example/mock/PrimitiveFactory2.java
+;=8Instrumenting class com.advancedpwr.samples.LangObjects
+;=+Invoking method LangObjects.setCharacter()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;=(Invoking method LangObjects.setDouble()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;='Invoking method LangObjects.setFloat()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;=)Invoking method LangObjects.setInteger()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;=&Invoking method LangObjects.setLong()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;='Invoking method LangObjects.setShort()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;=)Invoking method LangObjects.setBoolean()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;=&Invoking method LangObjects.setByte()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;=/Invoking method LangObjects.setClassArgument()
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=#Not able to instrument object null
+;=,Invoking method LangObjects.setBigDecimal()
+;=)Instrumenting class java.math.BigDecimal
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=&Invoking method BigDecimal.hashCode()
+;=aProxy: class $java.math.BigDecimal$$EnhancerByCGLIB$$c91241d, Source: class java.math.BigDecimal
+;=$Invoking method BigDecimal.equals()
+;=aProxy: class $java.math.BigDecimal$$EnhancerByCGLIB$$c91241d, Source: class java.math.BigDecimal
+;=#Not able to instrument object null
+;=,Invoking method LangObjects.setBigInteger()
+;=)Instrumenting class java.math.BigInteger
+;=Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+;=&Invoking method BigInteger.hashCode()
+;=aProxy: class $java.math.BigInteger$$EnhancerByCGLIB$$d383d6c, Source: class java.math.BigInteger
+;=$Invoking method BigInteger.equals()
+;=aProxy: class $java.math.BigInteger$$EnhancerByCGLIB$$d383d6c, Source: class java.math.BigInteger
+;=$Invoking method BigInteger.equals()
+;=aProxy: class $java.math.BigInteger$$EnhancerByCGLIB$$d383d6c, Source: class java.math.BigInteger
+;=#Not able to instrument object null
+;=XFinished recording /home/avery/git/thor/src/generated/java/com.example.mock.LangFactory
+;=~/home/avery/git/thor/reference/com/example/mock/LangFactory.java matches src/generated/java/com/example/mock/LangFactory.java
+?>9Instrumenting class com.advancedpwr.samples.MapContainer
+?>)Invoking method MapContainer.getPerson()
+?>ÅProxy: class com.advancedpwr.samples.MapContainer$$EnhancerByCGLIB$$50c88318, Source: class com.advancedpwr.samples.MapContainer
+?>3Instrumenting class com.advancedpwr.samples.Person
+?>&Invoking method MapContainer.getMap()
+?>ÅProxy: class com.advancedpwr.samples.MapContainer$$EnhancerByCGLIB$$50c88318, Source: class com.advancedpwr.samples.MapContainer
+?>,Instrumenting class java.util.LinkedHashMap
+?> Invoking method Person.getDad()
+?>uProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+?>3Instrumenting class com.advancedpwr.samples.Person
+?>!Invoking method Person.getName()
+?>uProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+?>"Not able to instrument object dad
+?>$Invoking method LinkedHashMap.get()
+?>hProxy: class $java.util.LinkedHashMap$$EnhancerByCGLIB$$2073962b, Source: class java.util.LinkedHashMap
+?>3Instrumenting class com.advancedpwr.samples.Person
+?>&Invoking method MapContainer.getMap()
+?>ÅProxy: class com.advancedpwr.samples.MapContainer$$EnhancerByCGLIB$$50c88318, Source: class com.advancedpwr.samples.MapContainer
+?>,Instrumenting class java.util.LinkedHashMap
+?> Invoking method Person.getMom()
+?>uProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+?>3Instrumenting class com.advancedpwr.samples.Person
+?>!Invoking method Person.getName()
+?>uProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+?>"Not able to instrument object mom
+?>$Invoking method LinkedHashMap.get()
+?>hProxy: class $java.util.LinkedHashMap$$EnhancerByCGLIB$$2073962b, Source: class java.util.LinkedHashMap
+?>3Instrumenting class com.advancedpwr.samples.Person
+?>[Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockMapFactory
+?>Ñ/home/avery/git/thor/reference/com/example/mock/MockMapFactory.java matches src/generated/java/com/example/mock/MockMapFactory.java
+A@7Instrumenting class com.advancedpwr.samples.FinalStuff
+A@$Invoking method FinalStuff.setURL()
+A@}Proxy: class com.advancedpwr.samples.FinalStuff$$EnhancerByCGLIB$$c9fda58b, Source: class com.advancedpwr.samples.FinalStuff
+A@#Not able to instrument object null
+A@$Invoking method FinalStuff.getURL()
+A@}Proxy: class com.advancedpwr.samples.FinalStuff$$EnhancerByCGLIB$$c9fda58b, Source: class com.advancedpwr.samples.FinalStuff
+A@/Not able to instrument object http://localhost
+A@[Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockUrlFactory
+A@Ñ/home/avery/git/thor/reference/com/example/mock/MockUrlFactory.java matches src/generated/java/com/example/mock/MockUrlFactory.java
+CB6Instrumenting class [Lcom.advancedpwr.samples.Person;
+CB3Instrumenting class com.advancedpwr.samples.Person
+CB3Instrumenting class com.advancedpwr.samples.Person
+CB3Instrumenting class com.advancedpwr.samples.Person
+CB!Invoking method Person.getName()
+CBuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+CB"Not able to instrument object mom
+CB_Finished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayFactory
+CBå/home/avery/git/thor/reference/com/example/array/mock/ArrayFactory.java matches src/generated/java/com/example/array/mock/ArrayFactory.java
+CD3Instrumenting class com.advancedpwr.samples.Family
+CD Invoking method Family.people()
+CD(Instrumenting class [Ljava.lang.String;
+CDuProxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+CD6Instrumenting class [Lcom.advancedpwr.samples.Person;
+CD3Instrumenting class com.advancedpwr.samples.Person
+CD3Instrumenting class com.advancedpwr.samples.Person
+CD!Invoking method Person.getName()
+CDuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+CD$Not able to instrument object Frank
+CD!Invoking method Person.getName()
+CDuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+CD"Not able to instrument object Joe
+CDgFinished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayArgumentFactory
+CDú/home/avery/git/thor/reference/com/example/array/mock/ArrayArgumentFactory.java matches src/generated/java/com/example/array/mock/ArrayArgumentFactory.java
+CE3Instrumenting class com.advancedpwr.samples.Family
+CE Invoking method Family.people()
+CE(Instrumenting class [Ljava.lang.String;
+CEuProxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+CE6Instrumenting class [Lcom.advancedpwr.samples.Person;
+CE3Instrumenting class com.advancedpwr.samples.Person
+CE!Invoking method Person.getName()
+CEuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+CE$Not able to instrument object Frank
+CEjFinished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayNullElementFactory
+CE¢/home/avery/git/thor/reference/com/example/array/mock/ArrayNullElementFactory.java matches src/generated/java/com/example/array/mock/ArrayNullElementFactory.java
+CF6Instrumenting class [Lcom.advancedpwr.samples.Family;
+CF3Instrumenting class com.advancedpwr.samples.Family
+CF3Instrumenting class com.advancedpwr.samples.Family
+CFInvoking method Family.fued()
+CFuProxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+CFhFinished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayExceptionFactory
+CFû/home/avery/git/thor/reference/com/example/array/mock/ArrayExceptionFactory.java matches src/generated/java/com/example/array/mock/ArrayExceptionFactory.java
+CG3Instrumenting class com.advancedpwr.samples.People
+CG$Invoking method People.getPersons()
+CGuProxy: class com.advancedpwr.samples.People$$EnhancerByCGLIB$$58449786, Source: class com.advancedpwr.samples.People
+CG6Instrumenting class [Lcom.advancedpwr.samples.Person;
+CG3Instrumenting class com.advancedpwr.samples.Person
+CG3Instrumenting class com.advancedpwr.samples.Person
+CG(Invoking method Person.setAnniversary()
+CG#Instrumenting class java.util.Date
+CGuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+CG Invoking method Date.hashCode()
+CGVProxy: class $java.util.Date$$EnhancerByCGLIB$$28e6fcde, Source: class java.util.Date
+CGInvoking method Date.equals()
+CGVProxy: class $java.util.Date$$EnhancerByCGLIB$$28e6fcde, Source: class java.util.Date
+CG#Not able to instrument object null
+CGiFinished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayException2Factory
+CG†/home/avery/git/thor/reference/com/example/array/mock/ArrayException2Factory.java matches src/generated/java/com/example/array/mock/ArrayException2Factory.java
+CH)Not able to instrument object [I@bd9a95f
+KJ3Instrumenting class com.advancedpwr.samples.Person
+KJ!Invoking method Person.setName()
+KJuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KJ#Not able to instrument object null
+KJ!Invoking method Person.getName()
+KJuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KJ"Not able to instrument object Joe
+KJ^Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPersonFactory
+KJä/home/avery/git/thor/reference/com/example/mock/MockPersonFactory.java matches src/generated/java/com/example/mock/MockPersonFactory.java
+KL3Instrumenting class com.advancedpwr.samples.Person
+KL!Invoking method Person.setName()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL#Not able to instrument object null
+KL!Invoking method Person.getName()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Not able to instrument object Joe
+KL Invoking method Person.getDad()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL3Instrumenting class com.advancedpwr.samples.Person
+KL!Invoking method Person.getName()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Not able to instrument object dad
+KL Invoking method Person.getDad()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL3Instrumenting class com.advancedpwr.samples.Person
+KL!Invoking method Person.getName()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Not able to instrument object dad
+KL Invoking method Person.setMom()
+KL3Instrumenting class com.advancedpwr.samples.Person
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Invoking method Person.hashCode()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL Invoking method Person.equals()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL#Not able to instrument object null
+KL Invoking method Person.getMom()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Invoking method Person.hashCode()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL Invoking method Person.equals()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Invoking method Person.toString()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KLLNot able to instrument object com.advancedpwr.samples.Person@786a5a6b : mom
+KL!Invoking method Person.getName()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Not able to instrument object mom
+KL Invoking method Person.setMom()
+KL3Instrumenting class com.advancedpwr.samples.Person
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL"Invoking method Person.hashCode()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL Invoking method Person.equals()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL#Not able to instrument object null
+KL Invoking method Person.setMom()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL#Not able to instrument object null
+KL Invoking method Person.getMom()
+KLuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KL#Not able to instrument object null
+KL_Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPersonFactory2
+KLå/home/avery/git/thor/reference/com/example/mock/MockPersonFactory2.java matches src/generated/java/com/example/mock/MockPersonFactory2.java
+KM3Instrumenting class com.advancedpwr.samples.Person
+KM Invoking method Person.getDad()
+KMuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KM3Instrumenting class com.advancedpwr.samples.Person
+KM Invoking method Person.getDad()
+KMuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KM3Instrumenting class com.advancedpwr.samples.Person
+KM!Invoking method Person.getName()
+KMuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KM&Not able to instrument object grandpa
+KM!Invoking method Person.setName()
+KMuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KM#Not able to instrument object null
+KM!Invoking method Person.getName()
+KMuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KM*Not able to instrument object Grandpa Joe
+KM_Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPersonFactory3
+KMå/home/avery/git/thor/reference/com/example/mock/MockPersonFactory3.java matches src/generated/java/com/example/mock/MockPersonFactory3.java
+KN3Instrumenting class com.advancedpwr.samples.Family
+KN$Invoking method Family.setParents()
+KN3Instrumenting class com.advancedpwr.samples.Person
+KN3Instrumenting class com.advancedpwr.samples.Person
+KNuProxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+KN"Invoking method Person.hashCode()
+KNuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KN Invoking method Person.equals()
+KNuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KN"Invoking method Person.hashCode()
+KNuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KN Invoking method Person.equals()
+KNuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KN#Not able to instrument object null
+KN_Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPersonFactory4
+KNå/home/avery/git/thor/reference/com/example/mock/MockPersonFactory4.java matches src/generated/java/com/example/mock/MockPersonFactory4.java
+KO3Instrumenting class com.advancedpwr.samples.Family
+KOInvoking method Family.fued()
+KOuProxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+KO_Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPersonFactory5
+KOå/home/avery/git/thor/reference/com/example/mock/MockPersonFactory5.java matches src/generated/java/com/example/mock/MockPersonFactory5.java
+KP3Instrumenting class com.advancedpwr.samples.Family
+KPInvoking method Family.fued()
+KP3Instrumenting class com.advancedpwr.samples.Person
+KPuProxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+KP!Invoking method Person.setName()
+KPuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KP#Not able to instrument object null
+KP"Invoking method Person.hashCode()
+KPuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KP Invoking method Person.equals()
+KPuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KP_Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPersonFactory6
+KPå/home/avery/git/thor/reference/com/example/mock/MockPersonFactory6.java matches src/generated/java/com/example/mock/MockPersonFactory6.java
+KQ3Instrumenting class com.advancedpwr.samples.Family
+KQInvoking method Family.fued()
+KQ3Instrumenting class com.advancedpwr.samples.Person
+KQuProxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+KQ!Invoking method Person.setName()
+KQuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KQ#Not able to instrument object null
+KQ"Invoking method Person.hashCode()
+KQuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KQ Invoking method Person.equals()
+KQuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KQ\Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.NiceMockFactory
+KQÜ/home/avery/git/thor/reference/com/example/mock/NiceMockFactory.java matches src/generated/java/com/example/mock/NiceMockFactory.java
+KR3Instrumenting class com.advancedpwr.samples.Person
+KR Invoking method Person.equals()
+KRuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KS3Instrumenting class com.advancedpwr.samples.Person
+KS"Invoking method Person.hashCode()
+KSuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+KT3Instrumenting class com.advancedpwr.samples.Person
+KU3Instrumenting class com.advancedpwr.samples.Person
+KU Invoking method Person.getDad()
+KUQProxy: class com.sun.proxy.$Proxy4, Source: class com.advancedpwr.samples.Person
+KU3Instrumenting class com.advancedpwr.samples.Person
+KU Invoking method Person.getMom()
+KUQProxy: class com.sun.proxy.$Proxy4, Source: class com.advancedpwr.samples.Person
+KU3Instrumenting class com.advancedpwr.samples.Person
+KUjFinished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPreferredInterfaceFactory
+KU¢/home/avery/git/thor/reference/com/example/mock/MockPreferredInterfaceFactory.java matches src/generated/java/com/example/mock/MockPreferredInterfaceFactory.java
+KW2Instrumenting class java.io.ByteArrayOutputStream
+KW.Invoking method ByteArrayOutputStream.write()
+KWtProxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+KW#Not able to instrument object null
+KW.Invoking method ByteArrayOutputStream.flush()
+KWtProxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+KW#Not able to instrument object null
+KW.Invoking method ByteArrayOutputStream.close()
+KWtProxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+KW#Not able to instrument object null
+KWfFinished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockPreferredClassFactory
+KWö/home/avery/git/thor/reference/com/example/mock/MockPreferredClassFactory.java matches src/generated/java/com/example/mock/MockPreferredClassFactory.java
+[Z3Instrumenting class com.advancedpwr.samples.Person
+[Z%Invoking method Person.getChildren()
+[ZuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+[Z(Instrumenting class java.util.ArrayList
+[Z Invoking method ArrayList.get()
+[Z`Proxy: class $java.util.ArrayList$$EnhancerByCGLIB$$b5855c01, Source: class java.util.ArrayList
+[Z3Instrumenting class com.advancedpwr.samples.Person
+[Z!Invoking method Person.getName()
+[ZuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+[Z#Not able to instrument object jack
+[Z Invoking method Person.getDad()
+[ZuProxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+[Z3Instrumenting class com.advancedpwr.samples.Person
+[Z`Finished recording /home/avery/git/thor/src/generated/java/com.example.list.ListInstanceFactory
+[Zé/home/avery/git/thor/reference/com/example/list/ListInstanceFactory.java matches src/generated/java/com/example/list/ListInstanceFactory.java
+]\2Instrumenting class java.io.ByteArrayOutputStream
+]\.Invoking method ByteArrayOutputStream.write()
+]\tProxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+]\#Not able to instrument object null
+]\.Invoking method ByteArrayOutputStream.flush()
+]\tProxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+]\#Not able to instrument object null
+]\.Invoking method ByteArrayOutputStream.close()
+]\tProxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+]\#Not able to instrument object null
+]\jFinished recording /home/avery/git/thor/src/generated/java/java.io.generated.ByteArrayOutputStreamFactory
+]\¢/home/avery/git/thor/reference/java/io/generated/ByteArrayOutputStreamFactory.java matches src/generated/java/java/io/generated/ByteArrayOutputStreamFactory.java
+cbä/home/avery/git/thor/reference/com/example/list/PersonListFactory.java matches src/generated/java/com/example/list/PersonListFactory.java
+edgetCaptain
+edgetCaptainsName
+ed	getClass
+gfå/home/avery/git/thor/reference/com/example/recorded/FamilyFactory1.java matches src/generated/java/com/example/recorded/FamilyFactory1.java
+ih`top com.advancedpwr.samples.Person@aeb4826 : son : com.advancedpwr.record.InstanceTree@7737d621
+ihatree com.advancedpwr.samples.Person@aeb4826 : son : com.advancedpwr.record.InstanceTree@7737d621
+ihbtree com.advancedpwr.samples.Person@38151325 : dad : com.advancedpwr.record.InstanceTree@44df1b10
+ihftree com.advancedpwr.samples.Person@518d6ecf : grandpa : com.advancedpwr.record.InstanceTree@3751a96e
+ih5result: com.advancedpwr.samples.Person@aeb4826 : son
+ihresult: grandpa
+ih<tree grandpa : com.advancedpwr.record.InstanceTree@274d0a99
+ih7tree dad : com.advancedpwr.record.InstanceTree@d90425d
+ihatree com.advancedpwr.samples.Person@b09d8d0 : mom : com.advancedpwr.record.InstanceTree@3ea424c4
+ih8tree mom : com.advancedpwr.record.InstanceTree@31a91a06
+ih7tree son : com.advancedpwr.record.InstanceTree@29fbf9b
+poí/home/avery/git/thor/reference/com/example/mock/MockBeanPersonFactory.java matches src/generated/java/com/example/mock/MockBeanPersonFactory.java
+rss/home/avery/git/thor/src/generated/java/com/advancedpwr/record/examples/xstream/generated/XstreamPersonFactory.xml
+utà/home/avery/git/thor/reference/com/example/lang/PrimitiveFactory.java matches src/generated/java/com/example/lang/PrimitiveFactory.java
+uvä/home/avery/git/thor/reference/com/example/lang/PrimitiveFactory2.java matches src/generated/java/com/example/lang/PrimitiveFactory2.java
+uw~/home/avery/git/thor/reference/com/example/lang/LangFactory.java matches src/generated/java/com/example/lang/LangFactory.java
+yxê/home/avery/git/thor/reference/com/example/methods/DateHolderFactory.java matches src/generated/java/com/example/methods/DateHolderFactory.java
+yÇà/home/avery/git/thor/reference/java/lang/generated/ObjectFactory.java matches src/generated/java/java/lang/generated/ObjectFactory.java
+yÉú/home/avery/git/thor/reference/com/example/recorded/ObjenesisPersonFactory.java matches src/generated/java/com/example/recorded/ObjenesisPersonFactory.java
+ÖÑå/home/avery/git/thor/reference/com/example/inner/InnerClassFactory.java matches src/generated/java/com/example/inner/InnerClassFactory.java
+éçú/home/avery/git/thor/reference/com/example/anonymous/AnonymousClassFactory.java matches src/generated/java/com/example/anonymous/AnonymousClassFactory.java

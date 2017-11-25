@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.ListRecorderTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.005">
+  <properties/>
+  <testcase name="testSubstitute" classname="com.advancedpwr.record.ListRecorderTest" time="0.002"/>
+  <testcase name="testWriteObject_list" classname="com.advancedpwr.record.ListRecorderTest" time="0.002"/>
+  <testcase name="testSubstitute_failure" classname="com.advancedpwr.record.ListRecorderTest" time="0.0"/>
+  <system-out><![CDATA[/home/avery/git/thor/reference/com/example/list/ListExampleSubstitutionFactory.java matches src/generated/java/com/example/list/ListExampleSubstitutionFactory.java
+/home/avery/git/thor/reference/com/example/list/ListExampleVectorFactory.java matches src/generated/java/com/example/list/ListExampleVectorFactory.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.DefaultClassDescriptorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.002">
+  <properties/>
+  <testcase name="testDefaultClassDescriptorClass" classname="com.advancedpwr.record.DefaultClassDescriptorTest" time="0.001"/>
+  <testcase name="testSubject" classname="com.advancedpwr.record.DefaultClassDescriptorTest" time="0.0"/>
+  <testcase name="testGetClassName" classname="com.advancedpwr.record.DefaultClassDescriptorTest" time="0.0"/>
+  <testcase name="testGetPackageName" classname="com.advancedpwr.record.DefaultClassDescriptorTest" time="0.001"/>
+  <testcase name="testToString" classname="com.advancedpwr.record.DefaultClassDescriptorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

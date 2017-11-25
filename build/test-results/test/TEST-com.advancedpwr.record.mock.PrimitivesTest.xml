@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.mock.PrimitivesTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.208">
+  <properties/>
+  <testcase name="testPrimitives" classname="com.advancedpwr.record.mock.PrimitivesTest" time="0.117"/>
+  <testcase name="testPrimitives2" classname="com.advancedpwr.record.mock.PrimitivesTest" time="0.03"/>
+  <testcase name="testLangObjects" classname="com.advancedpwr.record.mock.PrimitivesTest" time="0.06"/>
+  <system-out><![CDATA[Instrumenting class com.advancedpwr.samples.Primitives
+Invoking method Primitives.setChar()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setDouble()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setFloat()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setInt()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setLong()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setShort()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setString()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setBoolean()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setByte()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.getInt()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object 5
+Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.PrimitiveFactory
+/home/avery/git/thor/reference/com/example/mock/PrimitiveFactory.java matches src/generated/java/com/example/mock/PrimitiveFactory.java
+Instrumenting class java.util.ArrayList
+Invoking method ArrayList.get()
+Proxy: class $java.util.ArrayList$$EnhancerByCGLIB$$b5855c01, Source: class java.util.ArrayList
+Instrumenting class com.advancedpwr.samples.Primitives
+Invoking method Primitives.setChar()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setDouble()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setFloat()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setInt()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setLong()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setShort()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setString()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setBoolean()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.setByte()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object null
+Invoking method Primitives.getInt()
+Proxy: class com.advancedpwr.samples.Primitives$$EnhancerByCGLIB$$72b11fa5, Source: class com.advancedpwr.samples.Primitives
+Not able to instrument object 5
+Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.PrimitiveFactory2
+/home/avery/git/thor/reference/com/example/mock/PrimitiveFactory2.java matches src/generated/java/com/example/mock/PrimitiveFactory2.java
+Instrumenting class com.advancedpwr.samples.LangObjects
+Invoking method LangObjects.setCharacter()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setDouble()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setFloat()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setInteger()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setLong()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setShort()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setBoolean()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setByte()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setClassArgument()
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Not able to instrument object null
+Invoking method LangObjects.setBigDecimal()
+Instrumenting class java.math.BigDecimal
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Invoking method BigDecimal.hashCode()
+Proxy: class $java.math.BigDecimal$$EnhancerByCGLIB$$c91241d, Source: class java.math.BigDecimal
+Invoking method BigDecimal.equals()
+Proxy: class $java.math.BigDecimal$$EnhancerByCGLIB$$c91241d, Source: class java.math.BigDecimal
+Not able to instrument object null
+Invoking method LangObjects.setBigInteger()
+Instrumenting class java.math.BigInteger
+Proxy: class com.advancedpwr.samples.LangObjects$$EnhancerByCGLIB$$a25874a9, Source: class com.advancedpwr.samples.LangObjects
+Invoking method BigInteger.hashCode()
+Proxy: class $java.math.BigInteger$$EnhancerByCGLIB$$d383d6c, Source: class java.math.BigInteger
+Invoking method BigInteger.equals()
+Proxy: class $java.math.BigInteger$$EnhancerByCGLIB$$d383d6c, Source: class java.math.BigInteger
+Invoking method BigInteger.equals()
+Proxy: class $java.math.BigInteger$$EnhancerByCGLIB$$d383d6c, Source: class java.math.BigInteger
+Not able to instrument object null
+Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.LangFactory
+/home/avery/git/thor/reference/com/example/mock/LangFactory.java matches src/generated/java/com/example/mock/LangFactory.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
