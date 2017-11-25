@@ -1,4 +1,4 @@
-﻿***  ThOR - Java Test Object Recorder ***
+﻿#  ThOR - Java Test Object Recorder
 
 The Java Test Object Recorder (ThOR) project provides four "object recorders" 
 to record live object trees or behavior for playback during unit testing.  
@@ -7,8 +7,10 @@ Object recorders enable the recording of state or behavior so that data
 retrieved from a remote system, or possibly a complex object graph, can be 
 easily reconstructed or mocked to facilitate unit testing.
 
-The latest release is version 1.4.0. Recent changes include:
+The latest release is version 1.6.0. Recent changes include:
 
+    Convert to gradle build
+    Update to EasyMock 3.5.1
     Addition of the MockBeanRecorder
     ClassWriter.setSuperClass() method to control the factory super class
     MockBehaviorRecorder.setNice() method to create "nice" mock objects
@@ -28,7 +30,7 @@ Behavior recorders record only the methods that are called on the live object
 tree in a factory class that will construct a tree of mock objects that will 
 replicate the recorded behavior.
 
-State Recorders:
+## State Recorders:
 
 com.advancedpwr.record.BeanRecorder – This recorder will records an object 
 tree that follows the Java Bean convention.  It is particularly useful for
@@ -47,12 +49,9 @@ Xstream is impressive in its capabilities to serialize and deserialize objects.
 recorder.
 
 
-Behavior Recorder:
+## Behavior Recorder:
 
 com.advancedpwr.record.mock.MockBehaviorRecorder – Records all method calls 
 made on an object tree in a factory that constructs mock objects to replicate 
-and verify the expected behavior.  This recorder requires EasyMock-3.0.jar, 
-cglib-nodep-2.2.jar and objenesis-1.2.jar.
+and verify the expected behavior. 
 
-
-User and API documentation can be found at http://jtor.sourceforge.net.
