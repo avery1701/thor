@@ -1,4 +1,5 @@
-EasyMock 3.2
+Convert to gradle build
+EasyMock 3.5.1
 Support for Anonymous classes
 Support for arrays of primatives
 Support for abstract classes on the addPreferredInterfaces() method
