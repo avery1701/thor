@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.BeanRecorderTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.009">
+  <properties/>
+  <testcase name="testSetObject" classname="com.advancedpwr.record.BeanRecorderTest" time="0.0"/>
+  <testcase name="testSetGetObject" classname="com.advancedpwr.record.BeanRecorderTest" time="0.002"/>
+  <testcase name="testSetDescriptor" classname="com.advancedpwr.record.BeanRecorderTest" time="0.001"/>
+  <testcase name="testPackagePath" classname="com.advancedpwr.record.BeanRecorderTest" time="0.0"/>
+  <testcase name="testGetPrintWriter" classname="com.advancedpwr.record.BeanRecorderTest" time="0.0"/>
+  <testcase name="testGetPrintWriter_file" classname="com.advancedpwr.record.BeanRecorderTest" time="0.001"/>
+  <testcase name="testCloseFile" classname="com.advancedpwr.record.BeanRecorderTest" time="0.0"/>
+  <testcase name="testAddBuilder" classname="com.advancedpwr.record.BeanRecorderTest" time="0.0"/>
+  <testcase name="testRecord_Object" classname="com.advancedpwr.record.BeanRecorderTest" time="0.0"/>
+  <testcase name="testRecord_Objenesis" classname="com.advancedpwr.record.BeanRecorderTest" time="0.003"/>
+  <system-out><![CDATA[/home/avery/git/thor/reference/java/lang/generated/ObjectFactory.java matches src/generated/java/java/lang/generated/ObjectFactory.java
+/home/avery/git/thor/reference/com/example/recorded/ObjenesisPersonFactory.java matches src/generated/java/com/example/recorded/ObjenesisPersonFactory.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

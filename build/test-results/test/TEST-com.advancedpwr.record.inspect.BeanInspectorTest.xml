@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.inspect.BeanInspectorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.005">
+  <properties/>
+  <testcase name="testBeanInfo" classname="com.advancedpwr.record.inspect.BeanInspectorTest" time="0.005"/>
+  <system-out><![CDATA[getCaptain
+getCaptainsName
+getClass
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

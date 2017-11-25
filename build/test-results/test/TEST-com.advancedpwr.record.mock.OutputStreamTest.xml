@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.mock.OutputStreamTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.002">
+  <properties/>
+  <testcase name="testOutputStream" classname="com.advancedpwr.record.mock.OutputStreamTest" time="0.002"/>
+  <system-out><![CDATA[Instrumenting class java.io.ByteArrayOutputStream
+Invoking method ByteArrayOutputStream.write()
+Proxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+Not able to instrument object null
+Invoking method ByteArrayOutputStream.flush()
+Proxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+Not able to instrument object null
+Invoking method ByteArrayOutputStream.close()
+Proxy: class $java.io.ByteArrayOutputStream$$EnhancerByCGLIB$$ac145b16, Source: class java.io.ByteArrayOutputStream
+Not able to instrument object null
+Finished recording /home/avery/git/thor/src/generated/java/java.io.generated.ByteArrayOutputStreamFactory
+/home/avery/git/thor/reference/java/io/generated/ByteArrayOutputStreamFactory.java matches src/generated/java/java/io/generated/ByteArrayOutputStreamFactory.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

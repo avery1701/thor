@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'jacoco'
+
+sourceSets {
+   generated
+ }
+ 
+jar {
+    baseName = 'thor'
+    version =  '1.6.0'
+}
+
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+
+    compile 'org.easymock:easymock:3.5.1'
+    compile 'xstream:xstream:1.2.2'
+    compile 'cglib:cglib:3.2.5'
+
+    
+    testCompile 'junit:junit:4.7'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("docs/test_coverage")
+    }
+}
+

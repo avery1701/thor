@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.mock.ArrayTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.025">
+  <properties/>
+  <testcase name="testArray" classname="com.advancedpwr.record.mock.ArrayTest" time="0.002"/>
+  <testcase name="testArray_argument" classname="com.advancedpwr.record.mock.ArrayTest" time="0.007"/>
+  <testcase name="testArray_null_element" classname="com.advancedpwr.record.mock.ArrayTest" time="0.002"/>
+  <testcase name="testArray_exception" classname="com.advancedpwr.record.mock.ArrayTest" time="0.002"/>
+  <testcase name="testArray_exception_2" classname="com.advancedpwr.record.mock.ArrayTest" time="0.011"/>
+  <testcase name="testArrayPrimitive" classname="com.advancedpwr.record.mock.ArrayTest" time="0.0"/>
+  <testcase name="testCanInstrumentArray" classname="com.advancedpwr.record.mock.ArrayTest" time="0.0"/>
+  <system-out><![CDATA[Instrumenting class [Lcom.advancedpwr.samples.Person;
+Instrumenting class com.advancedpwr.samples.Person
+Instrumenting class com.advancedpwr.samples.Person
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method Person.getName()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Not able to instrument object mom
+Finished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayFactory
+/home/avery/git/thor/reference/com/example/array/mock/ArrayFactory.java matches src/generated/java/com/example/array/mock/ArrayFactory.java
+Instrumenting class com.advancedpwr.samples.Family
+Invoking method Family.people()
+Instrumenting class [Ljava.lang.String;
+Proxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+Instrumenting class [Lcom.advancedpwr.samples.Person;
+Instrumenting class com.advancedpwr.samples.Person
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method Person.getName()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Not able to instrument object Frank
+Invoking method Person.getName()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Not able to instrument object Joe
+Finished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayArgumentFactory
+/home/avery/git/thor/reference/com/example/array/mock/ArrayArgumentFactory.java matches src/generated/java/com/example/array/mock/ArrayArgumentFactory.java
+Instrumenting class com.advancedpwr.samples.Family
+Invoking method Family.people()
+Instrumenting class [Ljava.lang.String;
+Proxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+Instrumenting class [Lcom.advancedpwr.samples.Person;
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method Person.getName()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Not able to instrument object Frank
+Finished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayNullElementFactory
+/home/avery/git/thor/reference/com/example/array/mock/ArrayNullElementFactory.java matches src/generated/java/com/example/array/mock/ArrayNullElementFactory.java
+Instrumenting class [Lcom.advancedpwr.samples.Family;
+Instrumenting class com.advancedpwr.samples.Family
+Instrumenting class com.advancedpwr.samples.Family
+Invoking method Family.fued()
+Proxy: class com.advancedpwr.samples.Family$$EnhancerByCGLIB$$12c6e9cd, Source: class com.advancedpwr.samples.Family
+Finished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayExceptionFactory
+/home/avery/git/thor/reference/com/example/array/mock/ArrayExceptionFactory.java matches src/generated/java/com/example/array/mock/ArrayExceptionFactory.java
+Instrumenting class com.advancedpwr.samples.People
+Invoking method People.getPersons()
+Proxy: class com.advancedpwr.samples.People$$EnhancerByCGLIB$$58449786, Source: class com.advancedpwr.samples.People
+Instrumenting class [Lcom.advancedpwr.samples.Person;
+Instrumenting class com.advancedpwr.samples.Person
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method Person.setAnniversary()
+Instrumenting class java.util.Date
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Invoking method Date.hashCode()
+Proxy: class $java.util.Date$$EnhancerByCGLIB$$28e6fcde, Source: class java.util.Date
+Invoking method Date.equals()
+Proxy: class $java.util.Date$$EnhancerByCGLIB$$28e6fcde, Source: class java.util.Date
+Not able to instrument object null
+Finished recording /home/avery/git/thor/src/generated/java/com.example.array.mock.ArrayException2Factory
+/home/avery/git/thor/reference/com/example/array/mock/ArrayException2Factory.java matches src/generated/java/com/example/array/mock/ArrayException2Factory.java
+Not able to instrument object [I@bd9a95f
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

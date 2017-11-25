@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.mock.MapTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.023">
+  <properties/>
+  <testcase name="testMap" classname="com.advancedpwr.record.mock.MapTest" time="0.023"/>
+  <system-out><![CDATA[Instrumenting class com.advancedpwr.samples.MapContainer
+Invoking method MapContainer.getPerson()
+Proxy: class com.advancedpwr.samples.MapContainer$$EnhancerByCGLIB$$50c88318, Source: class com.advancedpwr.samples.MapContainer
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method MapContainer.getMap()
+Proxy: class com.advancedpwr.samples.MapContainer$$EnhancerByCGLIB$$50c88318, Source: class com.advancedpwr.samples.MapContainer
+Instrumenting class java.util.LinkedHashMap
+Invoking method Person.getDad()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method Person.getName()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Not able to instrument object dad
+Invoking method LinkedHashMap.get()
+Proxy: class $java.util.LinkedHashMap$$EnhancerByCGLIB$$2073962b, Source: class java.util.LinkedHashMap
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method MapContainer.getMap()
+Proxy: class com.advancedpwr.samples.MapContainer$$EnhancerByCGLIB$$50c88318, Source: class com.advancedpwr.samples.MapContainer
+Instrumenting class java.util.LinkedHashMap
+Invoking method Person.getMom()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Instrumenting class com.advancedpwr.samples.Person
+Invoking method Person.getName()
+Proxy: class com.advancedpwr.samples.Person$$EnhancerByCGLIB$$1a63bbc8, Source: class com.advancedpwr.samples.Person
+Not able to instrument object mom
+Invoking method LinkedHashMap.get()
+Proxy: class $java.util.LinkedHashMap$$EnhancerByCGLIB$$2073962b, Source: class java.util.LinkedHashMap
+Instrumenting class com.advancedpwr.samples.Person
+Finished recording /home/avery/git/thor/src/generated/java/com.example.mock.MockMapFactory
+/home/avery/git/thor/reference/com/example/mock/MockMapFactory.java matches src/generated/java/com/example/mock/MockMapFactory.java
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

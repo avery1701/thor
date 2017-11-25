@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.advancedpwr.record.InstanceTreeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-11-25T01:03:57" hostname="enterprise" time="0.006">
+  <properties/>
+  <testcase name="testInstanceAware" classname="com.advancedpwr.record.InstanceTreeTest" time="0.001"/>
+  <testcase name="testGetResults" classname="com.advancedpwr.record.InstanceTreeTest" time="0.0"/>
+  <testcase name="testClasses" classname="com.advancedpwr.record.InstanceTreeTest" time="0.0"/>
+  <testcase name="testIsTop" classname="com.advancedpwr.record.InstanceTreeTest" time="0.002"/>
+  <testcase name="testInvoke_exception" classname="com.advancedpwr.record.InstanceTreeTest" time="0.001"/>
+  <testcase name="testAddInspector" classname="com.advancedpwr.record.InstanceTreeTest" time="0.0"/>
+  <system-out><![CDATA[top com.advancedpwr.samples.Person@aeb4826 : son : com.advancedpwr.record.InstanceTree@7737d621
+tree com.advancedpwr.samples.Person@aeb4826 : son : com.advancedpwr.record.InstanceTree@7737d621
+tree com.advancedpwr.samples.Person@38151325 : dad : com.advancedpwr.record.InstanceTree@44df1b10
+tree com.advancedpwr.samples.Person@518d6ecf : grandpa : com.advancedpwr.record.InstanceTree@3751a96e
+result: com.advancedpwr.samples.Person@aeb4826 : son
+result: grandpa
+tree grandpa : com.advancedpwr.record.InstanceTree@274d0a99
+tree dad : com.advancedpwr.record.InstanceTree@d90425d
+tree com.advancedpwr.samples.Person@b09d8d0 : mom : com.advancedpwr.record.InstanceTree@3ea424c4
+tree mom : com.advancedpwr.record.InstanceTree@31a91a06
+tree son : com.advancedpwr.record.InstanceTree@29fbf9b
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
