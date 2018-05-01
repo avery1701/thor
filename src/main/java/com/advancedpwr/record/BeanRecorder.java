@@ -29,6 +29,7 @@ import java.util.Set;
 import com.advancedpwr.record.factory.BaseFactory;
 import com.advancedpwr.record.methods.BuildMethodWriter;
 import com.advancedpwr.record.methods.CollectionBuilderFactory;
+import com.advancedpwr.record.methods.EnumBuilderFactory;
 import com.advancedpwr.record.methods.MapBuilderFactory;
 import com.advancedpwr.record.methods.MethodBuilderFactory;
 import com.advancedpwr.record.methods.MethodWriterFactory;
@@ -52,7 +53,7 @@ import com.advancedpwr.record.methods.MethodWriterFactory;
 	BeanRecorder recorder = new BeanRecorder();
 	recorder.setDestination( "recordings" );
 	recorder.record( person );
- * </pre></blockquote><p>
+ * </pre></blockquote></p>
  * 
  * The above example will record the object tree of the "person" instance as a Java class:
  * 
@@ -80,13 +81,13 @@ import com.advancedpwr.record.methods.MethodWriterFactory;
 		}
 	
 	}
- * </pre></blockquote><p>
+ * </pre></blockquote></p>
  * 
  * To reconstruct the instance of "person" in a unit test:
  * 
  * <p><blockquote><pre>
   	Person person = new PersonFactory().buildPerson();
- * </pre></blockquote><p>
+ * </pre></blockquote></p>
  * 
  * The BeanRecorder is "instance aware" and supports {@link Collection} and {@link Map} objects.
  * 
@@ -213,6 +214,7 @@ public class BeanRecorder extends AbstractRecorder
 		MethodBuilderFactory factory = new MethodBuilderFactory();
 		factory.addBuilderFactory( new CollectionBuilderFactory() );
 		factory.addBuilderFactory( new MapBuilderFactory() );
+		factory.addBuilderFactory( new EnumBuilderFactory() );
 		return factory;
 	}
 	

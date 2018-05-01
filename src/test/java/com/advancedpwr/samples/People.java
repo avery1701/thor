@@ -29,4 +29,16 @@ public class People
 		fieldPersons = persons;
 	}
 	
+	protected Direction fieldDirection;
+
+	public Direction getDirection()
+	{
+		return fieldDirection;
+	}
+
+	public void setDirection( Direction direction )
+	{
+		fieldDirection = direction;
+	}
+	
 }
