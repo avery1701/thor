@@ -26,7 +26,7 @@ dependencies {
     compile 'org.easymock:easymock:3.5.1'
     compile 'xstream:xstream:1.2.2'
     compile 'cglib:cglib:3.2.5'
-    compile 'junit:junit:4.7'
+    compile 'junit:junit:4.12'
 }
 
 jacocoTestReport {
