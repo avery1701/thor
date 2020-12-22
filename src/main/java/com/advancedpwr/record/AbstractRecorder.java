@@ -18,6 +18,7 @@ package com.advancedpwr.record;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Writer;
 
 /**
@@ -126,6 +127,23 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 				return null;
 			}
 		}.wrap();
+	}
+	
+	protected void closeFile()
+	{
+		if ( getDestination() != null )
+		{
+			close( getJavaFileWriter() );
+		}
+	}
+	
+	public PrintWriter getPrintWriter()
+	{
+		if ( fieldPrintWriter == null && getDestination() != null )
+		{
+			setWriter( getJavaFileWriter() );
+		}
+		return fieldPrintWriter;
 	}
 
 }

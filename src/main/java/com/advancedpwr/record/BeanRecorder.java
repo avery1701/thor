@@ -148,14 +148,6 @@ public class BeanRecorder extends AbstractRecorder
 		closeFile();
 		return inObject;
 	}
-
-	protected void closeFile()
-	{
-		if ( getDestination() != null )
-		{
-			close( getJavaFileWriter() );
-		}
-	}
 	
 
 	protected void writeObjectBuilderMethod()
@@ -221,15 +213,6 @@ public class BeanRecorder extends AbstractRecorder
 	public void addBuilderFactory( MethodWriterFactory inFactory )
 	{
 		getFactoryBuilder().addBuilderFactory( inFactory );
-	}
-	
-	public PrintWriter getPrintWriter()
-	{
-		if ( fieldPrintWriter == null && getDestination() != null )
-		{
-			setWriter( getJavaFileWriter() );
-		}
-		return fieldPrintWriter;
 	}
 	
 	public void stopDescent( Class inClass )

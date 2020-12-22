@@ -11,11 +11,15 @@ apply from: 'publish.gradle'
 
 
 sourceSets {
-   generated
+    generated {
+    	compileClasspath += main.output
+    	runtimeClasspath += main.output
+    }
  }
 
 
 repositories {
+	mavenCentral()
     jcenter()
 }
 

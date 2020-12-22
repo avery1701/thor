@@ -15,21 +15,23 @@
  */
 package com.advancedpwr.record.methods;
 
-import static com.advancedpwr.record.ClassWriter.*;
+import static com.advancedpwr.record.ClassWriter.PROTECTED;
+import static com.advancedpwr.record.ClassWriter.PUBLIC;
+import static com.advancedpwr.record.ClassWriter.SPACE;
 
 import java.lang.reflect.Constructor;
 import java.util.Iterator;
 import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.ClassWriter;
+import com.advancedpwr.record.ClassWriterDelagate;
 import com.advancedpwr.record.InstanceTree;
 
-public class BuildMethodWriter
+public class BuildMethodWriter extends ClassWriterDelagate
 {
 
 	protected AccessPath fieldAccessPath;
-	protected ClassWriter fieldClassWriter;
+
 	protected String fieldScope;
 	protected MethodBuilderFactory fieldFactory;
 	
@@ -186,16 +188,6 @@ public class BuildMethodWriter
 		return builder;
 	}
 
-	public ClassWriter getClassWriter()
-	{
-		return fieldClassWriter;
-	}
-
-	public void setClassWriter( ClassWriter classWriter )
-	{
-		fieldClassWriter = classWriter;
-	}
-
 	public AccessPath getAccessPath()
 	{
 		return fieldAccessPath;
@@ -206,25 +198,6 @@ public class BuildMethodWriter
 		fieldAccessPath = result;
 	}
 
-	public ClassWriter closeBrace()
-	{
-		return getClassWriter().closeBrace();
-	}
-
-	public ClassWriter openBrace()
-	{
-		return getClassWriter().openBrace();
-	}
-
-	public void writeLine( String inString )
-	{
-		getClassWriter().writeLine( inString );
-	}
-
-	public void write( String inString )
-	{
-		getClassWriter().write( inString );
-	}
 
 	public String resultBuilder()
 	{
@@ -256,10 +229,6 @@ public class BuildMethodWriter
 		return getAccessPath().getParameterClass().getSimpleName();
 	}
 	
-	protected void newLine()
-	{
-		getClassWriter().newLine();
-	}
 
 	protected void writeIfNotNullReturnInstance()
 	{
