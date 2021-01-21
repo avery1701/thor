@@ -21,7 +21,7 @@ import java.util.Map;
 public class MapContainer
 {
 	protected Person fieldPerson;
-	protected Map fieldMap;
+	protected Map<?, ?> fieldMap;
 	public Person getPerson()
 	{
 		return fieldPerson;
@@ -30,11 +30,11 @@ public class MapContainer
 	{
 		fieldPerson = person;
 	}
-	public Map getMap()
+	public Map<?, ?> getMap()
 	{
 		return fieldMap;
 	}
-	public void setMap( Map map )
+	public void setMap( Map<?, ?> map )
 	{
 		fieldMap = map;
 	}

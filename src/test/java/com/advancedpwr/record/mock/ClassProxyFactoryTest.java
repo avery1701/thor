@@ -15,31 +15,25 @@
  */
 package com.advancedpwr.record.mock;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class ClassProxyFactoryTest extends TestCase
-{
+public class ClassProxyFactoryTest {
 
-	protected void setUp() throws Exception
-	{
-		super.setUp();
-	}
-
-	public void testCreateProxy()
-	{
+	@Test
+	public void testCreateProxy() {
 		ClassProxyFactory factory = new ClassProxyFactory();
-		Object object = factory.createProxy( Object.class, new InvocationHandler()
-		{
-			public Object invoke( Object proxy, Method method, Object[] args ) throws Throwable
-			{
+		Object object = factory.createProxy(Object.class, new InvocationHandler() {
+			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 				return null;
 			}
 		});
-		
-		assertNull( object.toString() );
+
+		assertNull(object.toString());
 	}
 
 }

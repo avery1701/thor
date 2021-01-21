@@ -1,19 +1,15 @@
 package com.advancedpwr.record;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MockBeanMethodBuilderTest extends TestCase
-{
+import org.junit.jupiter.api.Test;
 
-	protected void setUp() throws Exception
-	{
-		super.setUp();
-	}
-	
-	public void testMethod()
-	{
+public class MockBeanMethodBuilderTest {
+
+	@Test
+	public void testMethod() {
 		MockBeanMethodBuilder builder = new MockBeanMethodBuilder();
-		assertEquals( "", builder.methodName( new AccessPath() ) );
+		assertEquals("", builder.methodName(new AccessPath()));
 	}
 
 }

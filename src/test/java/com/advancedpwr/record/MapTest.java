@@ -18,53 +18,48 @@ package com.advancedpwr.record;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.MapContainer;
 import com.advancedpwr.samples.Person;
 
-public class MapTest extends AbstractRecorderTest
-{
-	protected void setUp()
-	{
-		setWriteFiles();
-		super.setUp();
-	}
-	
-	public void testMap()
-	{
+public class MapTest extends AbstractRecorderTest {
+
+	@Test
+	public void testMap() {
 		Person person = Person.createExamplePerson();
 
 		Person cousin = new Person();
-		cousin.setName( "cousin" );
-		
-		Map family = new LinkedHashMap();
-		family.put( person.getName(), person );
-		family.put( person.getDad().getName(), person.getDad() );
-		family.put( person.getMom().getName(), person.getMom() );
-		family.put( person, cousin );
-		
+		cousin.setName("cousin");
+
+		Map<Object, Person> family = new LinkedHashMap<Object, Person>();
+		family.put(person.getName(), person);
+		family.put(person.getDad().getName(), person.getDad());
+		family.put(person.getMom().getName(), person.getMom());
+		family.put(person, cousin);
+
 		MapContainer container = new MapContainer();
-		container.setPerson( person );
-		container.setMap( family );
-		recorder.setClassName( "com.example.map.MapFactory1" );
-		recorder.record( container );
+		container.setPerson(person);
+		container.setMap(family);
+		recorder.setClassName("com.example.map.MapFactory1");
+		recorder.record(container);
 		assertResult();
 	}
-	
-	public void testMap_2()
-	{
+
+	public void testMap_2() {
 		Person person = Person.createExamplePerson();
-		
-		Map family = new LinkedHashMap();
-		family.put( person.getName(), person );
-		family.put( person.getDad().getName(), person.getDad() );
-		family.put( "alias", person );
-		
+
+		Map<String, Person> family = new LinkedHashMap<String, Person>();
+		family.put(person.getName(), person);
+		family.put(person.getDad().getName(), person.getDad());
+		family.put("alias", person);
+
 		// Don't want to try and write a class into the "java.util" package.
 		SimpleClassDescriptor desc = new SimpleClassDescriptor();
-		desc.setPackageName( "com.example.map" );
-		desc.setClassName( "LinkedHashMapFactory" );
-		recorder.setDescriptor( desc );
-		recorder.record( family );
-		assertResult();		
+		desc.setPackageName("com.example.map");
+		desc.setClassName("LinkedHashMapFactory");
+		recorder.setDescriptor(desc);
+		recorder.record(family);
+		assertResult();
 	}
 }

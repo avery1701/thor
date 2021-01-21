@@ -15,9 +15,11 @@
  */
 package com.advancedpwr.record.methods;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.StringWriter;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.BeanRecorder;
@@ -25,53 +27,40 @@ import com.advancedpwr.record.ClassWriter;
 import com.advancedpwr.record.InstanceTree;
 import com.advancedpwr.samples.Person;
 
-public class MethodBuilderTest extends TestCase
-{
+public class MethodBuilderTest {
 	BuildMethodWriter builder;
 	StringWriter out;
-	
-	protected void setUp() throws Exception
-	{
-		super.setUp();
-		
+
+	public MethodBuilderTest() {
 		builder = new BuildMethodWriter();
 		ClassWriter classWriter = new BeanRecorder();
 		out = new StringWriter();
-		classWriter.setWriter( out );
-		builder.setClassWriter( classWriter );
-		builder.setFactory( new MethodBuilderFactory() );
+		classWriter.setWriter(out);
+		builder.setClassWriter(classWriter);
+		builder.setFactory(new MethodBuilderFactory());
 	}
-	
-	public void testBuild()
-	{
+
+	@Test
+	public void testBuild() {
 		AccessPath result = new AccessPath();
-		assertEquals( "", result.pathName() );
+		assertEquals("", result.pathName());
 		Person person = new Person();
-		person.setName( "Joe" );
-		result.setTree( new InstanceTree( person ) );
-		builder.setAccessPath( result );
+		person.setName("Joe");
+		result.setTree(new InstanceTree(person));
+		builder.setAccessPath(result);
 		builder.buildMethod();
-		assertEquals( "\n" + 
-				"protected Person person;\n" + 
-				"\n" + 
-				"protected Person buildPerson()\n" + 
-				"{\n" + 
-				"	if ( person != null ) \n" + 
-				"	{\n" + 
-				"		return person;\n" + 
-				"	}\n" + 
-				"	person = new Person();\n" + 
-				"	person.setName( \"Joe\" );\n" + 
-				"	return person;\n" + 
-				"}\n", out.toString().replaceAll( "\r\n", "\n" ) );
+		assertEquals("\n" + "protected Person person;\n" + "\n" + "protected Person buildPerson()\n" + "{\n"
+				+ "	if ( person != null ) \n" + "	{\n" + "		return person;\n" + "	}\n"
+				+ "	person = new Person();\n" + "	person.setName( \"Joe\" );\n" + "	return person;\n" + "}\n",
+				out.toString().replaceAll("\r\n", "\n"));
 	}
-	
-	public void testSetScope()
-	{
+
+	@Test
+	public void testSetScope() {
 		builder.setScopePublic();
-		assertEquals( "public ", builder.scope() );
+		assertEquals("public ", builder.scope());
 		builder.setScopeProtected();
-		assertEquals( "protected ", builder.scope() );
+		assertEquals("protected ", builder.scope());
 	}
 
 }

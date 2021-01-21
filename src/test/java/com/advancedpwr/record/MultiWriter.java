@@ -19,115 +19,77 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 
-public class MultiWriter extends StringWriter
-{
+public class MultiWriter extends StringWriter {
 	protected FileWriter fieldFileWriter;
-	
-	public void write( String str, int off, int len )
-	{
-		super.write( str, off, len );
-		if ( getFileWriter() != null )
-		{
-			try
-			{
-				getFileWriter().write( str, off, len );
-			}
-			catch ( IOException e )
-			{
-				throw new RuntimeException( e );
+
+	public void write(String str, int off, int len) {
+		super.write(str, off, len);
+		if (getFileWriter() != null) {
+			try {
+				getFileWriter().write(str, off, len);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
 
-	public FileWriter getFileWriter()
-	{
-		return fieldFileWriter;
-	}
+	public FileWriter getFileWriter() { return fieldFileWriter; }
 
-	public void setFileWriter( FileWriter fileWriter )
-	{
-		fieldFileWriter = fileWriter;
-	}
+	public void setFileWriter(FileWriter fileWriter) { fieldFileWriter = fileWriter; }
 
-	public void close() throws IOException
-	{
+	public void close() throws IOException {
 		super.close();
-		if ( getFileWriter() != null )
-		{
-			try
-			{
+		if (getFileWriter() != null) {
+			try {
 				getFileWriter().close();
-			}
-			catch ( IOException e )
-			{
-				throw new RuntimeException( e );
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
 
-	public void flush()
-	{
+	public void flush() {
 		super.flush();
-		if ( getFileWriter() != null )
-		{
-			try
-			{
+		if (getFileWriter() != null) {
+			try {
 				getFileWriter().flush();
-			}
-			catch ( IOException e )
-			{
-				throw new RuntimeException( e );
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
 
-	public void write( char[] cbuf, int off, int len )
-	{
-		super.write( cbuf, off, len );
-		if ( getFileWriter() != null )
-		{
-			try
-			{
-				getFileWriter().write( cbuf, off, len );
-			}
-			catch ( IOException e )
-			{
-				throw new RuntimeException( e );
+	public void write(char[] cbuf, int off, int len) {
+		super.write(cbuf, off, len);
+		if (getFileWriter() != null) {
+			try {
+				getFileWriter().write(cbuf, off, len);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
 
-	public void write( int c )
-	{
-		super.write( c );
-		if ( getFileWriter() != null )
-		{
-			try
-			{
-				getFileWriter().write( c );
-			}
-			catch ( IOException e )
-			{
-				throw new RuntimeException( e );
+	public void write(int c) {
+		super.write(c);
+		if (getFileWriter() != null) {
+			try {
+				getFileWriter().write(c);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
 
-	public void write( String str )
-	{
-		super.write( str );
-		if ( getFileWriter() != null )
-		{
-			try
-			{
-				getFileWriter().write( str );
-			}
-			catch ( IOException e )
-			{
-				throw new RuntimeException( e );
+	public void write(String str) {
+		super.write(str);
+		if (getFileWriter() != null) {
+			try {
+				getFileWriter().write(str);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
-
 
 }

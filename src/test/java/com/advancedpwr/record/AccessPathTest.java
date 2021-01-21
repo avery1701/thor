@@ -15,21 +15,17 @@
  */
 package com.advancedpwr.record;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AccessPathTest extends TestCase
-{
+import org.junit.jupiter.api.Test;
 
-	protected void setUp() throws Exception
-	{
-		super.setUp();
-	}
-	
-	public void testAccessPath()
-	{
+public class AccessPathTest {
+
+	@Test
+	public void testAccessPath() {
 		AccessPath path = new AccessPath();
-		path.setTree( new InstanceTree("Joe") );
-		assertEquals( String.class, path.getReturnType() );
+		path.setTree(new InstanceTree("Joe"));
+		assertEquals(String.class, path.getReturnType());
 	}
 
 }

@@ -15,27 +15,20 @@
  */
 package com.advancedpwr.record;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.StringExample;
 
-public class StringRecorderTest extends AbstractRecorderTest
-{
+public class StringRecorderTest extends AbstractRecorderTest {
 
-	@Override
-	protected void setUp()
-	{
-		// TODO Auto-generated method stub
-		super.setUp();
-	}
-
-	public void testWriteObject_String()
-	{
+	@Test
+	public void testWriteObject_String() {
 		StringExample stringExample = new StringExample();
-		stringExample.setString( "a string" );
-		stringExample.setString2( "another string\r\n" +
-								  "two lines long" );
-		
-		recorder.record( stringExample );
+		stringExample.setString("a string");
+		stringExample.setString2("another string\r\n" + "two lines long");
+
+		recorder.record(stringExample);
 		assertResult();
 	}
-	
+
 }

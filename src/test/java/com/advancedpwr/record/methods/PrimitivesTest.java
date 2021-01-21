@@ -18,71 +18,67 @@ package com.advancedpwr.record.methods;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.record.AbstractRecorderTest;
 import com.advancedpwr.samples.LangObjects;
 import com.advancedpwr.samples.Person;
 import com.advancedpwr.samples.Primitives;
 
-public class PrimitivesTest extends AbstractRecorderTest
-{
+public class PrimitivesTest extends AbstractRecorderTest {
 
-	protected void setUp()
-	{
-		super.setUp();
-	}
-
-	public void testPrimitives()
-	{
+	@Test
+	public void testPrimitives() {
 		Primitives primitives = new Primitives();
-		primitives.setChar( 'c' );
-		primitives.setDouble( 12d );
-		primitives.setFloat( 11f );
-		primitives.setInt( 5 );
-		primitives.setLong( 16l );
-		primitives.setShort( (short)3 );
-		primitives.setString( "astring" );
-		primitives.setBoolean( true );
-		primitives.setByte( (byte)123 );
-		
-		recorder.setClassName( "com.example.lang.PrimitiveFactory" );
-		recorder.record( primitives );
+		primitives.setChar('c');
+		primitives.setDouble(12d);
+		primitives.setFloat(11f);
+		primitives.setInt(5);
+		primitives.setLong(16l);
+		primitives.setShort((short) 3);
+		primitives.setString("astring");
+		primitives.setBoolean(true);
+		primitives.setByte((byte) 123);
+
+		recorder.setClassName("com.example.lang.PrimitiveFactory");
+		recorder.record(primitives);
 		assertResult();
 	}
-	
-	public void testPrimitives2()
-	{
+
+	@Test
+	public void testPrimitives2() {
 		Primitives primitives = new Primitives();
-		primitives.setChar( 'c' );
-		primitives.setDouble( 12d );
-		primitives.setFloat( 11f );
-		primitives.setInt( 5 );
-		primitives.setLong( 16l );
-		primitives.setShort( (short)3 );
-		primitives.setString( "astring" );
-		primitives.setBoolean( false );
-		primitives.setByte( (byte)123 );
-		
-		recorder.setClassName( "com.example.lang.PrimitiveFactory2" );
-		recorder.record( primitives );
+		primitives.setChar('c');
+		primitives.setDouble(12d);
+		primitives.setFloat(11f);
+		primitives.setInt(5);
+		primitives.setLong(16l);
+		primitives.setShort((short) 3);
+		primitives.setString("astring");
+		primitives.setBoolean(false);
+		primitives.setByte((byte) 123);
+
+		recorder.setClassName("com.example.lang.PrimitiveFactory2");
+		recorder.record(primitives);
 		assertResult();
 	}
-	
-	public void testLangObjects()
-	{
+
+	@Test
+	public void testLangObjects() {
 		LangObjects langs = new LangObjects();
-		langs.setCharacter( 'c' );
-		langs.setDouble( 12d );
-		langs.setFloat( 11f );
-		langs.setInteger( 5 );
-		langs.setLong( 16l );
-		langs.setShort( (short)3 );
-		langs.setBoolean( true );
-		langs.setByte( (byte)123 );
-		langs.setClassArgument( Person.class );
-		langs.setBigDecimal( new BigDecimal( "5.3" ) );
-		langs.setBigInteger( new BigInteger( "3" ) );
-		recorder.setClassName( "com.example.lang.LangFactory" );
-		recorder.record( langs );
+		langs.setCharacter('c');
+		langs.setDouble(12d);
+		langs.setFloat(11f);
+		langs.setInteger(5);
+		langs.setLong(16l);
+		langs.setShort((short) 3);
+		langs.setBoolean(true);
+		langs.setByte((byte) 123);
+		langs.setClassArgument(Person.class);
+		langs.setBigDecimal(new BigDecimal("5.3"));
+		langs.setBigInteger(new BigInteger("3"));
+		recorder.setClassName("com.example.lang.LangFactory");
+		recorder.record(langs);
 		assertResult();
 	}
 

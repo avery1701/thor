@@ -15,160 +15,135 @@
  */
 package com.advancedpwr.record;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.File;
 import java.io.Writer;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.advancedpwr.record.factory.MockBeanFactory;
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.record.methods.URLBuilderFactory;
 import com.advancedpwr.samples.NoDefaultConstructorPerson;
 import com.advancedpwr.samples.Person;
 
-public class BeanRecorderTest extends AbstractRecorderTest
-{
-	protected void setUp()
-	{
-		super.setUp();
-	}
-	
-	public void testSetObject()
-	{
-		try
-		{
-			recorder.setObject( null );
-			fail( "should have thrown an exception" );
-		}
-		catch ( RecorderException e )
-		{
-			assertTrue( e.getMessage().contains( "Called setObject with null argument" ) );
-		}
-	}
-	
-	public void testSetGetObject()
-	{
-		Person person = Person.createExamplePerson();
-		recorder.setObject( person );
-		assertEquals( person, recorder.getObject() );
-	}
-	
-	public void testSetDescriptor()
-	{
-		ClassDescriptor descriptor = new ClassDescriptor()
-		{
-			
-			public String getPackageName()
-			{
-				return "foo";
-			}
-			
-			public String getClassName()
-			{
-				return "Fighter";
-			}
-		};
-		recorder.setDescriptor( descriptor );
-		assertEquals( descriptor, recorder.getDescriptor() );
+public class BeanRecorderTest extends AbstractRecorderTest {
+
+	@Test
+	public void testSetObject() {
+		assertThrows(RecorderException.class, () -> {
+			recorder.setObject(null);
+		});
 	}
 
-	public void testPackagePath()
-	{
+	@Test
+	public void testSetGetObject() {
+		Person person = Person.createExamplePerson();
+		recorder.setObject(person);
+		assertEquals(person, recorder.getObject());
+	}
+
+	@Test
+	public void testSetDescriptor() {
+		ClassDescriptor descriptor = new ClassDescriptor() {
+
+			public String getPackageName() { return "foo"; }
+
+			public String getClassName() { return "Fighter"; }
+		};
+		recorder.setDescriptor(descriptor);
+		assertEquals(descriptor, recorder.getDescriptor());
+	}
+
+	@Test
+	public void testPackagePath() {
 		initDescriptor();
 //		recorder.setPackage( "com.advancedpwr.record.examples.generated" );
-		assertEquals( "com/advancedpwr/record/examples/generated", recorder.packagePath() );
+		assertEquals("com/advancedpwr/record/examples/generated", recorder.packagePath());
 	}
-	
-	private void initDescriptor()
-	{
-		SimpleClassDescriptor desc = new SimpleClassDescriptor();
-		desc.setClassName( "PersonFactory" );
-		desc.setPackageName( "com.advancedpwr.record.examples.generated" );
-		recorder.setDescriptor( desc );
-	}
-	
-	public void testGetPrintWriter()
-	{
-		recorder.fieldPrintWriter = null;
-		recorder.setDestination( (File)null );
-		assertNull( recorder.getPrintWriter() );
-		
-		recorder.setWriter( result );
-		assertNotNull( recorder.getPrintWriter() );
-	}
-	
-	public void testGetPrintWriter_file()
-	{
-		recorder.fieldPrintWriter = null;
-		recorder.setDestination( (File)null );
-		assertNull( recorder.getPrintWriter() );
-		
-		recorder.setDestination( new File("src/generated/java") );
-		recorder.setObject( new Person() );
-		assertNotNull( recorder.getPrintWriter() );
-	}
-	
-	public void testCloseFile()
-	{
-		final Set set = new HashSet();
-		recorder = new BeanRecorder()
-		{
 
-			protected void close( Writer inWriter )
-			{
+	private void initDescriptor() {
+		SimpleClassDescriptor desc = new SimpleClassDescriptor();
+		desc.setClassName("PersonFactory");
+		desc.setPackageName("com.advancedpwr.record.examples.generated");
+		recorder.setDescriptor(desc);
+	}
+
+	public void testGetPrintWriter() {
+		recorder.fieldPrintWriter = null;
+		recorder.setDestination((File) null);
+		assertNull(recorder.getPrintWriter());
+
+		recorder.setWriter(result);
+		assertNotNull(recorder.getPrintWriter());
+	}
+
+	public void testGetPrintWriter_file() {
+		recorder.fieldPrintWriter = null;
+		recorder.setDestination((File) null);
+		assertNull(recorder.getPrintWriter());
+
+		recorder.setDestination(new File("src/generated/java"));
+		recorder.setObject(new Person());
+		assertNotNull(recorder.getPrintWriter());
+	}
+
+	public void testCloseFile() {
+		final Set<Writer> set = new HashSet<Writer>();
+		recorder = new BeanRecorder() {
+
+			protected void close(Writer inWriter) {
 				set.add(inWriter);
 			}
 
-			protected String packagePath()
-			{
+			protected String packagePath() {
 				return "com.example";
 			}
 
-			public String getClassName()
-			{
-				return "TestFactory";
-			}
-			
+			public String getClassName() { return "TestFactory"; }
+
 		};
-		recorder.setDestination( "src/generated/java" );
-		assertEquals( 0, set.size() );
+		recorder.setDestination("src/generated/java");
+		assertEquals(0, set.size());
 		recorder.closeFile();
-		assertEquals( 1, set.size() );
+		assertEquals(1, set.size());
 	}
-	
-	public void testAddBuilder()
-	{
-		assertEquals( 22, recorder.getFactoryBuilder().getFactories().size() );
-		recorder.addBuilderFactory( new URLBuilderFactory() );
-		assertEquals( 23, recorder.getFactoryBuilder().getFactories().size() );
+
+	public void testAddBuilder() {
+		assertEquals(22, recorder.getFactoryBuilder().getFactories().size());
+		recorder.addBuilderFactory(new URLBuilderFactory());
+		assertEquals(23, recorder.getFactoryBuilder().getFactories().size());
 	}
-	
-	public void testRecord_Object()
-	{
+
+	public void testRecord_Object() {
 		Object object = new Object();
-		
-		recorder.record( object );
+
+		recorder.record(object);
 		assertResult();
 	}
-	public void XtestRecordPersonJavadocExample()
-	{
+
+	public void XtestRecordPersonJavadocExample() {
 		Person person = new Person();
-		person.setName( "Jim" );
+		person.setName("Jim");
 		Person dad = new Person();
-		dad.setName( "John" );
-		person.setDad( dad );
-		
+		dad.setName("John");
+		person.setDad(dad);
+
 		BeanRecorder recorder = new BeanRecorder();
-		recorder.setDestination( "src/generated/java" );
-		recorder.record( person );
+		recorder.setDestination("src/generated/java");
+		recorder.record(person);
 	}
-	
-	public void testRecord_Objenesis()
-	{
+
+	public void testRecord_Objenesis() {
 		Person person = new Person();
-		person.setName( "Jim" );
-		Person son = new NoDefaultConstructorPerson( person );
-		recorder.setClassName( "com.example.recorded.ObjenesisPersonFactory" );
-		recorder.record( son );
+		person.setName("Jim");
+		Person son = new NoDefaultConstructorPerson(person);
+		recorder.setClassName("com.example.recorded.ObjenesisPersonFactory");
+		recorder.record(son);
 		assertResult();
 	}
 

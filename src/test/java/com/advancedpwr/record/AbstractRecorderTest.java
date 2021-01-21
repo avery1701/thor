@@ -15,6 +15,8 @@
  */
 package com.advancedpwr.record;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,152 +27,111 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
-import junit.framework.TestCase;
-
-public abstract class AbstractRecorderTest extends TestCase
-{
+public abstract class AbstractRecorderTest {
 	public static final String WRITE_FILES = "write.files";
 
 	protected BeanRecorder recorder;
 
 	protected MultiWriter result;
 
-	protected void setUp()
-	{
+	public AbstractRecorderTest() {
 		setWriteFiles();
 		recorder = new BeanRecorder();
-		configureRecorder( recorder );
+		configureRecorder(recorder);
 	}
 
-	protected BeanRecorder getRecorder()
-	{
-		return recorder;
-	}
+	protected BeanRecorder getRecorder() { return recorder; }
 
-	public void configureRecorder( final AbstractRecorder inRecorder )
-	{
+	public void configureRecorder(final AbstractRecorder inRecorder) {
 		result = new MultiWriter();
-		if ( writeFiles() )
-		{
-			inRecorder.setDestination( "src/generated/java" );
-			result = new MultiWriter()
-			{
+		if (writeFiles()) {
+			inRecorder.setDestination("src/generated/java");
+			result = new MultiWriter() {
 
-				public FileWriter getFileWriter()
-				{
-					return inRecorder.getJavaFileWriter();
-				}
+				public FileWriter getFileWriter() { return inRecorder.getJavaFileWriter(); }
 
 			};
 		}
 
-		inRecorder.setWriter( result );
+		inRecorder.setWriter(result);
 
 	}
 
-	protected boolean writeFiles()
-	{
-		return "true".equalsIgnoreCase( System.getProperty( WRITE_FILES ) );
+	protected boolean writeFiles() {
+		return "true".equalsIgnoreCase(System.getProperty(WRITE_FILES));
 	}
 
-	public static void setWriteFiles()
-	{
-		System.setProperty( WRITE_FILES, "true" );
+	public static void setWriteFiles() {
+		System.setProperty(WRITE_FILES, "true");
 	}
 
-	public void assertResult( String inString )
-	{
-		assertEquals( inString.replaceAll( "\r\n", "\n" ),
-				result.toString().replaceAll( "\r\n", "\n" ) );
+	public void assertResult(String inString) {
+		assertEquals(inString.replaceAll("\r\n", "\n"), result.toString().replaceAll("\r\n", "\n"));
 	}
 
-	public void assertResult()
-	{
-		if ( isUpdate() )
-		{
+	public void assertResult() {
+		if (isUpdate()) {
 			updateReference();
 		}
-		assertResult( reference() );
-		System.out.println(
-				referenceFile().getAbsolutePath() + " matches " + getRecorder().javaFile() );
+		assertResult(reference());
+		System.out.println(referenceFile().getAbsolutePath() + " matches " + getRecorder().javaFile());
 	}
 
-	protected boolean isUpdate()
-	{
-		return System.getProperty( "recorder.test.update" ) != null;
-	}
+	protected boolean isUpdate() { return System.getProperty("recorder.test.update") != null; }
 
-	protected void updateReference()
-	{
+	protected void updateReference() {
 		File source = getRecorder().javaFile();
 		File target = referenceFile();
-		copyFile( source, target );
+		copyFile(source, target);
 
 	}
 
-	protected void copyFile( File source, File target )
-	{
-		try
-		{
-			copyFile_raw( source, target );
-		}
-		catch ( Exception e )
-		{
-			throw new RuntimeException( e );
+	protected void copyFile(File source, File target) {
+		try {
+			copyFile_raw(source, target);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
-	
-	protected void copyFile_raw( File source, File target ) throws IOException
-	{
-		
-		try (   FileInputStream in = new FileInputStream( source );
+
+	protected void copyFile_raw(File source, File target) throws IOException {
+
+		try (FileInputStream in = new FileInputStream(source);
 				FileChannel inChannel = in.getChannel();
-				FileOutputStream out = new FileOutputStream( target );
-				FileChannel outChannel = out.getChannel())
-		{
+				FileOutputStream out = new FileOutputStream(target);
+				FileChannel outChannel = out.getChannel()) {
 			long bytesTransferred = 0;
-			//defensive loop - there's usually only a single iteration :
-			while ( bytesTransferred < inChannel.size() )
-			{
-				bytesTransferred += inChannel.transferTo( 0, inChannel.size(), outChannel );
+			// defensive loop - there's usually only a single iteration :
+			while (bytesTransferred < inChannel.size()) {
+				bytesTransferred += inChannel.transferTo(0, inChannel.size(), outChannel);
 			}
 		}
 
-	
-
 	}
 
-	public String reference()
-	{
-		try
-		{
+	public String reference() {
+		try {
 			File file = referenceFile();
-			FileReader fileReader = new FileReader( file );
-			BufferedReader reader = new BufferedReader( fileReader );
+			FileReader fileReader = new FileReader(file);
+			BufferedReader reader = new BufferedReader(fileReader);
 			StringBuffer sb = new StringBuffer();
-			while ( reader.ready() )
-			{
-				sb.append( reader.readLine() );
-				sb.append( "\n" );
+			while (reader.ready()) {
+				sb.append(reader.readLine());
+				sb.append("\n");
 			}
 			reader.close();
 			return sb.toString();
-		}
-		catch ( FileNotFoundException e )
-		{
-			throw new RuntimeException( e );
-		}
-		catch ( IOException e )
-		{
-			throw new RuntimeException( e );
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
-	protected File referenceFile()
-	{
+	protected File referenceFile() {
 		String fileName = getRecorder().getClassName() + ".java";
-		File dir = new File( "reference", getRecorder().packagePath() );
-		File file = new File( dir, fileName );
+		File dir = new File("reference", getRecorder().packagePath());
+		File file = new File(dir, fileName);
 		return file;
 	}
 }

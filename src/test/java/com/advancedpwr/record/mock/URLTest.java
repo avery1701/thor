@@ -17,18 +17,19 @@ package com.advancedpwr.record.mock;
 
 import java.net.URL;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.FinalStuff;
 
-public class URLTest extends AbstractMockRecorderTest
-{
-	public void testURL() throws Exception
-	{
-		URL url = new URL( "http://localhost" );
+public class URLTest extends AbstractMockRecorderTest {
+	@Test
+	public void testURL() throws Exception {
+		URL url = new URL("http://localhost");
 		FinalStuff obj = new FinalStuff();
-		recorder.setClassName( "com.example.mock.MockUrlFactory" );
+		recorder.setClassName("com.example.mock.MockUrlFactory");
 
-		obj = recorder.record( obj );
-		obj.setURL( url );
+		obj = recorder.record(obj);
+		obj.setURL(url);
 		obj.getURL();
 		recorder.endRecording();
 		assertResult();

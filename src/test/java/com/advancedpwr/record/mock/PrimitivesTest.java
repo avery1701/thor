@@ -20,82 +20,75 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.LangObjects;
-import com.advancedpwr.samples.ObjectHolder;
 import com.advancedpwr.samples.Person;
 import com.advancedpwr.samples.Primitives;
 
-public class PrimitivesTest extends AbstractMockRecorderTest
-{
+public class PrimitivesTest extends AbstractMockRecorderTest {
 
-	protected void setUp()
-	{
-		super.setUp();
-	}
-
-	public void testPrimitives()
-	{
+	@Test
+	public void testPrimitives() {
 		Primitives primitives = new Primitives();
-		recorder.setClassName( "com.example.mock.PrimitiveFactory" );
-		primitives = recorder.record( primitives );
-		primitives.setChar( 'c' );
-		primitives.setDouble( 12d );
-		primitives.setFloat( 11f );
-		primitives.setInt( 5 );
-		primitives.setLong( 16l );
-		primitives.setShort( (short)3 );
-		primitives.setString( "astring" );
-		primitives.setBoolean( true );
-		primitives.setByte( (byte)123 );
+		recorder.setClassName("com.example.mock.PrimitiveFactory");
+		primitives = recorder.record(primitives);
+		primitives.setChar('c');
+		primitives.setDouble(12d);
+		primitives.setFloat(11f);
+		primitives.setInt(5);
+		primitives.setLong(16l);
+		primitives.setShort((short) 3);
+		primitives.setString("astring");
+		primitives.setBoolean(true);
+		primitives.setByte((byte) 123);
 		primitives.getInt();
 		recorder.endRecording();
 		assertResult();
 	}
-	
-	public void testPrimitives2()
-	{
-		List list = new ArrayList();
+
+	@Test
+	public void testPrimitives2() {
+		List<Primitives> list = new ArrayList<Primitives>();
 		Primitives primitives = new Primitives();
-		list.add( primitives );
-		recorder.setClassName( "com.example.mock.PrimitiveFactory2" );
-		list = recorder.record( list );
-		primitives = (Primitives)list.get(0);
-	
-		primitives.setChar( 'c' );
-		primitives.setDouble( 12d );
-		primitives.setFloat( 11f );
-		primitives.setInt( 5 );
-		primitives.setLong( 16l );
-		primitives.setShort( (short)3 );
-		primitives.setString( "astring" );
-		primitives.setBoolean( false );
-		primitives.setByte( (byte)123 );
-		
-		
+		list.add(primitives);
+		recorder.setClassName("com.example.mock.PrimitiveFactory2");
+		list = recorder.record(list);
+		primitives = (Primitives) list.get(0);
+
+		primitives.setChar('c');
+		primitives.setDouble(12d);
+		primitives.setFloat(11f);
+		primitives.setInt(5);
+		primitives.setLong(16l);
+		primitives.setShort((short) 3);
+		primitives.setString("astring");
+		primitives.setBoolean(false);
+		primitives.setByte((byte) 123);
+
 		primitives.getInt();
 		recorder.endRecording();
-		
+
 		assertResult();
 	}
-	
-	
-	public void testLangObjects()
-	{
-		recorder.setClassName( "com.example.mock.LangFactory" );
-		
+
+	@Test
+	public void testLangObjects() {
+		recorder.setClassName("com.example.mock.LangFactory");
+
 		LangObjects langs = new LangObjects();
-		langs = recorder.record( langs );
-		langs.setCharacter( 'c' );
-		langs.setDouble( 12d );
-		langs.setFloat( 11f );
-		langs.setInteger( 5 );
-		langs.setLong( 16l );
-		langs.setShort( (short)3 );
-		langs.setBoolean( true );
-		langs.setByte( (byte)123 );
-		langs.setClassArgument( Person.class );
-		langs.setBigDecimal( new BigDecimal( "5.3" ) );
-		langs.setBigInteger( new BigInteger( "3" ) );
+		langs = recorder.record(langs);
+		langs.setCharacter('c');
+		langs.setDouble(12d);
+		langs.setFloat(11f);
+		langs.setInteger(5);
+		langs.setLong(16l);
+		langs.setShort((short) 3);
+		langs.setBoolean(true);
+		langs.setByte((byte) 123);
+		langs.setClassArgument(Person.class);
+		langs.setBigDecimal(new BigDecimal("5.3"));
+		langs.setBigInteger(new BigInteger("3"));
 		recorder.endRecording();
 		assertResult();
 	}

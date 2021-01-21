@@ -5,20 +5,16 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-import com.advancedpwr.samples.Person;
+public class BeanInspectorTest {
 
-public class BeanInspectorTest extends TestCase
-{
-
-	public void testBeanInfo() throws IntrospectionException
-	{
-		BeanInfo info = Introspector.getBeanInfo( Ship.class );
+	@Test
+	public void testBeanInfo() throws IntrospectionException {
+		BeanInfo info = Introspector.getBeanInfo(Ship.class);
 		PropertyDescriptor[] descs = info.getPropertyDescriptors();
-		for ( PropertyDescriptor propertyDescriptor : descs )
-		{
-			System.out.println( propertyDescriptor.getReadMethod().getName() );
+		for (PropertyDescriptor propertyDescriptor : descs) {
+			System.out.println(propertyDescriptor.getReadMethod().getName());
 		}
 	}
 

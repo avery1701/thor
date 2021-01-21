@@ -15,30 +15,24 @@
  */
 package com.advancedpwr.record.methods;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.record.AccessPath;
 
-import junit.framework.TestCase;
+public class AbstractDefaultFactoryTest {
 
-public class AbstractDefaultFactoryTest extends TestCase
-{
+	@Test
+	public void testAccept() {
+		AbstractDefaultFactory factory = new AbstractDefaultFactory() {
 
-	protected void setUp() throws Exception
-	{
-		super.setUp();
-	}
-
-	public void testAccept()
-	{
-		AbstractDefaultFactory factory = new AbstractDefaultFactory()
-		{
-			
-			public BuildMethodWriter createMethodBuilder( AccessPath inPath )
-			{
+			public BuildMethodWriter createMethodBuilder(AccessPath inPath) {
 				return null;
 			}
 		};
-		
-		assertTrue( factory.accept( getClass() ) );
-		assertTrue( factory.accept( null ) );
+
+		assertTrue(factory.accept(getClass()));
+		assertTrue(factory.accept(null));
 	}
 }

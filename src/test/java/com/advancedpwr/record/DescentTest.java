@@ -15,55 +15,49 @@
  */
 package com.advancedpwr.record;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.Person;
 
-public class DescentTest extends AbstractRecorderTest
-{
+public class DescentTest extends AbstractRecorderTest {
 
-	@Override
-	protected void setUp()
-	{
-		// TODO Auto-generated method stub
-		super.setUp();
-	}
-
-	public void testRecordDescent()
-	{
-		recorder.setClassName( "com.example.recursion.PersonFactory1" );
-		recorder.record( Person.createExamplePerson() );
+	@Test
+	public void testRecordDescent() {
+		recorder.setClassName("com.example.recursion.PersonFactory1");
+		recorder.record(Person.createExamplePerson());
 		assertResult();
 	}
-	
-	public void testRecursion()
-	{
-		recorder.setClassName( "com.example.recursion.PersonFactory2" );
+
+	@Test
+	public void testRecursion() {
+		recorder.setClassName("com.example.recursion.PersonFactory2");
 		Person son = Person.createExamplePerson();
-		son.setMom( null );
+		son.setMom(null);
 		// Back to Future situation
-		son.getDad().getDad().setDad( son );
-		
-		recorder.record( son );
+		son.getDad().getDad().setDad(son);
+
+		recorder.record(son);
 		assertResult();
 	}
-	
-	public void testRecursion_2()
-	{
+
+	@Test
+	public void testRecursion_2() {
 		Person son = Person.createExamplePerson();
-		son.setMom( null );
+		son.setMom(null);
 		// Back to Future situation
 		Person dad = son.getDad();
 		Person grandpa = dad.getDad();
-		grandpa.setDad( son );
-		recorder.setClassName( "com.example.recursion.PersonFactory3" );		
-		recorder.record( son );
+		grandpa.setDad(son);
+		recorder.setClassName("com.example.recursion.PersonFactory3");
+		recorder.record(son);
 		assertResult();
 	}
-	
-	public void testStopDescent()
-	{
-		recorder.setClassName( "com.example.recursion.PersonFactory4" );
-		recorder.stopDescent( Person.class );
-		recorder.record( Person.createExamplePerson() );
+
+	@Test
+	public void testStopDescent() {
+		recorder.setClassName("com.example.recursion.PersonFactory4");
+		recorder.stopDescent(Person.class);
+		recorder.record(Person.createExamplePerson());
 		assertResult();
 	}
 }

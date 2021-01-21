@@ -17,20 +17,15 @@ package com.advancedpwr.record.mock;
 
 import com.advancedpwr.record.AbstractRecorderTest;
 
-public abstract class AbstractMockRecorderTest extends AbstractRecorderTest
-{
+public abstract class AbstractMockRecorderTest extends AbstractRecorderTest {
 	protected MockBehaviorRecorder recorder;
-	
-	protected void setUp()
-	{
+
+	public AbstractMockRecorderTest() {
 		setWriteFiles();
 		recorder = new MockBehaviorRecorder();
-		configureRecorder( recorder );
+		configureRecorder(recorder);
 	}
-	
-	protected MockBehaviorRecorder getRecorder()
-	{
-		return recorder;
-	}
+
+	protected MockBehaviorRecorder getRecorder() { return recorder; }
 
 }

@@ -1,33 +1,41 @@
 plugins {
-    id "com.jfrog.bintray" version "1.7.3"
+    id 'com.jfrog.bintray' version '1.7.3'
+    id 'java'
+    id 'eclipse'
+    id 'jacoco'
 }
 
-version = '1.6.1'
+version = '2.0.0'
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'jacoco'
 apply from: 'publish.gradle'
 
 
 sourceSets {
-   generated
- }
+    generated {
+        java {
+            include 'java/main/**.java'
+        }
+    }
+}
 
 
 repositories {
     jcenter()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_14
+targetCompatibility = JavaVersion.VERSION_14
 
 dependencies {
-    compile 'org.easymock:easymock:3.5.1'
+    compile 'org.easymock:easymock:4.2'
     compile 'xstream:xstream:1.2.2'
     compile 'cglib:cglib:3.2.5'
-    compile 'junit:junit:4.12'
+    
+    // Use JUnit test framework
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
+
 
 jacocoTestReport {
     reports {
@@ -37,3 +45,7 @@ jacocoTestReport {
     }
 }
 
+
+test {
+    useJUnitPlatform()
+}

@@ -18,42 +18,39 @@ package com.advancedpwr.record.mock;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.MapContainer;
 import com.advancedpwr.samples.Person;
 
-public class MapTest extends AbstractMockRecorderTest
-{
-	protected void setUp()
-	{
-		// TODO Auto-generated method stub
-		super.setUp();
-	}
-	
-	public void testMap()
-	{
+public class MapTest extends AbstractMockRecorderTest {
+
+	@Test
+	public void testMap() {
 		Person person = Person.createExamplePerson();
 
 		Person cousin = new Person();
-		cousin.setName( "cousin" );
-		
-		Map family = new LinkedHashMap();
-		family.put( person.getName(), person );
-		family.put( person.getDad().getName(), person.getDad() );
-		family.put( person.getMom().getName(), person.getMom() );
-		family.put( person, cousin );
-		
-		MapContainer container = new MapContainer();
-		container.setPerson( person );
-		container.setMap( family );
-		recorder.setClassName( "com.example.mock.MockMapFactory" );
+		cousin.setName("cousin");
 
-		container = recorder.record( container );
-		
+		Map<Object, Person> family = new LinkedHashMap<Object, Person>();
+		family.put(person.getName(), person);
+		family.put(person.getDad().getName(), person.getDad());
+		family.put(person.getMom().getName(), person.getMom());
+		family.put(person, cousin);
+
+		MapContainer container = new MapContainer();
+		container.setPerson(person);
+		container.setMap(family);
+		recorder.setClassName("com.example.mock.MockMapFactory");
+
+		container = recorder.record(container);
+
+		System.out.println("--------------------POOOO POOOOOO" + container.getClass());
 		person = container.getPerson();
-		
-		container.getMap().get( person.getDad().getName() );
-		container.getMap().get( person.getMom().getName() );
-		
+
+		container.getMap().get(person.getDad().getName());
+		container.getMap().get(person.getMom().getName());
+
 		recorder.endRecording();
 		assertResult();
 	}

@@ -46,7 +46,6 @@ public class ListInstanceFactory extends BaseFactory
 		}
 		person_2_2 = createStrictMock( Person.class );
 		expect( person_2_2.getName() ).andReturn( "jack" );
-		expect( person_2_2.getDad() ).andReturn( person );
 		replay( person_2_2 );
 		return person_2_2;
 	}

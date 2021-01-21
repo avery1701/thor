@@ -3,26 +3,20 @@
  */
 package com.advancedpwr.record.factory;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.util.Locale;
 
-import com.advancedpwr.record.factory.BaseFactory;
-
-import junit.framework.TestCase;
-
 /**
- * @author Matthew Avery, mavery@advancedpwr.com
- * Created: Feb 10, 2012
+ * @author Matthew Avery, mavery@advancedpwr.com Created: Feb 10, 2012
  *
  */
-public class BaseFactoryTest extends TestCase
-{
-	public void testNewInstance()
-	{
-		BaseFactory factory = new BaseFactory()
-		{
+public class BaseFactoryTest {
+	public void testNewInstance() {
+		BaseFactory factory = new BaseFactory() {
 		};
-		
-		Locale locale = (Locale)factory.newInstance( Locale.class );
-		assertNotNull( locale );
+
+		Locale locale = (Locale) factory.newInstance(Locale.class);
+		assertNotNull(locale);
 	}
 }

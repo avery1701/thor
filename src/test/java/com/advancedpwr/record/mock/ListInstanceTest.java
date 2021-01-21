@@ -15,56 +15,53 @@
  */
 package com.advancedpwr.record.mock;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.Person;
 
-public class ListInstanceTest extends AbstractMockRecorderTest
-{
-	@Override
-	protected void setUp()
-	{
-		// TODO Auto-generated method stub
-		super.setUp();
-	}
+public class ListInstanceTest extends AbstractMockRecorderTest {
 
-	public void testListInstance()
-	{
+	@Test
+	public void testListInstance() {
 		Person dad = new Person();
-		dad.setName( "dad" );
-		
+		dad.setName("dad");
+
 		Person jack = new Person();
-		jack.setName( "jack" );
-		jack.setDad( dad );
-		
+		jack.setName("jack");
+		jack.setDad(dad);
+
 		Person jill = new Person();
-		jill.setName( "Jill" );
-		jill.setDad( dad );
-		
-		dad.setMom( jill );
-		
+		jill.setName("Jill");
+		jill.setDad(dad);
+
+		dad.setMom(jill);
+
 		Person joe = new Person();
-		joe.setName( "joe" );
-		joe.setDad( dad );
-		joe.setMom( jill );
-		
-		List list = new ArrayList();
-		list.add( jack );
-		list.add( jill );
-		list.add( joe );
-		dad.setChildren( list );
-		
-		dad = recorder.record( dad );
-		
-		List children = dad.getChildren();
-		
-		Person child1 = (Person)children.get( 0 );
-		assertEquals( "jack", child1.getName() );
-		Person dadTest = child1.getDad();
+		joe.setName("joe");
+		joe.setDad(dad);
+		joe.setMom(jill);
+
+		List<Person> list = new ArrayList<Person>();
+		list.add(jack);
+		list.add(jill);
+		list.add(joe);
+		dad.setChildren(list);
+
+		dad = recorder.record(dad);
+
+		List<?> children = dad.getChildren();
+
+		Person child1 = (Person) children.get(0);
+		assertEquals("jack", child1.getName());
+//		Person dadTest = child1.getDad();
 //		assertEquals( dad, child1.getDad() );
-		
-		recorder.setClassName( "com.example.list.ListInstanceFactory" );
+
+		recorder.setClassName("com.example.list.ListInstanceFactory");
 		recorder.endRecording();
 		assertResult();
 	}

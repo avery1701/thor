@@ -15,39 +15,28 @@
  */
 package com.advancedpwr.record;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.IOException;
 
-import junit.framework.TestCase;
+public class WrappedIOTest {
 
-public class WrappedIOTest extends TestCase
-{
+	public void testWrap() {
+		WrappedIO wrapper = new WrappedIO() {
 
-	protected void setUp() throws Exception
-	{
-		super.setUp();
-	}
-
-	public void testWrap()
-	{
-		WrappedIO wrapper = new WrappedIO()
-		{
-			
-			public Object exec() throws IOException
-			{
+			public Object exec() throws IOException {
 				throw new IOException();
 			}
 		};
-		
-		try
-		{
+
+		try {
 			wrapper.wrap();
-			fail( "should have thrown an exception");
+			fail("should have thrown an exception");
+		} catch (RuntimeException e) {
+			assertTrue(e.getCause() instanceof IOException);
 		}
-		catch ( RuntimeException e )
-		{
-			assertTrue( e.getCause() instanceof IOException );
-		}
-		
+
 	}
 
 }

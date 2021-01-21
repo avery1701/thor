@@ -18,45 +18,39 @@ package com.advancedpwr.record;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.Person;
 
-public class ListInstanceTest extends AbstractRecorderTest
-{
-	@Override
-	protected void setUp()
-	{
-		setWriteFiles();
-		super.setUp();
-	}
-
-	public void testListInstance()
-	{
+public class ListInstanceTest extends AbstractRecorderTest {
+	@Test
+	public void testListInstance() {
 		Person dad = new Person();
-		dad.setName( "dad" );
-		
+		dad.setName("dad");
+
 		Person jack = new Person();
-		jack.setName( "jack" );
-		jack.setDad( dad );
-		
+		jack.setName("jack");
+		jack.setDad(dad);
+
 		Person jill = new Person();
-		jill.setName( "Jill" );
-		jill.setDad( dad );
-		
-		dad.setMom( jill );
-		
+		jill.setName("Jill");
+		jill.setDad(dad);
+
+		dad.setMom(jill);
+
 		Person joe = new Person();
-		joe.setName( "joe" );
-		joe.setDad( dad );
-		joe.setMom( jill );
-		
-		List list = new ArrayList();
-		list.add( jack );
-		list.add( jill );
-		list.add( joe );
-		dad.setChildren( list );
-		
-		recorder.setClassName( "com.example.list.PersonListFactory" );
-		recorder.record( dad );
+		joe.setName("joe");
+		joe.setDad(dad);
+		joe.setMom(jill);
+
+		List<Person> list = new ArrayList<Person>();
+		list.add(jack);
+		list.add(jill);
+		list.add(joe);
+		dad.setChildren(list);
+
+		recorder.setClassName("com.example.list.PersonListFactory");
+		recorder.record(dad);
 		assertResult();
 	}
 }

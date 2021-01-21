@@ -17,24 +17,19 @@ package com.advancedpwr.record;
 
 import java.util.Locale;
 
+import org.junit.jupiter.api.Test;
+
 import com.advancedpwr.samples.Family;
 import com.advancedpwr.samples.Person;
 
-public class FamilyTest extends AbstractRecorderTest
-{
-	protected void setUp()
-	{
-		setWriteFiles();
-		super.setUp();
-	}
-	
-	public void testRecordFamily()
-	{
+public class FamilyTest extends AbstractRecorderTest {
+	@Test
+	public void testRecordFamily() {
 		Person person = Person.createExamplePerson();
 		Family family = new Family(person.getDad(), person.getMom());
-		family.setLocale( Locale.CANADA );
-		recorder.setClassName( "com.example.recorded.FamilyFactory1" );
-		recorder.record( family );
+		family.setLocale(Locale.CANADA);
+		recorder.setClassName("com.example.recorded.FamilyFactory1");
+		recorder.record(family);
 		assertResult();
 	}
 }

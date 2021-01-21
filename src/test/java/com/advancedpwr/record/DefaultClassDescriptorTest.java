@@ -15,44 +15,44 @@
  */
 package com.advancedpwr.record;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 import com.advancedpwr.samples.ListExample;
 
-public class DefaultClassDescriptorTest extends TestCase
-{	
+public class DefaultClassDescriptorTest {
 	DefaultClassDescriptor descriptor;
-	
-	protected void setUp() throws Exception
-	{
-		super.setUp();
+
+	public DefaultClassDescriptorTest() {
 		descriptor = new DefaultClassDescriptor();
-		descriptor.setClass( ListExample.class );
+		descriptor.setClass(ListExample.class);
 	}
 
-	public void testDefaultClassDescriptorClass()
-	{
-		descriptor = new DefaultClassDescriptor( String.class );
-		assertEquals( String.class, descriptor.subject() );
-	}
-	public void testSubject()
-	{
-		assertEquals( ListExample.class, descriptor.subject() );
+	@Test
+	public void testDefaultClassDescriptorClass() {
+		descriptor = new DefaultClassDescriptor(String.class);
+		assertEquals(String.class, descriptor.subject());
 	}
 
-	public void testGetClassName()
-	{
-		assertEquals( "ListExampleFactory", descriptor.getClassName() );
+	@Test
+	public void testSubject() {
+		assertEquals(ListExample.class, descriptor.subject());
 	}
 
-	public void testGetPackageName()
-	{
-		assertEquals( "com.advancedpwr.samples.generated", descriptor.getPackageName() );
+	@Test
+	public void testGetClassName() {
+		assertEquals("ListExampleFactory", descriptor.getClassName());
 	}
-	
-	public void testToString()
-	{
-		assertEquals ( "com.advancedpwr.samples.generated.ListExampleFactory", descriptor.toString() );
+
+	@Test
+	public void testGetPackageName() {
+		assertEquals("com.advancedpwr.samples.generated", descriptor.getPackageName());
+	}
+
+	@Test
+	public void testToString() {
+		assertEquals("com.advancedpwr.samples.generated.ListExampleFactory", descriptor.toString());
 	}
 
 }
