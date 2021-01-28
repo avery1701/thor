@@ -15,6 +15,8 @@
  */
 package com.advancedpwr.record;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +32,8 @@ public class FamilyTest extends AbstractRecorderTest {
 		family.setLocale(Locale.CANADA);
 		recorder.setClassName("com.example.recorded.FamilyFactory1");
 		recorder.record(family);
+		ClassDescriptor defaultDescriptor = recorder.createDefaultDescriptor();
+		assertEquals("com.advancedpwr.samples.generated.FamilyFactory", defaultDescriptor.getPackageName() + "." + defaultDescriptor.getClassName());
 		assertResult();
 	}
 }

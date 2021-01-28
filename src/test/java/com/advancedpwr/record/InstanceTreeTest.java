@@ -105,6 +105,12 @@ public class InstanceTreeTest {
 	}
 
 	@Test
+	public void testDepth() {
+		tree = new InstanceTree(new Person());
+		assertEquals(0, tree.getDepth());
+	}
+	
+	@Test
 	public void testAddInspector() {
 		tree = new InstanceTree(new Person());
 		assertEquals(4, tree.getInspectors().size());

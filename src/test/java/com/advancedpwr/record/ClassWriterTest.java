@@ -46,6 +46,20 @@ public class ClassWriterTest {
 	}
 
 	@Test
+	public void testGettersSetters() {
+		writer.setObject(ClassWriter.class);
+		assertEquals(ClassWriter.class, writer.getObject());
+	}
+	
+	@Test
+	public void testExtendsClass() {
+		writer.setSuperClass(null);
+		assertEquals("", writer.extendClass());
+		writer.setSuperClass(String.class);
+		assertEquals(" extends " + writer.getSuperClass().getSimpleName(), writer.extendClass());
+	}
+	
+	@Test
 	public void testWriteLine() {
 		writer.writeLine("package com.advancedpwr.foo");
 		assertResult("package com.advancedpwr.foo;\n");

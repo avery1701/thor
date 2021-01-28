@@ -15,8 +15,12 @@
  */
 package com.advancedpwr.record;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.junit.jupiter.api.Test;
 
 import com.advancedpwr.samples.Family;
 import com.advancedpwr.samples.Person;
@@ -24,14 +28,18 @@ import com.advancedpwr.samples.StringArrayHolder;
 
 public class ArrayTest extends AbstractRecorderTest {
 
+	@Test
 	public void testArray() {
 		Person person = Person.createExamplePerson();
 		Person[] array = new Person[] { person.getDad(), person.getMom(), person };
 		recorder.setClassName("com.example.array.PersonArrayFactory1");
 		recorder.record(array);
+		ClassDescriptor defaultDescriptor = recorder.createDefaultDescriptor();
+		assertEquals("com.advancedpwr.samples.generated.PersonArrayFactory", defaultDescriptor.getPackageName() + "." + defaultDescriptor.getClassName());
 		assertResult();
 	}
 
+	@Test
 	public void testArray_2() {
 
 		Person person = Person.createExamplePerson();
@@ -46,6 +54,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_3() {
 
 		Person joe = new Person();
@@ -60,6 +69,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		recorder.record(array);
 	}
 
+	@Test
 	public void testArray_4() {
 		Person joe = new Person();
 		joe.setName("joe");
@@ -75,6 +85,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_recursion() {
 		Person joe = new Person();
 		joe.setName("joe");
@@ -90,6 +101,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_imports() {
 		Person person = Person.createExamplePerson();
 		Family family = new Family();
@@ -104,6 +116,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_5() {
 		StringArrayHolder holder = new StringArrayHolder();
 		holder.setArray1(new String[] { "Joe", "Frank" });
@@ -113,6 +126,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_6() throws Exception {
 		Person joe = new Person();
 		joe.setName("joe");
@@ -130,6 +144,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_string() throws Exception {
 		String[] array = new String[] { "Joe", "Fred", "Bob" };
 		recorder.setClassName("com.example.array.StringArrayFactory");
@@ -137,6 +152,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_bytes() throws Exception {
 		byte[] array = "Hello World!".getBytes();
 		recorder.setClassName("com.example.array.ByteArrayFactory");
@@ -144,6 +160,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		assertResult();
 	}
 
+	@Test
 	public void testArray_int() throws Exception {
 		int[] array = new int[] { 10, 12, 14 };
 		recorder.setClassName("com.example.array.IntArrayFactory");

@@ -45,7 +45,6 @@ public class MapTest extends AbstractMockRecorderTest {
 
 		container = recorder.record(container);
 
-		System.out.println("--------------------POOOO POOOOOO" + container.getClass());
 		person = container.getPerson();
 
 		container.getMap().get(person.getDad().getName());

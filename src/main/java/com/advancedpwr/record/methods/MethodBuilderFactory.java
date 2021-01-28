@@ -21,12 +21,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.InstanceTree;
 
 public class MethodBuilderFactory
 {
-	protected Map fieldBuilderCache;
+	protected Map<InstanceTree, BuildMethodWriter> fieldBuilderCache;
 
-	protected List fieldFactories;
+	protected List<MethodWriterFactory> fieldFactories;
 
 	protected MethodWriterFactory fieldDefaultFactory;
 	
@@ -60,11 +61,11 @@ public class MethodBuilderFactory
 		getBuilderCache().put( inBuilder.getInstanceTree(), inBuilder );
 	}
 
-	public Map getBuilderCache()
+	public Map<InstanceTree, BuildMethodWriter> getBuilderCache()
 	{
 		if ( fieldBuilderCache == null )
 		{
-			fieldBuilderCache = new LinkedHashMap();
+			fieldBuilderCache = new LinkedHashMap<InstanceTree, BuildMethodWriter>();
 		}
 
 		return fieldBuilderCache;

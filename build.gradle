@@ -23,13 +23,13 @@ repositories {
     jcenter()
 }
 
-sourceCompatibility = JavaVersion.VERSION_14
-targetCompatibility = JavaVersion.VERSION_14
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     compile 'org.easymock:easymock:4.2'
     compile 'xstream:xstream:1.2.2'
-    compile 'cglib:cglib:3.2.5'
+    compile 'cglib:cglib:3.3.0'
     
     // Use JUnit test framework
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
