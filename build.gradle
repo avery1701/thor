@@ -18,7 +18,6 @@ sourceSets {
     }
 }
 
-
 repositories {
     jcenter()
 }
@@ -28,7 +27,6 @@ targetCompatibility = 1.8
 
 dependencies {
     compile 'org.easymock:easymock:4.2'
-    compile 'xstream:xstream:1.2.2'
     compile 'cglib:cglib:3.3.0'
     
     // Use JUnit test framework
