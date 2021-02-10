@@ -1,5 +1,6 @@
-apply plugin: 'com.jfrog.bintray'
+apply plugin: 'java'
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -13,13 +14,32 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 artifacts {
+    archives jar
     archives javadocJar
     archives sourcesJar
 }
 
+signing {
+    useGpgCmd()
+    sign publishing.publications.main
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 publishing {
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username properties.getProperty('sonatypeUsername')
+                password properties.getProperty('sonatypePassword')
+            }
+        }
+    }
+
     publications {
-        mavenPublication(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
              artifact sourcesJar {
                 classifier "sources"
@@ -30,32 +50,38 @@ publishing {
             groupId 'com.advancedpwr'
             artifactId 'thor'
             version project.version
+            
+            pom {
+                name = 'Thor'
+                description = 'Test Harness Object Recorder for Java'
+                url = 'jtor.sourceforge.com'
+                
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                
+                developers {
+                    developer {
+                        id = 'avery1701'
+                        name = 'Matthew Avery'
+                        email = 'mavery@advancedpwr.com'
+                    }
+                    developer {
+                        id = 'mrzeusthecoder'
+                        name = 'Elijah Hopp'
+                        email = 'github.mrzeusthecoder@gmail.com'
+                    }
+                }
+                
+                scm {
+                    connection = 'scm:git:https://github.com/avery1701/thor.git'
+                    url = 'jtor.sourceforge.com'
+                }
+            }
         }
     }
-}
-// Bintray
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.key")
-	
-	publications = ['mavenPublication']
-	
-    pkg {
-        repo = 'tools'
-        name = 'thor'
-        desc = 'Test Harness Object Recorder for Java' 
-        websiteUrl = 'http://jtor.sourceforge.net/'
-        vcsUrl = 'https://github.com/avery1701/thor.git' 
-        licenses = ["Apache-2.0"]
-        version {
-            name = project.version
-            released  = new Date()
-        }
-        
-    }
-    publish = true
 }
 
