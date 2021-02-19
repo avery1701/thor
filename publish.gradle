@@ -1,4 +1,3 @@
-apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
@@ -35,7 +34,7 @@ publishing {
     }
 
     publications {
-        mavenJava(MavenPublication) {
+        mavenPublication(MavenPublication) {
             from components.java
              artifact sourcesJar {
                 classifier "sources"
@@ -82,6 +81,5 @@ publishing {
 }
 
 signing {
-    password properties.getProperty('password')
-    sign publishing.publications.mavenJava
+    sign publishing.publications.mavenPublication
 }
