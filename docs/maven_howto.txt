@@ -1,3 +1,5 @@
 https://issues.sonatype.org/browse/OSSRH-63787 >> ticket
 https://central.sonatype.org/pages/ossrh-guide.html >> Sonatype guide to publishing.
 
+Signatory credentials seem to need to be provided by the command line or gradle.properties only:
+ gradle publish -Psigning.secretKeyRingFile=[file] -Psigning.password=[password] -Psigning.keyId=[8-char keyid]

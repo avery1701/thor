@@ -19,10 +19,6 @@ artifacts {
     archives sourcesJar
 }
 
-signing {
-    useGpgCmd()
-    sign publishing.publications.main
-}
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -85,3 +81,7 @@ publishing {
     }
 }
 
+signing {
+    password properties.getProperty('password')
+    sign publishing.publications.mavenJava
+}
