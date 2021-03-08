@@ -49,7 +49,7 @@ publishing {
             pom {
                 name = 'Thor'
                 description = 'Test Harness Object Recorder for Java'
-                url = 'jtor.sourceforge.com'
+                url = 'https://advancedpwr.com/thor'
                 
                 licenses {
                     license {
@@ -73,7 +73,7 @@ publishing {
                 
                 scm {
                     connection = 'scm:git:https://github.com/avery1701/thor.git'
-                    url = 'jtor.sourceforge.com'
+                    url = 'https://github.com/avery1701/thor.git'
                 }
             }
         }
