@@ -49,7 +49,7 @@ publishing {
             pom {
                 name = 'Thor'
                 description = 'Test Harness Object Recorder for Java'
-                url = 'https://advancedpwr.com/thor'
+                url = 'https://jtor.sourceforge.com'
                 
                 licenses {
                     license {
