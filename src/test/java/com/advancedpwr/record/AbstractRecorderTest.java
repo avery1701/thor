@@ -40,7 +40,7 @@ public abstract class AbstractRecorderTest {
 		configureRecorder(recorder);
 	}
 
-	protected BeanRecorder getRecorder() { return recorder; }
+	protected AbstractRecorder getRecorder() { return recorder; }
 
 	public void configureRecorder(final AbstractRecorder inRecorder) {
 		result = new MultiWriter();

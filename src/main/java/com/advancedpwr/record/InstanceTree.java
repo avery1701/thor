@@ -168,19 +168,24 @@ public class InstanceTree
 			}
 		}
 		
-		return getObject().getClass();
+		return targetClass();
 	}
 
 	protected List<Class> interfacesForObject()
 	{
 		List<Class> interfaces = new ArrayList<Class>();
-		Class currentClass = getObject().getClass();
+		Class currentClass = targetClass();
 		while( currentClass != Object.class )
 		{
 			interfaces.addAll( Arrays.asList( currentClass.getInterfaces() ) );
 			currentClass = currentClass.getSuperclass();
 		}
 		return interfaces;
+	}
+
+	protected Class<? extends Object> targetClass() 
+	{
+		return getObject().getClass();
 	}
 
 	public InstanceTree createInstanceTree( Object result )

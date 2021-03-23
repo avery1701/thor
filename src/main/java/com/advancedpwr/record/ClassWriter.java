@@ -39,17 +39,17 @@ public abstract class ClassWriter
 	protected PrintWriter fieldPrintWriter;
 	protected int tabDepth;
 	protected ClassDescriptor fieldDescriptor;
-	protected Object fieldObject;
-	protected Class fieldSuperClass;
+	protected ObjectDescriptor fieldObject;
+	protected ClassDescriptor fieldSuperClass;
 	
-	protected List<Class> fieldStaticClasses;
+	protected List<String> fieldStaticClassNames;
 
-	protected Object getObject()
+	protected ObjectDescriptor getObject()
 	{
 		return fieldObject;
 	}
 
-	protected void setObject( Object object )
+	protected void setObject( ObjectDescriptor object )
 	{
 		fieldObject = object;
 	}
@@ -154,7 +154,7 @@ public abstract class ClassWriter
 	{
 		if ( getSuperClass() != null )
 		{
-			return " extends " + getSuperClass().getSimpleName();
+			return " extends " + getSuperClass().getClassName();
 		}
 		return "";
 	}
@@ -168,22 +168,22 @@ public abstract class ClassWriter
 	protected void writeImports()
 	{
 		writeStaticImports();
-		for ( Class aClass : classes() )
+		for ( String importName : imports() )
 		{
-			writeLine( IMPORT + aClass.getName().replace( "$", "." ) );
+			writeLine( IMPORT + importName );
 		}
 		newLine();
 	}
 	
 	protected void writeStaticImports()
 	{
-		for ( Class aClass : getStaticClasses() )
+		for ( String aClass : getStaticClassNames() )
 		{
-			writeLine( IMPORT + " static " + aClass.getName().replace( "$", "." ) + ".*" );
+			writeLine( IMPORT + " static " + aClass + ".*" );
 		}
 	}
 
-	protected abstract Set<Class> classes();
+	protected abstract Set<String> imports();
 
 	protected String packageName()
 	{
@@ -213,27 +213,27 @@ public abstract class ClassWriter
 
 	protected abstract void writeObjectBuilderMethod();
 
-	public Class getSuperClass()
+	public ClassDescriptor getSuperClass()
 	{
 		return fieldSuperClass;
 	}
 
-	public void setSuperClass( Class superClass )
+	public void setSuperClass( ClassDescriptor superClass )
 	{
 		fieldSuperClass = superClass;
 	}
 	
-	public List<Class> getStaticClasses()
+	public List<String> getStaticClassNames()
 	{
-		if ( fieldStaticClasses == null )
+		if ( fieldStaticClassNames == null )
 		{
-			fieldStaticClasses = new ArrayList<>();
+			fieldStaticClassNames = new ArrayList<>();
 		}
-		return fieldStaticClasses;
+		return fieldStaticClassNames;
 	}
 
 	public void addStaticImport( Class inClass )
 	{
-		getStaticClasses().add( inClass );
+		getStaticClassNames().add( inClass.getName().replace( "$", "." ) );
 	}
 }

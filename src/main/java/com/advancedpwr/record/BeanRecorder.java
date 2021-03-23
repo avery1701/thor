@@ -149,15 +149,6 @@ public class BeanRecorder extends AbstractRecorder
 		return inObject;
 	}
 
-	protected void closeFile()
-	{
-		if ( getDestination() != null )
-		{
-			close( getJavaFileWriter() );
-		}
-	}
-	
-
 	protected void writeObjectBuilderMethod()
 	{
 		AccessPath result = new AccessPath();
@@ -257,6 +248,16 @@ public class BeanRecorder extends AbstractRecorder
 			fieldClassesForInterfaces = new HashMap();
 		}
 		return fieldClassesForInterfaces;
+	}
+	@Override
+	protected Set<String> imports()
+	{
+		Set<String> importNames = new LinkedHashSet<String>();
+		for ( Class aClass : classes() )
+		{
+			importNames.add( aClass.getName().replace( "$", "." ) );
+		}
+		return importNames;
 	}
 	
 }

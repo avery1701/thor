@@ -128,4 +128,12 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 		}.wrap();
 	}
 
+	protected void closeFile()
+	{
+		if ( getDestination() != null )
+		{
+			close( getJavaFileWriter() );
+		}
+	}
+
 }
