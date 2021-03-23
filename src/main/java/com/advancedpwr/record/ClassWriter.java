@@ -168,9 +168,9 @@ public abstract class ClassWriter
 	protected void writeImports()
 	{
 		writeStaticImports();
-		for ( String importName : imports() )
+		for ( Class aClass : classes() )
 		{
-			writeLine( IMPORT + importName );
+			writeLine( IMPORT + aClass.getName().replace( "$", "." ) );
 		}
 		newLine();
 	}
@@ -183,7 +183,7 @@ public abstract class ClassWriter
 		}
 	}
 
-	protected abstract Set<String> imports();
+	protected abstract Set<Class> classes();
 
 	protected String packageName()
 	{
