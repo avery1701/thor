@@ -16,7 +16,7 @@ public abstract class BaseFactory
 {
 	protected Objenesis fieldObjenesis;
 	
-	protected Object newInstance( Class inClass )
+	protected Object newInstance( Class<?> inClass )
 	{
 		return objenesis().newInstance( inClass );
 	}

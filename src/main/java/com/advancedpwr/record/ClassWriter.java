@@ -44,7 +44,7 @@ public abstract class ClassWriter
 	
 	protected List<String> fieldStaticClassNames;
 
-	protected ObjectDescriptor getObject()
+	protected ObjectDescriptor getObjectDescriptor()
 	{
 		return fieldObject;
 	}
@@ -168,9 +168,9 @@ public abstract class ClassWriter
 	protected void writeImports()
 	{
 		writeStaticImports();
-		for ( Class aClass : classes() )
+		for ( ClassDescriptor aClass : classes() )
 		{
-			writeLine( IMPORT + aClass.getName().replace( "$", "." ) );
+			writeLine( IMPORT + aClass.getClassName().replace( "$", "." ) );
 		}
 		newLine();
 	}
@@ -183,7 +183,7 @@ public abstract class ClassWriter
 		}
 	}
 
-	protected abstract Set<Class> classes();
+	protected abstract Set<ClassDescriptor> classes();
 
 	protected String packageName()
 	{
@@ -227,13 +227,13 @@ public abstract class ClassWriter
 	{
 		if ( fieldStaticClassNames == null )
 		{
-			fieldStaticClassNames = new ArrayList<>();
+			fieldStaticClassNames = new ArrayList<String>();
 		}
 		return fieldStaticClassNames;
 	}
 
-	public void addStaticImport( Class inClass )
+	public void addStaticImport( ClassDescriptor inClass )
 	{
-		getStaticClassNames().add( inClass.getName().replace( "$", "." ) );
+		getStaticClassNames().add( inClass.getClassName().replace( "$", "." ) );
 	}
 }

@@ -15,31 +15,31 @@
  */
 package com.advancedpwr.record;
 
-public class DefaultClassDescriptor implements ClassDescriptor
+public class JavaClassDescriptor implements ClassDescriptor
 {
 
 	public static final String GENERATED = ".generated";
 
 	public static final String FACTORY = "Factory";
-	
-	protected Class fieldClass;
-	
-	public DefaultClassDescriptor()
+
+	protected Class<?> fieldClass;
+
+	public JavaClassDescriptor()
 	{
 		
 	}
-	
-	public DefaultClassDescriptor( Class inClass )
+
+	public JavaClassDescriptor( Class<?> inClass )
 	{
 		setClass( inClass );
 	}
-	
-	public Class subject()
+
+	public Class<?> subject()
 	{
 		return fieldClass;
 	}
 
-	public void setClass( Class inClass )
+	public void setClass( Class<?> inClass )
 	{
 		fieldClass = inClass;
 	}
@@ -53,10 +53,26 @@ public class DefaultClassDescriptor implements ClassDescriptor
 	{
 		return subject().getPackage().getName() + GENERATED;
 	}
-	
+
 	public String toString()
 	{
 		return getPackageName() + "." + getClassName();
+	}
+
+	@Override
+	public boolean isAssignableFrom( ClassDescriptor descriptor )
+	{
+		Class<?> aClass;
+		try
+		{
+			aClass = Class.forName( descriptor.getPackageName() + descriptor.getClassName() );
+		}
+		catch ( ClassNotFoundException e )
+		{
+			throw new RuntimeException(
+					"Cannot find Java class for class " + descriptor.getClassName() );
+		}
+		return subject().isAssignableFrom( aClass );
 	}
 
 }

@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.advancedpwr.record.factory.BaseFactory;
+import com.advancedpwr.record.factory.JavaClassDescriptorFactory;
 import com.advancedpwr.record.methods.BuildMethodWriter;
 import com.advancedpwr.record.methods.CollectionBuilderFactory;
 import com.advancedpwr.record.methods.EnumBuilderFactory;
@@ -98,13 +99,15 @@ public class BeanRecorder extends AbstractRecorder
 {
 	protected InstanceTree fieldInstanceTree;
 	protected MethodBuilderFactory fieldFactoryBuilder;
-	protected Set<Class> fieldStopClasses;
-	protected Map<Class,Class> fieldClassesForInterfaces;
-	
+	protected Set<ClassDescriptor> fieldStopClasses;
+	protected Map<ClassDescriptor, ClassDescriptor> fieldClassesForInterfaces;
+
 	public BeanRecorder()
 	{
-		setSuperClass( BaseFactory.class );
+
+		setSuperClass( new JavaClassDescriptor( getClass() ) );
 	}
+
 	/**
 	 * Use this method to substitute one class for another if they both implement the same interface.
 	 * For example, if an object has an instance of a java.util.Vector, use this method to force the 
@@ -115,20 +118,21 @@ public class BeanRecorder extends AbstractRecorder
 	 * @param inInterface
 	 * @param inClass
 	 */
-	public void useTypeForInterface( Class inInterface, Class inClass )
+	public void useTypeForInterface( ClassDescriptor inInterface, ClassDescriptor inClass )
 	{
 		if ( !inInterface.isAssignableFrom( inClass ) )
 		{
 			throw new RuntimeException( inClass + " cannot be used for " + inInterface );
 		}
 		getClassesForInterfaces().put( inInterface, inClass );
-		
+
 	}
+
 	protected void setObject( Object object )
 	{
 		if ( object == null )
 		{
-			throw new RecorderException( "Called setObject with null argument");
+			throw new RecorderException( "Called setObject with null argument" );
 		}
 		fieldInstanceTree = createInstanceTree( object );
 	}
@@ -164,8 +168,9 @@ public class BeanRecorder extends AbstractRecorder
 		builder.setClassWriter( this );
 		return builder;
 	}
-	
-	protected Object getObject()
+
+	@Override
+	protected ObjectDescriptor getObjectDescriptor()
 	{
 		return getInstanceTree().getObject();
 	}
@@ -175,9 +180,9 @@ public class BeanRecorder extends AbstractRecorder
 		return fieldInstanceTree;
 	}
 
-	protected Set<Class> classes()
+	protected Set<ClassDescriptor> classes()
 	{
-		Set<Class> classes = new LinkedHashSet<Class>();
+		Set<ClassDescriptor> classes = new LinkedHashSet<ClassDescriptor>();
 		if ( getSuperClass() != null )
 		{
 			classes.add( getSuperClass() );
@@ -189,13 +194,13 @@ public class BeanRecorder extends AbstractRecorder
 		}
 		return classes;
 	}
-	
+
 	protected MethodBuilderFactory getFactoryBuilder()
 	{
 		if ( fieldFactoryBuilder == null )
 		{
 			fieldFactoryBuilder = createMethodBuilderFactory();
-			
+
 		}
 		return fieldFactoryBuilder;
 	}
@@ -208,12 +213,12 @@ public class BeanRecorder extends AbstractRecorder
 		factory.addBuilderFactory( new EnumBuilderFactory() );
 		return factory;
 	}
-	
+
 	public void addBuilderFactory( MethodWriterFactory inFactory )
 	{
 		getFactoryBuilder().addBuilderFactory( inFactory );
 	}
-	
+
 	public PrintWriter getPrintWriter()
 	{
 		if ( fieldPrintWriter == null && getDestination() != null )
@@ -222,42 +227,42 @@ public class BeanRecorder extends AbstractRecorder
 		}
 		return fieldPrintWriter;
 	}
-	
-	public void stopDescent( Class inClass )
+
+	public void stopDescent( ClassDescriptor inClass )
 	{
 		getStopClasses().add( inClass );
 	}
-	
-	public Set getStopClasses()
+
+	public Set<ClassDescriptor> getStopClasses()
 	{
 		if ( fieldStopClasses == null )
 		{
-			fieldStopClasses = new HashSet();
-			fieldStopClasses.add( Date.class );
-			fieldStopClasses.add( java.sql.Date.class );
-			fieldStopClasses.add( Calendar.class );
-			fieldStopClasses.add( GregorianCalendar.class );
+			fieldStopClasses = new HashSet<ClassDescriptor>();
+			fieldStopClasses.add( new JavaClassDescriptor( Date.class ) );
+			fieldStopClasses.add( new JavaClassDescriptor( java.sql.Date.class ) );
+			fieldStopClasses.add( new JavaClassDescriptor( Calendar.class ) );
+			fieldStopClasses.add( new JavaClassDescriptor( GregorianCalendar.class ) );
 		}
 		return fieldStopClasses;
 	}
-	
-	public Map getClassesForInterfaces()
+
+	public Map<ClassDescriptor, ClassDescriptor> getClassesForInterfaces()
 	{
-		if( fieldClassesForInterfaces == null )
+		if ( fieldClassesForInterfaces == null )
 		{
-			fieldClassesForInterfaces = new HashMap();
+			fieldClassesForInterfaces = new HashMap<ClassDescriptor, ClassDescriptor>();
 		}
 		return fieldClassesForInterfaces;
 	}
-	@Override
+
 	protected Set<String> imports()
 	{
 		Set<String> importNames = new LinkedHashSet<String>();
-		for ( Class aClass : classes() )
+		for ( ClassDescriptor aClass : classes() )
 		{
-			importNames.add( aClass.getName().replace( "$", "." ) );
+			importNames.add( aClass.getClassName().replace( "$", "." ) );
 		}
 		return importNames;
 	}
-	
+
 }

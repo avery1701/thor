@@ -112,7 +112,7 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 
 	protected Class objectClass()
 	{
-		return getObject().getClass();
+		return getObjectDescriptor().getClass();
 	}
 
 	protected void close( final Writer inWriter )

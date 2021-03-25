@@ -48,7 +48,7 @@ public class ClassWriterTest {
 	@Test
 	public void testGettersSetters() {
 		writer.setObject(ClassWriter.class);
-		assertEquals(ClassWriter.class, writer.getObject());
+		assertEquals(ClassWriter.class, writer.getObjectDescriptor());
 	}
 	
 	@Test

@@ -44,7 +44,7 @@ public class BeanRecorderTest extends AbstractRecorderTest {
 	public void testSetGetObject() {
 		Person person = Person.createExamplePerson();
 		recorder.setObject(person);
-		assertEquals(person, recorder.getObject());
+		assertEquals(person, recorder.getObjectDescriptor());
 	}
 
 	@Test

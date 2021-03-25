@@ -28,7 +28,7 @@ public abstract class MockBeanFactory
 	
 	protected Objenesis fieldObjenesis;
 	
-	protected Object newInstance( Class inClass )
+	protected Object newInstance( Class<?> inClass )
 	{
 		return objenesis().newInstance( inClass );
 	}
