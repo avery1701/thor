@@ -15,27 +15,27 @@
  */
 package com.advancedpwr.record;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class InstanceTreeFactory
 {
-	protected Map<Object, InstanceTree> fieldTrees;
+	protected Map<ObjectDescriptor, InstanceTree> fieldTrees;
 	protected int count;
-	
-	protected Map<Object, InstanceTree> getTrees()
+
+	protected Map<ObjectDescriptor, InstanceTree> getTrees()
 	{
 		if ( fieldTrees == null )
 		{
-			fieldTrees = new LinkedHashMap<Object, InstanceTree>();
+			fieldTrees = new LinkedHashMap<ObjectDescriptor, InstanceTree>();
 		}
 		return fieldTrees;
 	}
-	
-	public InstanceTree createInstanceTree( Object result, InstanceTree inParent )
+
+	public InstanceTree createInstanceTree( ObjectDescriptor result, InstanceTree inParent )
 	{
 		InstanceTree tree = getTrees().get( result );
 		if ( tree == null )
@@ -49,17 +49,16 @@ public class InstanceTreeFactory
 		return tree;
 	}
 
-	protected InstanceTree createTree( Object result, InstanceTree inParent )
+	protected InstanceTree createTree( ObjectDescriptor result, InstanceTree inParent )
 	{
 		return inParent.createTree( result );
 	}
 
-	public Set<Class> classes()
+	public Set<ClassDescriptor> classes()
 	{
-		Set<Class> classes = new LinkedHashSet<Class>();
-		for ( Iterator iterator = getTrees().entrySet().iterator(); iterator.hasNext(); )
+		Set<ClassDescriptor> classes = new LinkedHashSet<ClassDescriptor>();
+		for ( Entry<ObjectDescriptor, InstanceTree> entry : getTrees().entrySet() )
 		{
-			Map.Entry<Object, InstanceTree> entry = (Map.Entry<Object, InstanceTree>) iterator.next();
 			classes.addAll( entry.getValue().classes() );
 		}
 		return classes;

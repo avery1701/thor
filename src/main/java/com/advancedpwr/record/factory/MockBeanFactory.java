@@ -17,6 +17,7 @@ package com.advancedpwr.record.factory;
 
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
+
 /**
  * 
  * @author Matthew Avery, mavery@advancedpwr.com on Feb 17, 2012
@@ -25,14 +26,14 @@ import org.objenesis.ObjenesisStd;
  */
 public abstract class MockBeanFactory
 {
-	
+
 	protected Objenesis fieldObjenesis;
-	
+
 	protected Object newInstance( Class<?> inClass )
 	{
 		return objenesis().newInstance( inClass );
 	}
-	
+
 	protected Objenesis objenesis()
 	{
 		if ( fieldObjenesis == null )

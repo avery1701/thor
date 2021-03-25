@@ -15,6 +15,8 @@
  */
 package com.advancedpwr.record;
 
+import java.util.Set;
+
 /**
  * A simple interface to provide the class name and package to the {@link ClassWriter}.
  * 
@@ -27,5 +29,13 @@ public interface ClassDescriptor
 	
 	String getPackageName();
 	
-	boolean isAssignableFrom(ClassDescriptor descriptor);
+	Set<ClassDescriptor> getInterfaces();
+
+	ClassDescriptor getSuperclass();
+
+	boolean isAnonymousClass();
+
+	boolean isArray();
+
+	boolean isPrimitive();
 }

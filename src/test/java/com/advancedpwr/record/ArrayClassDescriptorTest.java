@@ -10,7 +10,7 @@ class ArrayClassDescriptorTest {
 	@Test
 	void test() {
 		String[] strings = {"hello", "world"};
-		ArrayClassDescriptor desc = new ArrayClassDescriptor(strings.getClass());
+		JavaArrayClassDescriptor desc = new JavaArrayClassDescriptor(strings.getClass());
 		assertNotNull(desc.subject());
 		assertEquals("StringArrayFactory", desc.getClassName());
 		assertEquals(desc.subject(), String.class);

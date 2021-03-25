@@ -16,12 +16,9 @@
 package com.advancedpwr.record;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -34,19 +31,19 @@ import com.advancedpwr.record.inspect.MapInspector;
 
 public class InstanceTree
 {
-	protected Object fieldObject;
+	protected ObjectDescriptor fieldObject;
 	protected Method fieldCurrentMethod;
 	protected AccessPathList fieldAccessPaths;
 	protected int depth;
 	protected InstanceTree fieldParent;
 	protected InstanceTreeFactory fieldFactory;
 	protected InspectorList fieldInspectors;
-	
+
 	protected int fieldIndex;
-	
-	protected Set fieldStopClasses;
-	protected Map fieldClassesForInterface;
-	
+
+	protected Set<ClassDescriptor> fieldStopClasses;
+	protected InterfaceClassSubstitutor fieldClassesForInterface;
+
 	public InstanceTree getParent()
 	{
 		if ( fieldParent == null )
@@ -55,7 +52,7 @@ public class InstanceTree
 		}
 		return fieldParent;
 	}
-	
+
 	public int getDepth()
 	{
 		return depth;
@@ -70,7 +67,7 @@ public class InstanceTree
 	{
 		return getParent().equals( this );
 	}
-	
+
 	public void setParent( InstanceTree parent )
 	{
 		fieldParent = parent;
@@ -86,7 +83,8 @@ public class InstanceTree
 		fieldCurrentMethod = currentMethod;
 	}
 
-	public InstanceTree( Set<Class> stopClasses, Map<Class,Class> classForInterface, Object object )
+	public InstanceTree( Set<ClassDescriptor> stopClasses,
+			InterfaceClassSubstitutor classForInterface, ObjectDescriptor object )
 	{
 		this( object, null );
 		setStopClasses( stopClasses );
@@ -95,16 +93,16 @@ public class InstanceTree
 		setIndex( getFactory().count++ );
 		inspectObject();
 	}
-	
-	public InstanceTree( Object object )
+
+	public InstanceTree( ObjectDescriptor object )
 	{
 		this( object, null );
 		getFactory().getTrees().put( object, this );
 		setIndex( getFactory().count++ );
 		inspectObject();
 	}
-	
-	public InstanceTree( Object object, InstanceTree inTree )
+
+	public InstanceTree( ObjectDescriptor object, InstanceTree inTree )
 	{
 		setParent( inTree );
 		if ( inTree != null )
@@ -115,7 +113,7 @@ public class InstanceTree
 		}
 		setObject( object );
 	}
-	
+
 	protected void inspectObject()
 	{
 		for ( Inspector inspector : getInspectors() )
@@ -123,7 +121,7 @@ public class InstanceTree
 			inspector.inspect( this );
 		}
 	}
-	
+
 	public InspectorList getInspectors()
 	{
 		if ( fieldInspectors == null )
@@ -136,13 +134,13 @@ public class InstanceTree
 	protected InspectorList initializeInspectorList()
 	{
 		InspectorList inspectors = new InspectorList();
-		inspectors.add(  new BeanInspector() );
+		inspectors.add( new BeanInspector() );
 		inspectors.add( new CollectionInspector() );
 		inspectors.add( new MapInspector() );
 		inspectors.add( new ArrayInspector() );
 		return inspectors;
 	}
-	
+
 	public void addInspector( Inspector inspector )
 	{
 		getInspectors().add( inspector );
@@ -152,52 +150,31 @@ public class InstanceTree
 	{
 		if ( getParent().equals( this ) )
 		{
-			return objectClass().getSimpleName();
+			return objectClass().getClassName();
 		}
 		return getParent().getCurrentMethod().getName().replaceFirst( "set", "" ) + "_" + depth;
 	}
 
-	public Class<? extends Object> objectClass()
+	public ClassDescriptor objectClass()
 	{
-		List<Class> interfaces = interfacesForObject();
-		for ( Class i : interfaces )
-		{
-			if (getClassesForInterface().containsKey( i ) )
-			{
-				return (Class)getClassesForInterface().get( i );
-			}
-		}
-		
-		return targetClass();
+		return getClassesForInterface().substitute( targetClass() );
 	}
 
-	protected List<Class> interfacesForObject()
+	protected ClassDescriptor targetClass()
 	{
-		List<Class> interfaces = new ArrayList<Class>();
-		Class currentClass = targetClass();
-		while( currentClass != Object.class )
-		{
-			interfaces.addAll( Arrays.asList( currentClass.getInterfaces() ) );
-			currentClass = currentClass.getSuperclass();
-		}
-		return interfaces;
+		return getObject().getClassDescriptor();
 	}
 
-	protected Class<? extends Object> targetClass() 
-	{
-		return getObject().getClass();
-	}
-
-	public InstanceTree createInstanceTree( Object result )
+	public InstanceTree createInstanceTree( ObjectDescriptor result )
 	{
 		return getFactory().createInstanceTree( result, this );
 	}
 
-	public InstanceTree createTree( Object result )
+	public InstanceTree createTree( ObjectDescriptor result )
 	{
 		return new InstanceTree( result, this );
 	}
-	
+
 	public AccessPathList getAccessPaths()
 	{
 		if ( fieldAccessPaths == null )
@@ -207,43 +184,36 @@ public class InstanceTree
 		return fieldAccessPaths;
 	}
 
-
-	
-	
-	public Object getObject()
+	public ObjectDescriptor getObject()
 	{
 		return fieldObject;
 	}
 
-	public void setObject( Object object )
+	public void setObject( ObjectDescriptor object )
 	{
-		if ( object == null )
-		{
-			object = new Null();
-		}
 		fieldObject = object;
 	}
 
-	protected Set<Class> classes()
+	protected Set<ClassDescriptor> classes()
 	{
-		Set<Class> classes = new LinkedHashSet<Class>();
+		Set<ClassDescriptor> classes = new LinkedHashSet<ClassDescriptor>();
 		if ( !objectClass().isArray() && !objectClass().isAnonymousClass() )
 		{
-			addClass( classes, objectClass() );
+			addClassToSet( classes, objectClass() );
 		}
 		for ( AccessPath path : getAccessPaths() )
 		{
-			addClass( classes, path.getParameterClass() );
-			addClass( classes, path.getResultClass() );
-			for ( Class aClass : path.getExceptions() )
+			addClassToSet( classes, path.getParameterClass() );
+			addClassToSet( classes, path.getResultClass() );
+			for ( ClassDescriptor aClass : path.getExceptions() )
 			{
-				addClass( classes, aClass );
+				addClassToSet( classes, aClass );
 			}
 		}
 		return classes;
 	}
-	
-	protected void addClass( Set<Class> classes, Class inClass )
+
+	protected void addClassToSet( Set<ClassDescriptor> classes, ClassDescriptor inClass )
 	{
 		if ( ignoredClass( inClass ) )
 		{
@@ -251,7 +221,7 @@ public class InstanceTree
 		}
 		if ( inClass.isArray() )
 		{
-			inClass = inClass.getComponentType();
+			inClass = ( (JavaArrayClassDescriptor) inClass ).getComponentType();
 			if ( inClass.isPrimitive() )
 			{
 				return;
@@ -260,14 +230,15 @@ public class InstanceTree
 		classes.add( inClass );
 	}
 
-	public boolean ignoredClass( Class param )
+	public boolean ignoredClass( ClassDescriptor inClass )
 	{
-		return param == null
-			|| param.isPrimitive()
-		    || void.class.isAssignableFrom( param )
-		    || Null.class.isAssignableFrom( param )
-		    || param.getName().startsWith( "java.lang." );
-		
+		JavaClassDescriptor voidClassDescriptor = new JavaClassDescriptor( void.class );
+		JavaClassDescriptor nullClassDescriptor = new JavaClassDescriptor( Null.class );
+		return inClass == null || inClass.isPrimitive()
+				|| inClass.getInterfaces().contains( voidClassDescriptor )
+				|| inClass.getInterfaces().contains( nullClassDescriptor )
+				|| inClass.getPackageName().startsWith( "java.lang." );
+
 	}
 
 	public int getIndex()
@@ -299,28 +270,28 @@ public class InstanceTree
 		fieldFactory = factory;
 	}
 
-	public Set<Class> getExceptions()
+	public Set<ClassDescriptor> getExceptions()
 	{
-		Map<InstanceTree, Set<Class>> cache = new HashMap<InstanceTree, Set<Class>>();
-		cache.put( this, new LinkedHashSet<Class>() );
-		Set<Class> exceptions = getExceptions( cache );
+		Map<InstanceTree, Set<ClassDescriptor>> cache = new HashMap<InstanceTree, Set<ClassDescriptor>>();
+		cache.put( this, new LinkedHashSet<ClassDescriptor>() );
+		Set<ClassDescriptor> exceptions = getExceptions( cache );
 		cache.put( this, exceptions );
 		return exceptions;
 	}
 
-	protected Set<Class> getExceptions( Map<InstanceTree, Set<Class>> cache )
+	protected Set<ClassDescriptor> getExceptions( Map<InstanceTree, Set<ClassDescriptor>> cache )
 	{
-		Set<Class> exceptions = new LinkedHashSet<Class>();
+		Set<ClassDescriptor> exceptions = new LinkedHashSet<ClassDescriptor>();
 		for ( AccessPath path : getAccessPaths() )
 		{
-			Set<Class> cached = cache.get( path.getInstanceTree() );
+			Set<ClassDescriptor> cached = cache.get( path.getInstanceTree() );
 			if ( cached != null )
 			{
 				exceptions.addAll( cached );
 			}
 			else
 			{
-				cache.put( path.getInstanceTree(), new LinkedHashSet<Class>() );
+				cache.put( path.getInstanceTree(), new LinkedHashSet<ClassDescriptor>() );
 				exceptions.addAll( path.getExceptions() );
 				exceptions.addAll( path.getInstanceTree().getExceptions( cache ) );
 				cache.put( path.getInstanceTree(), exceptions );
@@ -328,38 +299,38 @@ public class InstanceTree
 		}
 		return exceptions;
 	}
-	
-	public Set getStopClasses()
+
+	public Set<ClassDescriptor> getStopClasses()
 	{
 		if ( fieldStopClasses == null )
 		{
-			fieldStopClasses = new HashSet<Class>();
+			fieldStopClasses = new HashSet<ClassDescriptor>();
 		}
 		return fieldStopClasses;
 	}
-	
+
 	public boolean isStop()
 	{
 		return getStopClasses().contains( objectClass() );
 	}
 
-	public void setStopClasses( Set stopClasses )
+	public void setStopClasses( Set<ClassDescriptor> stopClasses )
 	{
 		fieldStopClasses = stopClasses;
 	}
 
-	public Map getClassesForInterface()
+	public InterfaceClassSubstitutor getClassesForInterface()
 	{
 		if ( fieldClassesForInterface == null )
 		{
-			fieldClassesForInterface = new HashMap();
+			fieldClassesForInterface = new InterfaceClassSubstitutor();
 		}
 		return fieldClassesForInterface;
 	}
 
-	public void setClassesForInterface( Map classForInterface )
+	public void setClassesForInterface( InterfaceClassSubstitutor classForInterface )
 	{
 		fieldClassesForInterface = classForInterface;
 	}
-	
+
 }

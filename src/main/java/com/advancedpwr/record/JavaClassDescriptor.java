@@ -15,6 +15,9 @@
  */
 package com.advancedpwr.record;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class JavaClassDescriptor implements ClassDescriptor
 {
 
@@ -26,7 +29,7 @@ public class JavaClassDescriptor implements ClassDescriptor
 
 	public JavaClassDescriptor()
 	{
-		
+
 	}
 
 	public JavaClassDescriptor( Class<?> inClass )
@@ -60,19 +63,38 @@ public class JavaClassDescriptor implements ClassDescriptor
 	}
 
 	@Override
-	public boolean isAssignableFrom( ClassDescriptor descriptor )
+	public Set<ClassDescriptor> getInterfaces()
 	{
-		Class<?> aClass;
-		try
+		Set<ClassDescriptor> interfaces = new HashSet<ClassDescriptor>();
+		for ( Class<?> anInterface : subject().getInterfaces() )
 		{
-			aClass = Class.forName( descriptor.getPackageName() + descriptor.getClassName() );
+			interfaces.add( new JavaClassDescriptor( anInterface ) );
 		}
-		catch ( ClassNotFoundException e )
-		{
-			throw new RuntimeException(
-					"Cannot find Java class for class " + descriptor.getClassName() );
-		}
-		return subject().isAssignableFrom( aClass );
+		return interfaces;
+	}
+
+	@Override
+	public ClassDescriptor getSuperclass()
+	{
+		return new JavaClassDescriptor( subject().getSuperclass() );
+	}
+
+	@Override
+	public boolean isAnonymousClass()
+	{
+		return subject().isAnonymousClass();
+	}
+
+	@Override
+	public boolean isArray()
+	{
+		return subject().isArray();
+	}
+
+	@Override
+	public boolean isPrimitive()
+	{
+		return subject().isPrimitive();
 	}
 
 }

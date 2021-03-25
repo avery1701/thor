@@ -15,34 +15,15 @@
  */
 package com.advancedpwr.record;
 
+
 /**
- * A {@link ClassDescriptor} for array factories.  If the object to be recorded is a Java array, this
- * class descriptor will create an appropriately named class.
  * 
- * For example, if the target object to be recorded is an array of <code>com.example.Person</code> objects, this 
- * {@link ClassDescriptor} will generate a class name of "PersonArrayFactory" in the package "com.example.generated".
+ * An interface to describe Array classes.
  * 
- * @author Matthew Avery, mavery@advancedpwr.com on Sep 30, 2010
- *
+ * @author Elijah Hopp, github.mrzeusthecoder@gmail.com. Created: Mar 25, 2021
+ * @see ClassDescriptor
  */
-public class ArrayClassDescriptor extends JavaClassDescriptor
+public interface ArrayClassDescriptor extends ClassDescriptor
 {
-
-	public ArrayClassDescriptor( Class<?> inClass )
-	{
-		super( inClass );
-	}
-
-	public static final String ARRAY = "Array";
-
-	public String getClassName()
-	{
-		return subject().getSimpleName() + ARRAY + FACTORY;
-	}
-
-	public Class<?> subject()
-	{
-		return fieldClass.getComponentType();
-	}
-
+	ClassDescriptor getComponentType();
 }

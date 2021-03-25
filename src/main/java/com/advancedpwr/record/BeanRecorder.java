@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.advancedpwr.record.factory.BaseFactory;
-import com.advancedpwr.record.factory.JavaClassDescriptorFactory;
 import com.advancedpwr.record.methods.BuildMethodWriter;
 import com.advancedpwr.record.methods.CollectionBuilderFactory;
 import com.advancedpwr.record.methods.EnumBuilderFactory;
@@ -104,8 +103,7 @@ public class BeanRecorder extends AbstractRecorder
 
 	public BeanRecorder()
 	{
-
-		setSuperClass( new JavaClassDescriptor( getClass() ) );
+		setSuperClass( new JavaClassDescriptor( BaseFactory.class ) );
 	}
 
 	/**
@@ -120,7 +118,8 @@ public class BeanRecorder extends AbstractRecorder
 	 */
 	public void useTypeForInterface( ClassDescriptor inInterface, ClassDescriptor inClass )
 	{
-		if ( !inInterface.isAssignableFrom( inClass ) )
+		Set<ClassDescriptor> interfaces = inClass.getInterfaces();
+		if ( !interfaces.contains( inClass ) )
 		{
 			throw new RuntimeException( inClass + " cannot be used for " + inInterface );
 		}

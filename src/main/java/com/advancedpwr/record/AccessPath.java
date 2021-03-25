@@ -41,24 +41,29 @@ public class AccessPath
 	}
 
 	// Type of the result object, e.g. ArrayList
-	public Class getResultClass()
+	public ClassDescriptor getResultClass()
 	{
-		String type = getInstanceTree().objectClass().getSimpleName();
+		String type = targetClass().getClassName();
 		if ( type.isEmpty() )
 		{
-			return getInstanceTree().objectClass().getSuperclass();
+			return targetClass().getSuperclass();
 		}
+		return targetClass();
+	}
+
+	protected ClassDescriptor targetClass()
+	{
 		return getInstanceTree().objectClass();
 	}
 	
 	// Return type of the access path, e.g. List
-	public Class getReturnType()
+	public ClassDescriptor getReturnType()
 	{
 		return getResultClass();
 	}
 	
 	// Parameter type
-	public Class getParameterClass()
+	public ClassDescriptor getParameterClass()
 	{
 		return getResultClass();
 	}
@@ -70,7 +75,7 @@ public class AccessPath
 	
 	public String nameRoot()
 	{
-		return getResultClass().getSimpleName() + suffix();
+		return getResultClass().getClassName() + suffix();
 	}
 	
 	public String suffix()
@@ -93,9 +98,9 @@ public class AccessPath
 		return getClass().getSimpleName() + ": " + getInstanceTree().getObject() + " instance " + getInstanceTree();
 	}
 
-	public Set<Class> getExceptions()
+	public Set<ClassDescriptor> getExceptions()
 	{
-		return new LinkedHashSet<Class>();
+		return new LinkedHashSet<ClassDescriptor>();
 	}
 		
 }

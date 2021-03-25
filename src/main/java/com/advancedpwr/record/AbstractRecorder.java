@@ -105,7 +105,7 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 	{
 		if ( objectClass().isArray() )
 		{
-			return new ArrayClassDescriptor( objectClass() );
+			return new JavaArrayClassDescriptor( objectClass() );
 		}
 		return new JavaClassDescriptor( objectClass() );
 	}
