@@ -25,26 +25,22 @@ package com.advancedpwr.record;
  * @author Matthew Avery, mavery@advancedpwr.com on Sep 30, 2010
  *
  */
-public class ArrayClassDescriptor extends DefaultClassDescriptor
+public class ArrayClassDescriptor extends JavaClassDescriptor
 {
 
-
-	public ArrayClassDescriptor( Class inClass )
+	public ArrayClassDescriptor( Class<?> inClass )
 	{
 		super( inClass );
 	}
 
-
 	public static final String ARRAY = "Array";
-
 
 	public String getClassName()
 	{
 		return subject().getSimpleName() + ARRAY + FACTORY;
 	}
 
-
-	public Class subject()
+	public Class<?> subject()
 	{
 		return fieldClass.getComponentType();
 	}
