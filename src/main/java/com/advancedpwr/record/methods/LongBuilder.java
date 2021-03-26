@@ -16,6 +16,8 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class LongBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
@@ -27,10 +29,11 @@ public class LongBuilder extends AbstractPrimitiveBuilder implements MethodWrite
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return long.class.isAssignableFrom( inClass )
-			|| Long.class.isAssignableFrom( inClass );
+		JavaClassDescriptor longDescriptor = new JavaClassDescriptor( long.class );
+		JavaClassDescriptor longClassDescriptor = new JavaClassDescriptor( Long.class );
+		return inClass.isAssignableFrom( longDescriptor ) || inClass.isAssignableFrom( longClassDescriptor );
 	}
 	
 	/* (non-Javadoc)

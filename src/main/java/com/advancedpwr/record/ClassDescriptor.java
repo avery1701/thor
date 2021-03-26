@@ -15,6 +15,7 @@
  */
 package com.advancedpwr.record;
 
+import java.lang.reflect.Constructor;
 import java.util.Set;
 
 /**
@@ -26,10 +27,12 @@ import java.util.Set;
 public interface ClassDescriptor
 {
 	String getClassName();
-	
+
 	String getPackageName();
-	
+
 	Set<ClassDescriptor> getInterfaces();
+
+	boolean isAssignableFrom( ClassDescriptor inClass );
 
 	ClassDescriptor getSuperclass();
 
@@ -38,4 +41,8 @@ public interface ClassDescriptor
 	boolean isArray();
 
 	boolean isPrimitive();
+
+	boolean isEnum();
+
+	Set<Constructor<?>> getConstructors();
 }

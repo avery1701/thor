@@ -16,11 +16,12 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
 
 public interface MethodWriterFactory
 {
 
-	public abstract boolean accept( Class inClass );
+	public abstract boolean accept( ClassDescriptor inClass );
 
 	public abstract BuildMethodWriter createMethodBuilder( AccessPath inPath );
 

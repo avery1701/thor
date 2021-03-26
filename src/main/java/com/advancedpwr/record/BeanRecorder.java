@@ -20,7 +20,6 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -99,7 +98,7 @@ public class BeanRecorder extends AbstractRecorder
 	protected InstanceTree fieldInstanceTree;
 	protected MethodBuilderFactory fieldFactoryBuilder;
 	protected Set<ClassDescriptor> fieldStopClasses;
-	protected Map<ClassDescriptor, ClassDescriptor> fieldClassesForInterfaces;
+	protected InterfaceClassSubstitutor fieldClassesForInterfaces;
 
 	public BeanRecorder()
 	{
@@ -127,7 +126,7 @@ public class BeanRecorder extends AbstractRecorder
 
 	}
 
-	protected void setObject( Object object )
+	protected void setObject( ObjectDescriptor object )
 	{
 		if ( object == null )
 		{
@@ -136,7 +135,7 @@ public class BeanRecorder extends AbstractRecorder
 		fieldInstanceTree = createInstanceTree( object );
 	}
 
-	protected InstanceTree createInstanceTree( Object object )
+	protected InstanceTree createInstanceTree( ObjectDescriptor object )
 	{
 		return new InstanceTree( getStopClasses(), getClassesForInterfaces(), object );
 	}
@@ -146,7 +145,7 @@ public class BeanRecorder extends AbstractRecorder
 	 */
 	public <T> T record( T inObject )
 	{
-		setObject( inObject );
+		setObject( new JavaObjectDescriptor( inObject ) );
 		writeObject();
 		closeFile();
 		return inObject;
@@ -187,9 +186,11 @@ public class BeanRecorder extends AbstractRecorder
 			classes.add( getSuperClass() );
 		}
 		classes.addAll( getInstanceTree().getFactory().classes() );
-		if ( classes.contains( java.util.Date.class ) && classes.contains( java.sql.Date.class ) )
+		JavaClassDescriptor utilDate = new JavaClassDescriptor( java.util.Date.class );
+		JavaClassDescriptor sqlDate = new JavaClassDescriptor( java.sql.Date.class );
+		if ( classes.contains( utilDate ) && classes.contains( sqlDate ) )
 		{
-			classes.remove( java.sql.Date.class );
+			classes.remove( sqlDate );
 		}
 		return classes;
 	}
@@ -245,11 +246,11 @@ public class BeanRecorder extends AbstractRecorder
 		return fieldStopClasses;
 	}
 
-	public Map<ClassDescriptor, ClassDescriptor> getClassesForInterfaces()
+	public InterfaceClassSubstitutor getClassesForInterfaces()
 	{
 		if ( fieldClassesForInterfaces == null )
 		{
-			fieldClassesForInterfaces = new HashMap<ClassDescriptor, ClassDescriptor>();
+			fieldClassesForInterfaces = new InterfaceClassSubstitutor();
 		}
 		return fieldClassesForInterfaces;
 	}

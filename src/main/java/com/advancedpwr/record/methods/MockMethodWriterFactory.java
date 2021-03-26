@@ -4,20 +4,21 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
 import com.advancedpwr.record.MockBeanMethodBuilder;
 
 /**
  * @author Matthew Avery, mavery@advancedpwr.com
  * Created: Feb 14, 2012
- *
  */
 public class MockMethodWriterFactory  implements MethodWriterFactory 
 {
-	protected Class fieldMatchingClass;
+	protected ClassDescriptor fieldMatchingClass;
+	
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.MethodWriterFactory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
 		return getMatchingClass().equals( inClass );
 	}
@@ -30,12 +31,12 @@ public class MockMethodWriterFactory  implements MethodWriterFactory
 		return new MockBeanMethodBuilder();
 	}
 
-	public Class getMatchingClass()
+	public ClassDescriptor getMatchingClass()
 	{
 		return fieldMatchingClass;
 	}
 
-	public void setMatchingClass( Class matchingClass )
+	public void setMatchingClass( ClassDescriptor matchingClass )
 	{
 		fieldMatchingClass = matchingClass;
 	}

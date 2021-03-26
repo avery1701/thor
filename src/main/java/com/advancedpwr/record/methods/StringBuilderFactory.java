@@ -16,17 +16,20 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
-public class StringBuilderFactory implements MethodWriterFactory 
+public class StringBuilderFactory implements MethodWriterFactory
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return String.class.isAssignableFrom( inClass );
+		JavaClassDescriptor stringDescriptor = new JavaClassDescriptor( String.class );
+		return inClass.getInterfaces().contains( stringDescriptor );
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */

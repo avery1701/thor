@@ -15,13 +15,14 @@
  */
 package com.advancedpwr.record.methods;
 
+import com.advancedpwr.record.ClassDescriptor;
 
 public abstract class ObjectBuilderFactory extends AbstractDefaultFactory
 {
 
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return Object.class.equals( inClass );
+		return true; //FIXME: Everything extends Object, so why check?
 	}
 
 }

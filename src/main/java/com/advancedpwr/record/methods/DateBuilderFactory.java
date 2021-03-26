@@ -18,17 +18,20 @@ package com.advancedpwr.record.methods;
 import java.util.Date;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
-public class DateBuilderFactory implements MethodWriterFactory 
+public class DateBuilderFactory implements MethodWriterFactory
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return Date.class.isAssignableFrom( inClass );
+		JavaClassDescriptor dateDescriptor = new JavaClassDescriptor( Date.class );
+		return inClass.isAssignableFrom( dateDescriptor );
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */

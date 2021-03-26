@@ -17,6 +17,6 @@ public class EnumBuilder extends BuildMethodWriter
 
 	protected String enumInstance()
 	{
-		return ((Enum)getAccessPath().getResult()).name();
+		return ((Enum<?>)getAccessPath().getResult()).name();
 	}
 }

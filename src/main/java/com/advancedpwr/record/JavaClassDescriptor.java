@@ -15,6 +15,7 @@
  */
 package com.advancedpwr.record;
 
+import java.lang.reflect.Constructor;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -72,6 +73,12 @@ public class JavaClassDescriptor implements ClassDescriptor
 		}
 		return interfaces;
 	}
+	
+	@Override
+	public boolean isAssignableFrom( ClassDescriptor inClass )
+	{
+		return getInterfaces().contains( inClass );
+	}
 
 	@Override
 	public ClassDescriptor getSuperclass()
@@ -96,5 +103,21 @@ public class JavaClassDescriptor implements ClassDescriptor
 	{
 		return subject().isPrimitive();
 	}
+	
+	@Override
+	public boolean isEnum()
+	{
+		return subject().isEnum();
+	}
 
+	@Override
+	public Set<Constructor<?>> getConstructors()
+	{
+		HashSet<Constructor<?>> constructorsSet = new HashSet<Constructor<?>>();
+		Constructor<?>[] constructors = subject().getConstructors();
+		for(Constructor<?> constructor : constructors ) {
+			constructorsSet.add( constructor );
+		}
+		return constructorsSet;
+	}
 }

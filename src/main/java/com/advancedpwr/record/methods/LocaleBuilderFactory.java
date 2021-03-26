@@ -18,12 +18,15 @@ package com.advancedpwr.record.methods;
 import java.util.Locale;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class LocaleBuilderFactory implements MethodWriterFactory 
 {
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return Locale.class.equals( inClass );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( Locale.class );
+		return inClass.isAssignableFrom( descriptor );
 	}
 	
 	public BuildMethodWriter createMethodBuilder( AccessPath inPath )

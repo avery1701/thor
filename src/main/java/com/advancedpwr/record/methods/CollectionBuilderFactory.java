@@ -18,15 +18,18 @@ package com.advancedpwr.record.methods;
 import java.util.Collection;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class CollectionBuilderFactory implements MethodWriterFactory 
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return Collection.class.isAssignableFrom( inClass );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( Collection.class ); 
+		return inClass.isAssignableFrom( descriptor );
 	}
 	
 	/* (non-Javadoc)

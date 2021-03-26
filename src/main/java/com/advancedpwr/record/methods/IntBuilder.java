@@ -16,23 +16,27 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class IntBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  "new Integer( " + result() + " )"; 
+		return "new Integer( " + result() + " )";
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return int.class.isAssignableFrom( inClass )
-			|| Integer.class.isAssignableFrom( inClass );
+		JavaClassDescriptor intDescriptor = new JavaClassDescriptor( int.class );
+		JavaClassDescriptor integerDescriptor = new JavaClassDescriptor( Integer.class );
+		return inClass.isAssignableFrom( intDescriptor )
+				|| inClass.isAssignableFrom( integerDescriptor );
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */

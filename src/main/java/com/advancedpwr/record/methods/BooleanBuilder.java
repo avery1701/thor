@@ -16,6 +16,8 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class BooleanBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
@@ -35,10 +37,12 @@ public class BooleanBuilder extends AbstractPrimitiveBuilder implements MethodWr
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return boolean.class.isAssignableFrom( inClass )
-			|| Boolean.class.isAssignableFrom( inClass );
+		JavaClassDescriptor booleanDescriptor = new JavaClassDescriptor( boolean.class );
+		JavaClassDescriptor booleanClassDescriptor = new JavaClassDescriptor( Boolean.class );
+		return inClass.isAssignableFrom( booleanDescriptor )
+			|| inClass.isAssignableFrom( booleanClassDescriptor );
 	}
 	
 	/* (non-Javadoc)

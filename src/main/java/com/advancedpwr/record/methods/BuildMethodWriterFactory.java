@@ -19,7 +19,6 @@ import com.advancedpwr.record.AccessPath;
 
 public class BuildMethodWriterFactory extends AbstractDefaultFactory
 {
-
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */
@@ -27,4 +26,5 @@ public class BuildMethodWriterFactory extends AbstractDefaultFactory
 	{
 		return new BuildMethodWriter();
 	}
+	
 }

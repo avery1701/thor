@@ -18,22 +18,25 @@ package com.advancedpwr.record.methods;
 import java.math.BigDecimal;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class BigDecimalBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  "new BigDecimal( \"" + result() + "\" )"; 
+		return "new BigDecimal( \"" + result() + "\" )";
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return BigDecimal.class.isAssignableFrom( inClass );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( BigDecimal.class );
+		return inClass.isAssignableFrom( descriptor );
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */

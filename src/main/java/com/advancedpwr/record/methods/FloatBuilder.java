@@ -16,23 +16,27 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class FloatBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {
 	public String resultBuilder()
 	{
-		return  "new Float( " + result() + ")"; 
+		return "new Float( " + result() + ")";
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return float.class.isAssignableFrom( inClass )
-		 	|| Float.class.isAssignableFrom( inClass );
+		JavaClassDescriptor floatDescriptor = new JavaClassDescriptor( float.class );
+		JavaClassDescriptor floatClassDescriptor = new JavaClassDescriptor( Float.class );
+		return inClass.isAssignableFrom( floatDescriptor )
+				|| inClass.isAssignableFrom( floatClassDescriptor );
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */

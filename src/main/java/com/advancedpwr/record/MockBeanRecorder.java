@@ -31,8 +31,8 @@ public class MockBeanRecorder extends BeanRecorder
 {
 	public MockBeanRecorder()
 	{
-		setSuperClass( MockBeanFactory.class );
-		addStaticImport( EasyMock.class );
+		setSuperClass( new JavaClassDescriptor(MockBeanFactory.class) );
+		addStaticImport( new JavaClassDescriptor(EasyMock.class) );
 		
 	}
 	
@@ -41,7 +41,7 @@ public class MockBeanRecorder extends BeanRecorder
 	 * 
 	 * @param inClass - Objects of this type will be re-created in the factory as mock objects.
 	 */
-	public void mock( Class inClass )
+	public void mock( ClassDescriptor inClass )
 	{
 		MockMethodWriterFactory factory = new MockMethodWriterFactory();
 		factory.setMatchingClass( inClass );

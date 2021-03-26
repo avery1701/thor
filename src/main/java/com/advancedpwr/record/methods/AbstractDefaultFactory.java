@@ -15,12 +15,14 @@
  */
 package com.advancedpwr.record.methods;
 
+import com.advancedpwr.record.ClassDescriptor;
+
 public abstract class AbstractDefaultFactory implements MethodWriterFactory
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
 		return true;
 	}

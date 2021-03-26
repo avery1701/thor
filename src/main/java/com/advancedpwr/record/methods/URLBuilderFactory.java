@@ -18,15 +18,18 @@ package com.advancedpwr.record.methods;
 import java.net.URL;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 
 public class URLBuilderFactory implements MethodWriterFactory 
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return URL.class.equals( inClass );
+		JavaClassDescriptor uriDescriptor = new JavaClassDescriptor( URL.class );
+		return inClass.isAssignableFrom( uriDescriptor );
 	}
 	
 	/* (non-Javadoc)

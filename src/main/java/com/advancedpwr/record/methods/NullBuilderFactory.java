@@ -16,18 +16,21 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.JavaClassDescriptor;
 import com.advancedpwr.record.Null;
 
-public class NullBuilderFactory implements MethodWriterFactory 
+public class NullBuilderFactory implements MethodWriterFactory
 {
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#accept(java.lang.Class)
 	 */
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
-		return inClass == null || inClass.isAssignableFrom( Null.class );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( Null.class );
+		return inClass == null || inClass.isAssignableFrom( descriptor );
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.advancedpwr.record.methods.Factory#createMethodBuilder(com.advancedpwr.record.AccessPath)
 	 */

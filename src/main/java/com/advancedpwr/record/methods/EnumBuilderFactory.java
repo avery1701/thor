@@ -1,12 +1,13 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.ClassDescriptor;
 
 public class EnumBuilderFactory implements MethodWriterFactory
 {
 
 	@Override
-	public boolean accept( Class inClass )
+	public boolean accept( ClassDescriptor inClass )
 	{
 		return inClass.isEnum();
 	}
