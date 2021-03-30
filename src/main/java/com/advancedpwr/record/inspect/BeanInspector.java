@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
@@ -20,13 +21,12 @@ public class BeanInspector extends Inspector
 		{
 			return Collections.EMPTY_LIST;
 		}
-		Method[] methods = objectClass().getMethods();
-		List list = Arrays.asList( methods );
-		Collections.sort( list, new MethodNameComparator() );
-		Collections.sort( list, new CollectionMethodComparator() );
-		Collections.sort( list, new MapMethodComparator() );
-		Collections.sort( list, new ArrayMethodComparator() );
-		return list;
+		List<MethodDescriptor> methods = objectClass().getMethods();
+		Collections.sort( methods, new MethodNameComparator() );
+		Collections.sort( methods, new CollectionMethodComparator() );
+		Collections.sort( methods, new MapMethodComparator() );
+		Collections.sort( methods, new ArrayMethodComparator() );
+		return methods;
 	}
 	
 

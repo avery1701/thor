@@ -15,7 +15,7 @@
  */
 package com.advancedpwr.record.descriptor;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Matthew Avery, mavery@advancedpwr.com on Mar 23, 2021
@@ -26,8 +26,8 @@ public interface MethodDescriptor
 
 	String getName();
 
-	Set<ClassDescriptor> getParameterTypes();
+	List<ClassDescriptor> getParameterTypes();
 
-	Set<ClassDescriptor> getExceptionTypes();
+	List<ClassDescriptor> getExceptionTypes();
 
 }

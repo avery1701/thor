@@ -1,6 +1,6 @@
 package com.advancedpwr.record.descriptor;
 
-import java.util.Set;
+import java.util.List;
 
 public class JavaObjectDescriptor implements ObjectDescriptor
 {
@@ -28,15 +28,20 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 	}
 
 	@Override
-	public Set<MethodDescriptor> getMethods()
+	public List<MethodDescriptor> getMethods()
 	{
 		return getClassDescriptor().getMethods();
 	}
 
 	@Override
-	public JavaArrayObjectDescriptor asArrayObjectDescriptor()
+	public boolean isArray()
 	{
-		return new JavaArrayObjectDescriptor(subject());
+		return subject().getClass().isArray();
 	}
 
+	@Override
+	public JavaArrayObjectDescriptor asArrayObjectDescriptor()
+	{
+		return new JavaArrayObjectDescriptor( subject() );
+	}
 }

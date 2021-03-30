@@ -15,7 +15,7 @@
  */
 package com.advancedpwr.record.descriptor;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Matthew Avery, mavery@advancedpwr.com on Mar 23, 2021
@@ -25,7 +25,9 @@ public interface ObjectDescriptor
 {
 	ClassDescriptor getClassDescriptor();
 	
-	Set<MethodDescriptor> getMethods();
+	List<MethodDescriptor> getMethods();
+	
+	boolean isArray();
 	
 	JavaArrayObjectDescriptor asArrayObjectDescriptor();
 }

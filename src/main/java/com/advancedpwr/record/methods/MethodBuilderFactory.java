@@ -30,13 +30,13 @@ public class MethodBuilderFactory
 	protected List<MethodWriterFactory> fieldFactories;
 
 	protected MethodWriterFactory fieldDefaultFactory;
-	
+
 	public BuildMethodWriter createMethodBuilder( AccessPath inAccessPath )
 	{
 		BuildMethodWriter builder = constructRegisteredBuilder( inAccessPath );
 		if ( contains( inAccessPath ) )
 		{
-//			System.out.println( inAccessPath );
+			//			System.out.println( inAccessPath );
 			InstanceMethodBuilder instanceBuilder = new InstanceMethodBuilder();
 			instanceBuilder.setBuilder( get( inAccessPath ) );
 			builder = instanceBuilder;
@@ -84,6 +84,7 @@ public class MethodBuilderFactory
 	{
 		getFactories().add( inFactory );
 	}
+
 	protected List<MethodWriterFactory> createFactories()
 	{
 		List<MethodWriterFactory> list = new ArrayList<MethodWriterFactory>();
@@ -92,8 +93,8 @@ public class MethodBuilderFactory
 			public BuildMethodWriter createMethodBuilder( AccessPath inPath )
 			{
 				return getDefaultFactory().createMethodBuilder( inPath );
-			}	
-		});
+			}
+		} );
 		list.add( new NullBuilderFactory() );
 		list.add( new StringBuilderFactory() );
 		list.add( new ShortBuilder() );
@@ -114,7 +115,7 @@ public class MethodBuilderFactory
 		list.add( new BigIntegerBuilder() );
 		return list;
 	}
-	
+
 	protected BuildMethodWriter constructRegisteredBuilder( AccessPath inAccessPath )
 	{
 		MethodWriterFactory factory = findFactory( inAccessPath );

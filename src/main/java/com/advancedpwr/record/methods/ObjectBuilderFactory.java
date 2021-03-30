@@ -22,7 +22,7 @@ public abstract class ObjectBuilderFactory extends AbstractDefaultFactory
 
 	public boolean accept( ClassDescriptor inClass )
 	{
-		return true; //FIXME: Everything extends Object, so why check?
+		return true; 
 	}
 
 }

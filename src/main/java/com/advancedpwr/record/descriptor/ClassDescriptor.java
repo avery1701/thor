@@ -15,6 +15,7 @@
  */
 package com.advancedpwr.record.descriptor;
 
+import java.util.List;
 import java.util.Set;
 
 import com.advancedpwr.record.ClassWriter;
@@ -33,7 +34,7 @@ public interface ClassDescriptor
 
 	Set<ConstructorDescriptor> getConstructors();
 
-	Set<MethodDescriptor> getMethods();
+	List<MethodDescriptor> getMethods();
 
 	Set<ClassDescriptor> getInterfaces();
 

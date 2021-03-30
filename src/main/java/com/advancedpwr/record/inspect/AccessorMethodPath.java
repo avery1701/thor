@@ -62,8 +62,7 @@ public class AccessorMethodPath extends AccessPath
 	
 	public ClassDescriptor getParameterClass()
 	{
-		//FIXME: Just use a List or live with it?
-		return getSetter().getParameterTypes().iterator().next();
+		return getSetter().getParameterTypes().get( 0 );
 	}
 
 	public Set<ClassDescriptor> getExceptions()

@@ -1,7 +1,5 @@
 package com.advancedpwr.record.inspect;
 
-import java.lang.reflect.Array;
-
 import com.advancedpwr.record.InstanceTree;
 import com.advancedpwr.record.descriptor.ArrayObjectDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
@@ -22,12 +20,10 @@ public class ArrayInspector extends Inspector
 			ArrayObjectDescriptor array = getObject().asArrayObjectDescriptor();
 			for ( ObjectDescriptor member : array )
 			{
-
 				MultiPath path = new MultiPath();
 				path.setTree( createInstanceTree( member ) );
-				path.setInstanceName( objectClass().getComponentType().getSimpleName() );
+				path.setInstanceName( objectClass().asArrayDescriptor().getComponentType().getClassName() );
 				addAccessPath( path );
-
 			}
 		}
 	}

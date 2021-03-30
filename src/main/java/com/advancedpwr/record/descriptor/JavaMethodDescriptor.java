@@ -1,8 +1,8 @@
 package com.advancedpwr.record.descriptor;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JavaMethodDescriptor implements MethodDescriptor
 {
@@ -35,23 +35,23 @@ public class JavaMethodDescriptor implements MethodDescriptor
 	}
 
 	@Override
-	public Set<ClassDescriptor> getParameterTypes()
+	public List<ClassDescriptor> getParameterTypes()
 	{
-		return makeDescriptorSet( subject().getParameterTypes() );
+		return toList( subject().getParameterTypes() );
 	}
 
 	@Override
-	public Set<ClassDescriptor> getExceptionTypes()
+	public List<ClassDescriptor> getExceptionTypes()
 	{
-		return makeDescriptorSet( subject().getExceptionTypes() );
+		return toList( subject().getExceptionTypes() );
 	}
 
-	protected Set<ClassDescriptor> makeDescriptorSet( Class<?>[] types )
+	protected ArrayList<ClassDescriptor> toList( Class<?>[] classArray )
 	{
-		HashSet<ClassDescriptor> descriptors = new HashSet<ClassDescriptor>();
-		for ( Class<?> type : types )
+		ArrayList<ClassDescriptor> descriptors = new ArrayList<ClassDescriptor>();
+		for ( Class<?> aClass : classArray )
 		{
-			descriptors.add( new JavaClassDescriptor( type ) );
+			descriptors.add( new JavaClassDescriptor( aClass ) );
 		}
 		return descriptors;
 	}

@@ -17,7 +17,9 @@ package com.advancedpwr.record.descriptor;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class JavaClassDescriptor implements ClassDescriptor
@@ -72,9 +74,9 @@ public class JavaClassDescriptor implements ClassDescriptor
 	}
 
 	@Override
-	public Set<MethodDescriptor> getMethods()
+	public List<MethodDescriptor> getMethods()
 	{
-		Set<MethodDescriptor> descriptors = new HashSet<MethodDescriptor>();
+		ArrayList<MethodDescriptor> descriptors = new ArrayList<MethodDescriptor>();
 		Method[] methods = subject().getMethods();
 		for ( Method method : methods )
 		{

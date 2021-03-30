@@ -40,16 +40,10 @@ public class JavaArrayClassDescriptor extends JavaClassDescriptor implements Arr
 		return subject().getSimpleName() + ARRAY + FACTORY;
 	}
 
-	//FIXME: Can down casting handle this?
 	@Override
 	public ClassDescriptor getComponentType()
 	{
-		if(subject().getComponentType().isArray()) {
-			return new JavaArrayClassDescriptor(subject().getComponentType());
-		} else {
-			return new JavaClassDescriptor(subject().getComponentType());			
-		}
+		return new JavaClassDescriptor( subject().getComponentType() );
 	}
 
-	
 }
