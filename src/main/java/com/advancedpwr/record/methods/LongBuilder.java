@@ -16,8 +16,8 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.ClassDescriptor;
-import com.advancedpwr.record.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 
 public class LongBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {

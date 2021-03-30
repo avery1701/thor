@@ -16,7 +16,7 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.ArrayClassDescriptor;
+import com.advancedpwr.record.descriptor.ArrayClassDescriptor;
 
 public class ArrayBuilder extends AbstractMultiBuilder
 {

@@ -21,6 +21,7 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.samples.Family;
 import com.advancedpwr.samples.Person;
 

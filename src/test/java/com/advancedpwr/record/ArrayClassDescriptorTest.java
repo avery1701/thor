@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
+import com.advancedpwr.record.descriptor.JavaArrayClassDescriptor;
+
 class ArrayClassDescriptorTest {
 
 	@Test

@@ -25,6 +25,10 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaObjectDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
 import com.advancedpwr.record.factory.BaseFactory;
 import com.advancedpwr.record.methods.BuildMethodWriter;
 import com.advancedpwr.record.methods.CollectionBuilderFactory;

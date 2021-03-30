@@ -15,12 +15,12 @@
  */
 package com.advancedpwr.record.inspect;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.MethodDescriptor;
 
 /**
  * An {@link AccessPath} representing object access through Java Bean convention setter / getter accessor methods.
@@ -31,47 +31,47 @@ import com.advancedpwr.record.AccessPath;
 public class AccessorMethodPath extends AccessPath
 {
 
-	protected Method fieldSetter;
+	protected MethodDescriptor fieldSetter;
 	
-	protected Method fieldGetter;
+	protected MethodDescriptor fieldGetter;
 
-	public Method getSetter()
+	public MethodDescriptor getSetter()
 	{
 		return fieldSetter;
 	}
 
-	public void setSetter( Method setter )
+	public void setSetter( MethodDescriptor setter )
 	{
 		fieldSetter = setter;
 	}
 
+	public MethodDescriptor getGetter()
+	{
+		return fieldGetter;
+	}
+	
+	public void setGetter( MethodDescriptor getter )
+	{
+		fieldGetter = getter;
+	}
 	
 	public String pathName()
 	{
 		return getSetter().getName();
 	}
 	
-	public Class getParameterClass()
+	public ClassDescriptor getParameterClass()
 	{
-		return getSetter().getParameterTypes()[0];
+		//FIXME: Just use a List or live with it?
+		return getSetter().getParameterTypes().iterator().next();
 	}
 
-	public Set<Class> getExceptions()
+	public Set<ClassDescriptor> getExceptions()
 	{
-		LinkedHashSet<Class> exceptions = new LinkedHashSet<Class>();
-		Class[] types = getSetter().getExceptionTypes();
-		exceptions.addAll( Arrays.asList( types ) );
+		LinkedHashSet<ClassDescriptor> exceptions = new LinkedHashSet<ClassDescriptor>();
+		exceptions.addAll( getSetter().getExceptionTypes() );
 		return exceptions;
 	}
 
-	public Method getGetter()
-	{
-		return fieldGetter;
-	}
-
-	public void setGetter( Method getter )
-	{
-		fieldGetter = getter;
-	}
 
 }

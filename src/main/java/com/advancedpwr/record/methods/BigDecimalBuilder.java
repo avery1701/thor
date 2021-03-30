@@ -18,8 +18,8 @@ package com.advancedpwr.record.methods;
 import java.math.BigDecimal;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.ClassDescriptor;
-import com.advancedpwr.record.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 
 public class BigDecimalBuilder extends AbstractPrimitiveBuilder implements MethodWriterFactory
 {

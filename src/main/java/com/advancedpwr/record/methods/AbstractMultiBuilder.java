@@ -15,7 +15,6 @@
  */
 package com.advancedpwr.record.methods;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.advancedpwr.record.AccessPath;
@@ -55,10 +54,9 @@ public abstract class AbstractMultiBuilder extends BuildMethodWriter
 		}
 		getCacheFactory().storeBuilder( inBuilder );
 		List<AccessPath> paths = inBuilder.getInstanceTree().getAccessPaths();
-		for ( Iterator iterator = paths.iterator(); iterator.hasNext(); )
+		for ( AccessPath path : paths )
 		{
-			AccessPath accessPath = (AccessPath) iterator.next();
-			BuildMethodWriter builder = getCacheFactory().createMethodBuilder( accessPath );
+			BuildMethodWriter builder = getCacheFactory().createMethodBuilder( path );
 			cache( builder );
 		}
 	}

@@ -15,7 +15,7 @@
  */
 package com.advancedpwr.record.methods;
 
-import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
 
 public abstract class ObjectBuilderFactory extends AbstractDefaultFactory
 {

@@ -27,6 +27,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.record.methods.URLBuilderFactory;
 import com.advancedpwr.samples.NoDefaultConstructorPerson;
 import com.advancedpwr.samples.Person;

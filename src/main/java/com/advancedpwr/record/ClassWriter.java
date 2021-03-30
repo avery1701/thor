@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
+
 /**
  * <code>ClassWriter</code> wraps a {@link PrintWriter} with convenience methods for creating Java source code output.
  * 

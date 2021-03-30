@@ -20,12 +20,12 @@ public class ClassBuilder extends AbstractPrimitiveBuilder
 
 	public String resultBuilder()
 	{
-		return  result(); 
+		return result();
 	}
-	
+
 	protected String result()
 	{
-		return ((Class)getAccessPath().getResult()).getName() + ".class";
+		return ( (Class<?>) getAccessPath().getResult() ).getName() + ".class";
 	}
 
 }

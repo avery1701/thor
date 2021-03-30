@@ -24,6 +24,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+
 public class ClassWriterTest {
 	ClassWriter writer;
 	StringWriter out;

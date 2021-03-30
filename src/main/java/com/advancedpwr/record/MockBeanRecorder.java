@@ -17,6 +17,8 @@ package com.advancedpwr.record;
 
 import org.easymock.EasyMock;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 import com.advancedpwr.record.factory.MockBeanFactory;
 import com.advancedpwr.record.methods.MockMethodWriterFactory;
 

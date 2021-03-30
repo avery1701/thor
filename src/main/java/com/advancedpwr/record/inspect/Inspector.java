@@ -2,7 +2,8 @@ package com.advancedpwr.record.inspect;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
-
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
 
 public abstract class Inspector
 {
@@ -10,13 +11,13 @@ public abstract class Inspector
 	protected InstanceTree fieldInstanceTree;
 
 	public abstract void inspect( InstanceTree inTree );
-	
-	protected Class objectClass()
+
+	protected ClassDescriptor objectClass()
 	{
 		return getInstanceTree().objectClass();
 	}
 
-	protected Object getObject()
+	protected ObjectDescriptor getObject()
 	{
 		return getInstanceTree().getObject();
 	}
@@ -33,15 +34,15 @@ public abstract class Inspector
 
 	protected void debug( String inString )
 	{
-	//		System.out.println( inString );
+		//		System.out.println( inString );
 	}
-	
+
 	protected void addAccessPath( AccessPath inPath )
 	{
 		getInstanceTree().getAccessPaths().add( inPath );
 	}
 
-	protected InstanceTree createInstanceTree( Object result )
+	protected InstanceTree createInstanceTree( ObjectDescriptor result )
 	{
 		return getInstanceTree().createInstanceTree( result );
 	}

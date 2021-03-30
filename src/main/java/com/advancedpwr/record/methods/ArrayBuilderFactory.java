@@ -16,7 +16,7 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
 
 public class ArrayBuilderFactory implements MethodWriterFactory 
 {

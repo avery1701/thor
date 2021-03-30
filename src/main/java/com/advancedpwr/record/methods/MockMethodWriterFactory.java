@@ -4,8 +4,8 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.ClassDescriptor;
 import com.advancedpwr.record.MockBeanMethodBuilder;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
 
 /**
  * @author Matthew Avery, mavery@advancedpwr.com

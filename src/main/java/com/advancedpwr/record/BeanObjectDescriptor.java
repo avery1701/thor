@@ -17,6 +17,10 @@ package com.advancedpwr.record;
 
 import java.util.Set;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.MethodDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
+
 /**
  * @author Matthew Avery, mavery@advancedpwr.com on Mar 23, 2021
  *

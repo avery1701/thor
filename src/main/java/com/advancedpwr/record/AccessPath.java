@@ -18,6 +18,8 @@ package com.advancedpwr.record;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+
 /**
  * <code>AccessPath</code> represents the code path leading to the access of an object in the {@link InstanceTree}
  * 

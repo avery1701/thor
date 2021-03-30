@@ -22,6 +22,7 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.samples.Family;
 import com.advancedpwr.samples.Person;
 import com.advancedpwr.samples.StringArrayHolder;

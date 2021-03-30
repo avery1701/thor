@@ -3,6 +3,8 @@ package com.advancedpwr.record.inspect;
 import java.lang.reflect.Array;
 
 import com.advancedpwr.record.InstanceTree;
+import com.advancedpwr.record.descriptor.ArrayObjectDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
 
 public class ArrayInspector extends Inspector
 {
@@ -17,14 +19,15 @@ public class ArrayInspector extends Inspector
 	{
 		if ( objectClass().isArray() )
 		{
-			int length = Array.getLength( getObject() );
-			for ( int i = 0; i < length; i++ )
+			ArrayObjectDescriptor array = getObject().asArrayObjectDescriptor();
+			for ( ObjectDescriptor member : array )
 			{
-				Object member = Array.get( getObject(), i );
+
 				MultiPath path = new MultiPath();
 				path.setTree( createInstanceTree( member ) );
 				path.setInstanceName( objectClass().getComponentType().getSimpleName() );
 				addAccessPath( path );
+
 			}
 		}
 	}

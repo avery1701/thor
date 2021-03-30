@@ -3,6 +3,8 @@ package com.advancedpwr.record;
 import java.util.HashMap;
 import java.util.Set;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+
 public class InterfaceClassSubstitutor extends HashMap<ClassDescriptor, ClassDescriptor>
 {
 	private static final long serialVersionUID = 1L;

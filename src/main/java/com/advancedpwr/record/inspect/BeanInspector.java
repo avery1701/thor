@@ -9,11 +9,12 @@ import java.util.List;
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
 import com.advancedpwr.record.RecorderException;
+import com.advancedpwr.record.descriptor.MethodDescriptor;
 
 public class BeanInspector extends Inspector
 {
 	
-	protected List<Method> sortedMethods()
+	protected List<MethodDescriptor> sortedMethods()
 	{
 		if ( getInstanceTree().isStop() )
 		{

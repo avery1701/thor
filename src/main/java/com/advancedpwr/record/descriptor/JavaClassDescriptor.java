@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.descriptor;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -58,9 +59,28 @@ public class JavaClassDescriptor implements ClassDescriptor
 		return subject().getPackage().getName() + GENERATED;
 	}
 
-	public String toString()
+	@Override
+	public Set<ConstructorDescriptor> getConstructors()
 	{
-		return getPackageName() + "." + getClassName();
+		HashSet<ConstructorDescriptor> constructorsSet = new HashSet<ConstructorDescriptor>();
+		Constructor<?>[] constructors = subject().getConstructors();
+		for ( Constructor<?> constructor : constructors )
+		{
+			constructorsSet.add( new JavaConstructorDescriptor( constructor ) );
+		}
+		return constructorsSet;
+	}
+
+	@Override
+	public Set<MethodDescriptor> getMethods()
+	{
+		Set<MethodDescriptor> descriptors = new HashSet<MethodDescriptor>();
+		Method[] methods = subject().getMethods();
+		for ( Method method : methods )
+		{
+			descriptors.add( new JavaMethodDescriptor( method ) );
+		}
+		return descriptors;
 	}
 
 	@Override
@@ -73,7 +93,7 @@ public class JavaClassDescriptor implements ClassDescriptor
 		}
 		return interfaces;
 	}
-	
+
 	@Override
 	public boolean isAssignableFrom( ClassDescriptor inClass )
 	{
@@ -99,25 +119,25 @@ public class JavaClassDescriptor implements ClassDescriptor
 	}
 
 	@Override
+	public ArrayClassDescriptor asArrayDescriptor()
+	{
+		return new JavaArrayClassDescriptor(subject());
+	}
+	
+	@Override
 	public boolean isPrimitive()
 	{
 		return subject().isPrimitive();
 	}
-	
+
 	@Override
 	public boolean isEnum()
 	{
 		return subject().isEnum();
 	}
 
-	@Override
-	public Set<Constructor<?>> getConstructors()
+	public String toString()
 	{
-		HashSet<Constructor<?>> constructorsSet = new HashSet<Constructor<?>>();
-		Constructor<?>[] constructors = subject().getConstructors();
-		for(Constructor<?> constructor : constructors ) {
-			constructorsSet.add( constructor );
-		}
-		return constructorsSet;
+		return getPackageName() + "." + getClassName();
 	}
 }

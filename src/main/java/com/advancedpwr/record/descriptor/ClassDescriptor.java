@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthew Avery, mavery@advancedpwr.com
+ * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.descriptor;
 
 import java.util.Set;
 
+import com.advancedpwr.record.ClassWriter;
+
 /**
+ * A simple interface to provide the class name and package to the {@link ClassWriter}.
+ * 
  * @author Matthew Avery, mavery@advancedpwr.com on Mar 23, 2021
  *
  */
-public interface ObjectDescriptor
+public interface ClassDescriptor
 {
-	ClassDescriptor getClassDescriptor();
-	
+	String getClassName();
+
+	String getPackageName();
+
+	Set<ConstructorDescriptor> getConstructors();
+
 	Set<MethodDescriptor> getMethods();
+
+	Set<ClassDescriptor> getInterfaces();
+
+	boolean isAssignableFrom( ClassDescriptor inClass );
+
+	ClassDescriptor getSuperclass();
+
+	boolean isAnonymousClass();
+
+	boolean isArray();
 	
+	ArrayClassDescriptor asArrayDescriptor();
+
+	boolean isPrimitive();
+
+	boolean isEnum();
+
 }

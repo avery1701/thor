@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.descriptor;
 
 /**
  * A {@link ClassDescriptor} for array factories.  If the object to be recorded is a Java array, this

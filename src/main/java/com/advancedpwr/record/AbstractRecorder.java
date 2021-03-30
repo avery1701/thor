@@ -20,6 +20,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaArrayClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
+
 /**
  * <code>AbstractRecorder</code> is the common base class for recorders.  This class provides
  * some convenience methods for specifying the output directory for recorded classes.  It also

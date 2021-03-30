@@ -19,14 +19,14 @@ import static com.advancedpwr.record.ClassWriter.PROTECTED;
 import static com.advancedpwr.record.ClassWriter.PUBLIC;
 import static com.advancedpwr.record.ClassWriter.SPACE;
 
-import java.lang.reflect.Constructor;
 import java.util.Iterator;
 import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.ClassDescriptor;
 import com.advancedpwr.record.ClassWriter;
 import com.advancedpwr.record.InstanceTree;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ConstructorDescriptor;
 
 public class BuildMethodWriter
 {
@@ -119,8 +119,8 @@ public class BuildMethodWriter
 
 	protected boolean hasDefaultConstructor()
 	{
-		Set<Constructor<?>> constructors = getAccessPath().getResultClass().getConstructors();
-		for (Constructor<?> constructor : constructors)
+		Set<ConstructorDescriptor> constructors = getAccessPath().getResultClass().getConstructors();
+		for (ConstructorDescriptor constructor : constructors)
 		{
 			if(constructor.getParameterCount() == 0) {
 				return true;
