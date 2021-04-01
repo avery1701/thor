@@ -15,12 +15,12 @@
  */
 package com.advancedpwr.record.inspect;
 
-import com.advancedpwr.record.ParameterTypeComparator;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
 
 
 public class ArrayMethodComparator extends ParameterTypeComparator
 {
-	protected boolean isParameterType( Class inClass )
+	protected boolean isParameterType( ClassDescriptor inClass )
 	{
 		return inClass.isArray();
 	}

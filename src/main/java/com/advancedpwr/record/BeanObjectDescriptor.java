@@ -15,9 +15,10 @@
  */
 package com.advancedpwr.record;
 
-import java.util.Set;
+import java.util.List;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaArrayObjectDescriptor;
 import com.advancedpwr.record.descriptor.MethodDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
 
@@ -29,7 +30,7 @@ public class BeanObjectDescriptor implements ObjectDescriptor
 {
 
 	protected Object fieldObject;
-	
+
 	protected Object getObject()
 	{
 		return fieldObject;
@@ -48,7 +49,21 @@ public class BeanObjectDescriptor implements ObjectDescriptor
 	}
 
 	@Override
-	public Set<MethodDescriptor> getMethods()
+	public List<MethodDescriptor> getMethods()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isArray()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public JavaArrayObjectDescriptor asArrayObjectDescriptor()
 	{
 		// TODO Auto-generated method stub
 		return null;

@@ -21,8 +21,6 @@ import java.io.IOException;
 import java.io.Writer;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
-import com.advancedpwr.record.descriptor.JavaArrayClassDescriptor;
-import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 
 /**
  * <code>AbstractRecorder</code> is the common base class for recorders.  This class provides
@@ -105,18 +103,9 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 		setDestination( new File( inFileName ) );
 	}
 
-	protected ClassDescriptor createDefaultDescriptor()
+	protected ClassDescriptor objectClass()
 	{
-		if ( objectClass().isArray() )
-		{
-			return new JavaArrayClassDescriptor( objectClass() );
-		}
-		return new JavaClassDescriptor( objectClass() );
-	}
-
-	protected Class objectClass()
-	{
-		return getObjectDescriptor().getClass();
+		return getObjectDescriptor().getClassDescriptor();
 	}
 
 	protected void close( final Writer inWriter )

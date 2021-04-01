@@ -26,8 +26,11 @@ public interface ObjectDescriptor
 	ClassDescriptor getClassDescriptor();
 	
 	List<MethodDescriptor> getMethods();
+
+	ObjectDescriptor invokeMethod( MethodDescriptor method );
 	
 	boolean isArray();
 	
 	JavaArrayObjectDescriptor asArrayObjectDescriptor();
+	
 }

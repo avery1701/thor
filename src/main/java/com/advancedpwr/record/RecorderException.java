@@ -17,6 +17,7 @@ package com.advancedpwr.record;
 
 public class RecorderException extends RuntimeException
 {
+	private static final long serialVersionUID = 1L;
 
 	public RecorderException( String message )
 	{

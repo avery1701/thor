@@ -38,13 +38,12 @@ public abstract class ClassWriter
 	public static final String PUBLIC = "public ";
 	public static final String PROTECTED = "protected ";
 	public static final String PRIVATE = "private ";
-	
+
 	protected PrintWriter fieldPrintWriter;
 	protected int tabDepth;
-	protected ClassDescriptor fieldDescriptor;
 	protected ObjectDescriptor fieldObject;
 	protected ClassDescriptor fieldSuperClass;
-	
+
 	protected List<String> fieldStaticClassNames;
 
 	protected ObjectDescriptor getObjectDescriptor()
@@ -66,25 +65,25 @@ public abstract class ClassWriter
 	{
 		fieldPrintWriter = new PrintWriter( writer );
 	}
-	
+
 	public void writeLine( String inString )
 	{
 		tabs();
 		getPrintWriter().println( inString + ";" );
 	}
-	
+
 	public void write( String inString )
 	{
 		tabs();
 		getPrintWriter().println( inString );
 	}
-	
+
 	protected ClassWriter tab()
 	{
 		getPrintWriter().print( '\t' );
 		return this;
 	}
-	
+
 	protected ClassWriter tabs()
 	{
 		for ( int i = 0; i < tabDepth; i++ )
@@ -93,20 +92,20 @@ public abstract class ClassWriter
 		}
 		return this;
 	}
-	
+
 	public ClassWriter openBrace()
 	{
 		write( "{" );
 		tabDepth++;
 		return this;
 	}
-	
+
 	public ClassWriter closeBrace()
 	{
 		tabDepth--;
 		if ( tabDepth < 0 )
 		{
-			throw new ClassWriterException( "Possible unmatched opening brace.");
+			throw new ClassWriterException( "Possible unmatched opening brace." );
 		}
 		write( "}" );
 		return this;
@@ -120,32 +119,7 @@ public abstract class ClassWriter
 
 	public ClassDescriptor getDescriptor()
 	{
-		if ( fieldDescriptor == null )
-		{
-			fieldDescriptor = createDefaultDescriptor();
-		}
-		return fieldDescriptor;
-	}
-
-	protected abstract ClassDescriptor createDefaultDescriptor();
-
-	public void setDescriptor( ClassDescriptor descriptor )
-	{
-		fieldDescriptor = descriptor;
-	}
-	/**
-	 * This method is a "short cut" to easily set the ClassDescriptor
-	 * @param The fully qualified class name
-	 */
-	public void setClassName( String inName )
-	{
-		int lastDotIndex = inName.lastIndexOf( '.' );
-		String packageName = inName.substring( 0, lastDotIndex );
-		String className = inName.substring( lastDotIndex + 1 );
-		SimpleClassDescriptor descriptor = new SimpleClassDescriptor();
-		descriptor.setClassName( className );
-		descriptor.setPackageName( packageName );
-		setDescriptor( descriptor );
+		return getObjectDescriptor().getClassDescriptor();
 	}
 
 	protected void writeClassDeclaration()
@@ -177,7 +151,7 @@ public abstract class ClassWriter
 		}
 		newLine();
 	}
-	
+
 	protected void writeStaticImports()
 	{
 		for ( String aClass : getStaticClassNames() )
@@ -225,7 +199,7 @@ public abstract class ClassWriter
 	{
 		fieldSuperClass = superClass;
 	}
-	
+
 	public List<String> getStaticClassNames()
 	{
 		if ( fieldStaticClassNames == null )

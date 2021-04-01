@@ -17,12 +17,14 @@ package com.advancedpwr.record.inspect;
 
 import java.util.Collection;
 
-import com.advancedpwr.record.ParameterTypeComparator;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 
 public class CollectionMethodComparator extends ParameterTypeComparator
 {
-	protected boolean isParameterType( Class c1 )
+	protected boolean isParameterType( ClassDescriptor c1 )
 	{
-		return Collection.class.isAssignableFrom( c1 );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( Collection.class );
+		return c1.isAssignableFrom( descriptor );
 	}
 }

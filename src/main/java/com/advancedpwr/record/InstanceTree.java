@@ -15,7 +15,6 @@
  */
 package com.advancedpwr.record;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -25,6 +24,7 @@ import java.util.Set;
 import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.record.descriptor.JavaArrayClassDescriptor;
 import com.advancedpwr.record.descriptor.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.MethodDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
 import com.advancedpwr.record.inspect.ArrayInspector;
 import com.advancedpwr.record.inspect.BeanInspector;
@@ -36,7 +36,7 @@ import com.advancedpwr.record.inspect.MapInspector;
 public class InstanceTree
 {
 	protected ObjectDescriptor fieldObject;
-	protected Method fieldCurrentMethod;
+	protected MethodDescriptor fieldCurrentMethod;
 	protected AccessPathList fieldAccessPaths;
 	protected int depth;
 	protected InstanceTree fieldParent;
@@ -77,14 +77,14 @@ public class InstanceTree
 		fieldParent = parent;
 	}
 
-	public Method getCurrentMethod()
+	public MethodDescriptor getCurrentMethod()
 	{
 		return fieldCurrentMethod;
 	}
 
-	public void setCurrentMethod( Method currentMethod )
+	public void setCurrentMethod( MethodDescriptor method )
 	{
-		fieldCurrentMethod = currentMethod;
+		fieldCurrentMethod = method;
 	}
 
 	public InstanceTree( Set<ClassDescriptor> stopClasses,

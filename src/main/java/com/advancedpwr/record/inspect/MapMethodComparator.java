@@ -17,14 +17,16 @@ package com.advancedpwr.record.inspect;
 
 import java.util.Map;
 
-import com.advancedpwr.record.ParameterTypeComparator;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 
 public class MapMethodComparator extends ParameterTypeComparator
 {
 
-	protected boolean isParameterType( Class inClass )
+	protected boolean isParameterType( ClassDescriptor inClass )
 	{
-		return Map.class.isAssignableFrom( inClass );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( Map.class );
+		return inClass.isAssignableFrom( descriptor );
 	}
 
 }

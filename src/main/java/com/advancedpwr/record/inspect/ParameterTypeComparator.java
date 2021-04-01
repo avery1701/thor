@@ -13,21 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.advancedpwr.record;
+package com.advancedpwr.record.inspect;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Comparator;
 
-public abstract class ParameterTypeComparator implements Comparator<Method>
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.MethodDescriptor;
+import com.advancedpwr.record.descriptor.StateModifier;
+
+public abstract class ParameterTypeComparator implements Comparator<MethodDescriptor>
 {
 
-	public int compare( Method m1, Method m2 )
+	public int compare( MethodDescriptor m1, MethodDescriptor m2 )
 	{
 		if ( isSetter( m1 ) && isSetter( m2 ) )
 		{
-			Class c1 = parameterClass( m1 );
-			Class c2 = parameterClass( m2 );
+			ClassDescriptor c1 = parameterClass( m1 );
+			ClassDescriptor c2 = parameterClass( m2 );
 			if (isParameterType( c1 ) == isParameterType( c2 ) )
 			{
 				return 0;
@@ -44,15 +46,15 @@ public abstract class ParameterTypeComparator implements Comparator<Method>
 		return 0;
 	}
 
-	protected Class<?> parameterClass( Method m2 )
+	protected ClassDescriptor parameterClass( MethodDescriptor m2 )
 	{
-		return m2.getParameterTypes()[0];
+		return m2.getParameterTypes().get( 0 );
 	}
 
-	protected abstract boolean isParameterType( Class c1 );
+	protected abstract boolean isParameterType( ClassDescriptor c1 );
 
-	protected boolean isSetter( Method method )
+	protected boolean isSetter( MethodDescriptor method )
 	{
-		return Modifier.isPublic( method.getModifiers() )  && method.getName().startsWith( "set" ) && method.getParameterTypes().length == 1;
+		return method.getModifiers().contains( StateModifier.PUBLIC )  && method.getName().startsWith( "set" ) && method.getParameterTypes().size() == 1;
 	}
 }

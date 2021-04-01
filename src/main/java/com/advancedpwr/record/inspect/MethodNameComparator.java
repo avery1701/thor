@@ -15,13 +15,14 @@
  */
 package com.advancedpwr.record.inspect;
 
-import java.lang.reflect.Method;
 import java.util.Comparator;
 
-public class MethodNameComparator implements Comparator<Method>
+import com.advancedpwr.record.descriptor.MethodDescriptor;
+
+public class MethodNameComparator implements Comparator<MethodDescriptor>
 {
 
-	public int compare( Method m1, Method m2 )
+	public int compare( MethodDescriptor m1, MethodDescriptor m2 )
 	{
 		return m1.getName().compareTo( m2.getName() );
 	}

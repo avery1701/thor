@@ -3,6 +3,9 @@ package com.advancedpwr.record.descriptor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import com.advancedpwr.record.RecorderException;
 
 public class JavaMethodDescriptor implements MethodDescriptor
 {
@@ -56,4 +59,29 @@ public class JavaMethodDescriptor implements MethodDescriptor
 		return descriptors;
 	}
 
+	@Override
+	public Set<StateModifier> getModifiers()
+	{
+
+		return null;
+	}
+
+	@Override
+	public ObjectDescriptor invoke( Object object, Object... params )
+	{
+		try
+		{
+			return new JavaObjectDescriptor( subject().invoke( object, params ) );
+		}
+		catch ( Exception e )
+		{
+			throw new RecorderException( e );
+		}
+	}
+
+	@Override
+	public void setAccessible( boolean accessible )
+	{
+		subject().setAccessible( accessible );
+	}
 }

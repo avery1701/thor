@@ -16,6 +16,7 @@
 package com.advancedpwr.record.descriptor;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Matthew Avery, mavery@advancedpwr.com on Mar 23, 2021
@@ -26,8 +27,14 @@ public interface MethodDescriptor
 
 	String getName();
 
+	Set<StateModifier> getModifiers();
+
 	List<ClassDescriptor> getParameterTypes();
 
 	List<ClassDescriptor> getExceptionTypes();
+
+	ObjectDescriptor invoke( Object object, Object... parameters );
+
+	void setAccessible( boolean accessible );
 
 }
