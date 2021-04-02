@@ -17,7 +17,7 @@ public class ArrayInspector extends Inspector
 	{
 		if ( objectClass().isArray() )
 		{
-			ArrayObjectDescriptor array = getObject().asArrayObjectDescriptor();
+			ArrayObjectDescriptor array = getObject().asArrayDescriptor();
 			for ( ObjectDescriptor member : array )
 			{
 				MultiPath path = new MultiPath();

@@ -63,7 +63,7 @@ public class BeanObjectDescriptor implements ObjectDescriptor
 	}
 
 	@Override
-	public JavaArrayObjectDescriptor asArrayObjectDescriptor()
+	public JavaArrayObjectDescriptor asArrayDescriptor()
 	{
 		// TODO Auto-generated method stub
 		return null;

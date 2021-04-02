@@ -31,6 +31,8 @@ public interface ObjectDescriptor
 	
 	boolean isArray();
 	
-	JavaArrayObjectDescriptor asArrayObjectDescriptor();
+	ArrayObjectDescriptor asArrayDescriptor();
+	
+	CollectionObjectDescriptor asCollectionDescriptor();
 	
 }

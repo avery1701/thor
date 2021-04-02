@@ -1,9 +1,11 @@
 package com.advancedpwr.record.inspect;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import com.advancedpwr.record.InstanceTree;
+import com.advancedpwr.record.descriptor.CollectionObjectDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
 
 public class CollectionInspector extends Inspector
 {
@@ -13,15 +15,14 @@ public class CollectionInspector extends Inspector
 		setInstanceTree( inTree );
 		addCollectionAccessPaths();
 	}
-	
+
 	protected void addCollectionAccessPaths()
 	{
 		if ( isCollection() )
 		{
-			Collection collection = (Collection) getObject();
-			for ( Iterator iterator = collection.iterator(); iterator.hasNext(); )
+			CollectionObjectDescriptor collection = getObject().asCollectionDescriptor();
+			for ( ObjectDescriptor member : collection )
 			{
-				Object member = iterator.next();
 				MultiPath path = new MultiPath();
 				path.setTree( createInstanceTree( member ) );
 				path.setInstanceName( currentInstanceName() );
@@ -32,7 +33,8 @@ public class CollectionInspector extends Inspector
 
 	protected boolean isCollection()
 	{
-		return Collection.class.isAssignableFrom( objectClass() );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( Collection.class );
+		return objectClass().isAssignableFrom( descriptor );
 	}
 
 }

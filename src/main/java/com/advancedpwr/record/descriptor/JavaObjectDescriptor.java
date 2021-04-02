@@ -71,9 +71,16 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 	}
 
 	@Override
-	public JavaArrayObjectDescriptor asArrayObjectDescriptor()
+	public ArrayObjectDescriptor asArrayDescriptor()
 	{
 		return new JavaArrayObjectDescriptor( subject() );
+	}
+
+	//FIXME: Acceptable? Not really fantastic, but how else can I do it?
+	@Override
+	public CollectionObjectDescriptor asCollectionDescriptor()
+	{
+		return new JavaCollectionObjectDescriptor( subject() );
 	}
 
 }
