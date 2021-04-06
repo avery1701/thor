@@ -19,13 +19,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class AccessPathTest {
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaObjectDescriptor;
+
+public class AccessPathTest
+{
 
 	@Test
-	public void testAccessPath() {
+	public void testAccessPath()
+	{
 		AccessPath path = new AccessPath();
-		path.setTree(new InstanceTree("Joe"));
-		assertEquals(String.class, path.getReturnType());
+		path.setTree( new InstanceTree( new JavaObjectDescriptor( "Joe" ) ) );
+		assertEquals( new JavaClassDescriptor( String.class ), path.getReturnType() );
 	}
 
 }

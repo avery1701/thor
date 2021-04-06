@@ -37,7 +37,7 @@ public class JavaArrayClassDescriptor extends JavaClassDescriptor implements Arr
 
 	public String getClassName()
 	{
-		return subject().getSimpleName() + ARRAY + FACTORY;
+		return subject().getComponentType().getSimpleName() + ARRAY + FACTORY;
 	}
 
 	@Override

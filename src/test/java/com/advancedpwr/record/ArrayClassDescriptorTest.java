@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.advancedpwr.record.descriptor.JavaArrayClassDescriptor;
 
-class ArrayClassDescriptorTest {
+class ArrayClassDescriptorTest
+{
 
 	@Test
 	void test() {

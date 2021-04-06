@@ -34,5 +34,7 @@ public interface ObjectDescriptor
 	ArrayObjectDescriptor asArrayDescriptor();
 	
 	CollectionObjectDescriptor asCollectionDescriptor();
+
+	MapObjectDescriptor asMapDescriptor();
 	
 }

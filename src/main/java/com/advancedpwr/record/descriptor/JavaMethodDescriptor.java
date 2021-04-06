@@ -38,6 +38,12 @@ public class JavaMethodDescriptor implements MethodDescriptor
 	}
 
 	@Override
+	public ClassDescriptor getReturnType()
+	{
+		return new JavaClassDescriptor( subject().getReturnType() );
+	}
+
+	@Override
 	public List<ClassDescriptor> getParameterTypes()
 	{
 		return toList( subject().getParameterTypes() );
@@ -63,7 +69,7 @@ public class JavaMethodDescriptor implements MethodDescriptor
 	public Set<StateModifier> getModifiers()
 	{
 
-		return null;
+		return StateModifierFactory.fromReflectionInt( subject().getModifiers() );
 	}
 
 	@Override
@@ -84,4 +90,5 @@ public class JavaMethodDescriptor implements MethodDescriptor
 	{
 		subject().setAccessible( accessible );
 	}
+
 }

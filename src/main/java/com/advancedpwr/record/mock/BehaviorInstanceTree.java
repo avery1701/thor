@@ -16,26 +16,27 @@
 package com.advancedpwr.record.mock;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.InstanceTree;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
 import com.advancedpwr.record.inspect.ArrayInspector;
 import com.advancedpwr.record.inspect.InspectorList;
 
 public class BehaviorInstanceTree extends InstanceTree
 {
-	protected Class fieldPreferredInterface;
+	protected ClassDescriptor fieldPreferredInterface;
 
-	public Class getPreferredInterface()
+	public ClassDescriptor getPreferredInterface()
 	{
 		return fieldPreferredInterface;
 	}
 
-	public void setPreferredInterface( Class preferredInterface )
+	public void setPreferredInterface( ClassDescriptor preferredInterface )
 	{
 		fieldPreferredInterface = preferredInterface;
 	}
@@ -46,39 +47,39 @@ public class BehaviorInstanceTree extends InstanceTree
 		inspectors.add( new ArrayInspector() );
 		return inspectors;
 	}
-	
-	public BehaviorInstanceTree( Object object )
+
+	public BehaviorInstanceTree( ObjectDescriptor object )
 	{
 		super( object );
 	}
 
-	public BehaviorInstanceTree( Object object, InstanceTree inTree )
+	public BehaviorInstanceTree( ObjectDescriptor object, InstanceTree inTree )
 	{
 		super( object, inTree );
 	}
-	
-	public InstanceTree createTree( Object result )
+
+	public InstanceTree createTree( ObjectDescriptor result )
 	{
 		return new BehaviorInstanceTree( result, this );
 	}
-	
-	public void addAccessPaths( Object[] inArguments, Object result )
+
+	public void addAccessPaths( List<ObjectDescriptor> inArguments, ObjectDescriptor result )
 	{
 		MethodCallPath accessor = createMethodCallPath( inArguments, result );
 		getAccessPaths().add( accessor );
 		getAccessPaths().addAll( accessor.getArguments() );
 	}
 
-	protected MethodCallPath createMethodCallPath(  Object[] inArguments, Object result )
+	protected MethodCallPath createMethodCallPath( List<ObjectDescriptor> inArguments,
+			ObjectDescriptor result )
 	{
 		MethodCallPath path = new MethodCallPath();
 		path.setMethod( getCurrentMethod() );
 		InstanceTree tree = createInstanceTree( result );
 		path.setTree( tree );
 		List<AccessPath> paths = new ArrayList<AccessPath>();
-		for ( int i = 0; i < inArguments.length; i++ )
+		for ( ObjectDescriptor object : inArguments )
 		{
-			Object object = inArguments[ i ];
 			AccessPath argPath = new ArgumentPath();
 			argPath.setTree( createInstanceTree( object ) );
 			paths.add( argPath );
@@ -87,40 +88,38 @@ public class BehaviorInstanceTree extends InstanceTree
 		return path;
 	}
 
-	protected Set<Class> fieldDeclaredExceptions;
-	
-	protected Set<Class> getDeclaredExceptions()
+	protected Set<ClassDescriptor> fieldDeclaredExceptions;
+
+	protected Set<ClassDescriptor> getDeclaredExceptions()
 	{
 		if ( fieldDeclaredExceptions == null )
 		{
-			fieldDeclaredExceptions = new LinkedHashSet<Class>();
-			
+			fieldDeclaredExceptions = new LinkedHashSet<ClassDescriptor>();
+
 		}
 
 		return fieldDeclaredExceptions;
 	}
-	
-	public void addDeclaredExceptions( Class<?>[] exceptionTypes )
+
+	public void addDeclaredExceptions( List<ClassDescriptor> exceptionTypes )
 	{
-		getDeclaredExceptions().addAll( Arrays.asList( exceptionTypes ) );
+		getDeclaredExceptions().addAll( exceptionTypes );
 	}
 
-	public Set<Class> getExceptions()
+	public Set<ClassDescriptor> getExceptions()
 	{
-		Set<Class> exceptions = super.getExceptions();
+		Set<ClassDescriptor> exceptions = super.getExceptions();
 		exceptions.addAll( getDeclaredExceptions() );
 		return exceptions;
 	}
 
-	public Class<? extends Object> objectClass()
+	public ClassDescriptor objectClass()
 	{
 		if ( getPreferredInterface() != null )
 		{
 			return getPreferredInterface();
 		}
-		return getObject().getClass();
+		return getObject().getClassDescriptor();
 	}
-	
-	
 
 }

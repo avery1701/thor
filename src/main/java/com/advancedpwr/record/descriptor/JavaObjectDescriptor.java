@@ -83,4 +83,10 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 		return new JavaCollectionObjectDescriptor( subject() );
 	}
 
+	@Override
+	public MapObjectDescriptor asMapDescriptor()
+	{
+		return new JavaMapObjectDescriptor(subject());
+	}
+
 }

@@ -55,6 +55,10 @@ public abstract class ParameterTypeComparator implements Comparator<MethodDescri
 
 	protected boolean isSetter( MethodDescriptor method )
 	{
-		return method.getModifiers().contains( StateModifier.PUBLIC )  && method.getName().startsWith( "set" ) && method.getParameterTypes().size() == 1;
+		System.out.println( method.getModifiers() );
+		return method.getModifiers()
+				.contains( StateModifier.PUBLIC ) 
+				&& method.getName().startsWith( "set" ) 
+				&& method.getParameterTypes().size() == 1;
 	}
 }

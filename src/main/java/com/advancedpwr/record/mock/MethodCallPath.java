@@ -15,19 +15,19 @@
  */
 package com.advancedpwr.record.mock;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.MethodDescriptor;
 
 public class MethodCallPath extends AccessPath
 {
 
 	protected List<AccessPath> fieldArguments;
-	
+
 	public List<AccessPath> getArguments()
 	{
 		return fieldArguments;
@@ -43,31 +43,26 @@ public class MethodCallPath extends AccessPath
 		return getMethod().getName();
 	}
 
-	protected Method fieldMethod;
+	protected MethodDescriptor fieldMethod;
 
-	public Method getMethod()
+	public MethodDescriptor getMethod()
 	{
 		return fieldMethod;
 	}
 
-	public void setMethod( Method method )
+	public void setMethod( MethodDescriptor method )
 	{
 		fieldMethod = method;
 	}
 
-	public Class getReturnType()
+	public ClassDescriptor getReturnType()
 	{
 		return getMethod().getReturnType();
 	}
-	
-	public Set<Class> getExceptions()
+
+	public Set<ClassDescriptor> getExceptions()
 	{
-		LinkedHashSet<Class> exceptions = new LinkedHashSet<Class>();
-		Class[] types = getMethod().getExceptionTypes();
-		exceptions.addAll( Arrays.asList( types ) );
-		return exceptions;
+		return new HashSet<>( getMethod().getExceptionTypes() );
 	}
-	
-	
 
 }

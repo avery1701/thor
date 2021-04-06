@@ -27,6 +27,8 @@ public interface MethodDescriptor
 
 	String getName();
 
+	ClassDescriptor getReturnType();
+
 	Set<StateModifier> getModifiers();
 
 	List<ClassDescriptor> getParameterTypes();
@@ -36,5 +38,5 @@ public interface MethodDescriptor
 	ObjectDescriptor invoke( Object object, Object... parameters );
 
 	void setAccessible( boolean accessible );
-
+	
 }

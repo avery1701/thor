@@ -1,9 +1,12 @@
 package com.advancedpwr.record.inspect;
 
-import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.advancedpwr.record.InstanceTree;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.MapObjectDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
 
 public class MapInspector extends Inspector
 {
@@ -18,11 +21,9 @@ public class MapInspector extends Inspector
 	{
 		if ( isMap() )
 		{
-			Map map = (Map) getObject();
-			for ( Iterator iterator = map.entrySet().iterator(); iterator.hasNext(); )
+			MapObjectDescriptor map = getObject().asMapDescriptor();
+			for ( Entry<ObjectDescriptor, ObjectDescriptor> entry : map )
 			{
-				Map.Entry entry = (Map.Entry) iterator.next();
-				
 				MapPutPath path = new MapPutPath();
 				path.setKeyTree( createInstanceTree( entry.getKey() ) );
 				path.setValueTree( createInstanceTree( entry.getValue() ) );
@@ -34,6 +35,7 @@ public class MapInspector extends Inspector
 
 	protected boolean isMap()
 	{
-		return Map.class.isAssignableFrom( objectClass() );
+		JavaClassDescriptor descriptor = new JavaClassDescriptor( Map.class );
+		return objectClass().isAssignableFrom( descriptor );
 	}
 }

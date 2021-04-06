@@ -123,9 +123,9 @@ public class JavaClassDescriptor implements ClassDescriptor
 	@Override
 	public ArrayClassDescriptor asArrayDescriptor()
 	{
-		return new JavaArrayClassDescriptor(subject());
+		return new JavaArrayClassDescriptor( subject() );
 	}
-	
+
 	@Override
 	public boolean isPrimitive()
 	{
@@ -138,8 +138,23 @@ public class JavaClassDescriptor implements ClassDescriptor
 		return subject().isEnum();
 	}
 
+	@Override
 	public String toString()
 	{
 		return getPackageName() + "." + getClassName();
+	}
+
+	//FIXME: This how you do it?
+	@Override
+	public boolean equals( Object obj )
+	{
+		if ( obj instanceof JavaClassDescriptor )
+		{
+			return subject().equals( ( (JavaClassDescriptor) obj ).subject() );
+		}
+		else
+		{
+			return super.equals( obj );
+		}
 	}
 }
