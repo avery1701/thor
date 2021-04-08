@@ -27,7 +27,7 @@ import com.advancedpwr.record.ClassWriter;
  *
  */
 public interface ClassDescriptor
-{
+{	
 	String getClassName();
 
 	String getPackageName();

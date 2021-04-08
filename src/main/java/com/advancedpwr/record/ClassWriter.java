@@ -23,6 +23,7 @@ import java.util.Set;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
+import com.advancedpwr.record.descriptor.SimpleClassDescriptor;
 
 /**
  * <code>ClassWriter</code> wraps a {@link PrintWriter} with convenience methods for creating Java source code output.
@@ -120,6 +121,28 @@ public abstract class ClassWriter
 	public ClassDescriptor getDescriptor()
 	{
 		return getObjectDescriptor().getClassDescriptor();
+	}
+
+	protected abstract ClassDescriptor createDefaultDescriptor();
+
+	//FIXME: Replace the mechanism for managing output class name. 
+	public void setDescriptor( ClassDescriptor descriptor )
+	{
+		fieldDescriptor = descriptor;
+	}
+	/**
+	 * This method is a "short cut" to easily set the ClassDescriptor
+	 * @param The fully qualified class name
+	 */
+	public void setClassName( String inName )
+	{
+		int lastDotIndex = inName.lastIndexOf( '.' );
+		String packageName = inName.substring( 0, lastDotIndex );
+		String className = inName.substring( lastDotIndex + 1 );
+		SimpleClassDescriptor descriptor = new SimpleClassDescriptor();
+		descriptor.setClassName( className );
+		descriptor.setPackageName( packageName );
+		setDescriptor( descriptor );
 	}
 
 	protected void writeClassDeclaration()
