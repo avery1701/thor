@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassReference;
 import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 import com.advancedpwr.record.descriptor.JavaObjectDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
@@ -182,9 +183,9 @@ public class BeanRecorder extends AbstractRecorder
 		return fieldInstanceTree;
 	}
 
-	protected Set<ClassDescriptor> classes()
+	protected Set<ClassReference> classes()
 	{
-		Set<ClassDescriptor> classes = new LinkedHashSet<ClassDescriptor>();
+		Set<ClassReference> classes = new LinkedHashSet<ClassReference>();
 		if ( getSuperClass() != null )
 		{
 			classes.add( getSuperClass() );
@@ -262,7 +263,7 @@ public class BeanRecorder extends AbstractRecorder
 	protected Set<String> imports()
 	{
 		Set<String> importNames = new LinkedHashSet<String>();
-		for ( ClassDescriptor aClass : classes() )
+		for ( ClassReference aClass : classes() )
 		{
 			importNames.add( aClass.getClassName().replace( "$", "." ) );
 		}

@@ -55,7 +55,7 @@ public class MapTest extends AbstractRecorderTest {
 		family.put("alias", person);
 
 		// Don't want to try and write a class into the "java.util" package.
-		SimpleClassDescriptor desc = new SimpleClassDescriptor();
+		SimpleClassReference desc = new SimpleClassReference();
 		desc.setPackageName("com.example.map");
 		desc.setClassName("LinkedHashMapFactory");
 		recorder.setDescriptor(desc);

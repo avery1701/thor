@@ -68,7 +68,7 @@ public class BeanRecorderTest extends AbstractRecorderTest {
 	}
 
 	private void initDescriptor() {
-		SimpleClassDescriptor desc = new SimpleClassDescriptor();
+		SimpleClassReference desc = new SimpleClassReference();
 		desc.setClassName("PersonFactory");
 		desc.setPackageName("com.advancedpwr.record.examples.generated");
 		recorder.setDescriptor(desc);

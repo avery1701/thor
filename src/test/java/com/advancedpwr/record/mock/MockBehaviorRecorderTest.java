@@ -25,7 +25,7 @@ import java.io.OutputStream;
 
 import org.junit.jupiter.api.Test;
 
-import com.advancedpwr.record.SimpleClassDescriptor;
+import com.advancedpwr.record.SimpleClassReference;
 //import com.advancedpwr.record.examples.generated.PersonFactory;
 import com.advancedpwr.samples.Being;
 import com.advancedpwr.samples.Family;
@@ -36,7 +36,7 @@ public class MockBehaviorRecorderTest extends AbstractMockRecorderTest {
 
 	@Test
 	public void testRecord() {
-		SimpleClassDescriptor descriptor = new SimpleClassDescriptor();
+		SimpleClassReference descriptor = new SimpleClassReference();
 		descriptor.setClassName("MockPersonFactory");
 		descriptor.setPackageName("com.example.mock");
 		recorder.setDescriptor(descriptor);

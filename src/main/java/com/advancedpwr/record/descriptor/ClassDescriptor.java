@@ -26,11 +26,8 @@ import com.advancedpwr.record.ClassWriter;
  * @author Matthew Avery, mavery@advancedpwr.com on Mar 23, 2021
  *
  */
-public interface ClassDescriptor
+public interface ClassDescriptor extends ClassReference
 {	
-	String getClassName();
-
-	String getPackageName();
 
 	Set<ConstructorDescriptor> getConstructors();
 

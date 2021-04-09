@@ -22,8 +22,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassReference;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
-import com.advancedpwr.record.descriptor.SimpleClassDescriptor;
+import com.advancedpwr.record.descriptor.SimpleClassReference;
 
 /**
  * <code>ClassWriter</code> wraps a {@link PrintWriter} with convenience methods for creating Java source code output.
@@ -43,7 +44,8 @@ public abstract class ClassWriter
 	protected PrintWriter fieldPrintWriter;
 	protected int tabDepth;
 	protected ObjectDescriptor fieldObject;
-	protected ClassDescriptor fieldSuperClass;
+	protected ClassReference fieldSuperClass;
+	protected ClassReference fieldClassReference;
 
 	protected List<String> fieldStaticClassNames;
 
@@ -126,9 +128,9 @@ public abstract class ClassWriter
 	protected abstract ClassDescriptor createDefaultDescriptor();
 
 	//FIXME: Replace the mechanism for managing output class name. 
-	public void setDescriptor( ClassDescriptor descriptor )
+	public void setDescriptor( ClassReference descriptor )
 	{
-		fieldDescriptor = descriptor;
+		fieldClassReference = descriptor;
 	}
 	/**
 	 * This method is a "short cut" to easily set the ClassDescriptor
@@ -139,7 +141,7 @@ public abstract class ClassWriter
 		int lastDotIndex = inName.lastIndexOf( '.' );
 		String packageName = inName.substring( 0, lastDotIndex );
 		String className = inName.substring( lastDotIndex + 1 );
-		SimpleClassDescriptor descriptor = new SimpleClassDescriptor();
+		SimpleClassReference descriptor = new SimpleClassReference();
 		descriptor.setClassName( className );
 		descriptor.setPackageName( packageName );
 		setDescriptor( descriptor );
@@ -168,7 +170,7 @@ public abstract class ClassWriter
 	protected void writeImports()
 	{
 		writeStaticImports();
-		for ( ClassDescriptor aClass : classes() )
+		for ( ClassReference aClass : classes() )
 		{
 			writeLine( IMPORT + aClass.getClassName().replace( "$", "." ) );
 		}
@@ -183,7 +185,7 @@ public abstract class ClassWriter
 		}
 	}
 
-	protected abstract Set<ClassDescriptor> classes();
+	protected abstract Set<ClassReference> classes();
 
 	protected String packageName()
 	{
@@ -213,12 +215,12 @@ public abstract class ClassWriter
 
 	protected abstract void writeObjectBuilderMethod();
 
-	public ClassDescriptor getSuperClass()
+	public ClassReference getSuperClass()
 	{
 		return fieldSuperClass;
 	}
 
-	public void setSuperClass( ClassDescriptor superClass )
+	public void setSuperClass( ClassReference superClass )
 	{
 		fieldSuperClass = superClass;
 	}
