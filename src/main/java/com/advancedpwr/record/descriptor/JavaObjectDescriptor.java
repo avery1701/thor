@@ -40,7 +40,6 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 		return getClassDescriptor().getMethods();
 	}
 
-	//FIXME: Is this a dirty way of managing to invoke the method backend-independent?
 	/**
 	 * 
 	 * Safely (no need to change method access) invokes a method on this object.
@@ -49,13 +48,10 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 	@Override
 	public ObjectDescriptor invokeMethod( MethodDescriptor method )
 	{
-		if(!getClassDescriptor().getMethods().contains( method )) {
-			throw new RecorderException("Method doens't exist on this object");
-		}
-		
 		try
 		{
 			method.setAccessible( true );
+			//TODO: method.invoke(subject()) could return null, will JavaObjectDescriptor handle that, or should we return null?
 			return new JavaObjectDescriptor( method.invoke(subject()) );
 		}
 		catch ( Exception e )
