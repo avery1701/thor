@@ -91,4 +91,19 @@ public class JavaMethodDescriptor implements MethodDescriptor
 		subject().setAccessible( accessible );
 	}
 
+	@Override
+	public int hashCode()
+	{
+		return subject().hashCode();
+	}
+
+	@Override
+	public boolean equals( Object obj )
+	{
+		if ( obj instanceof JavaMethodDescriptor )
+		{
+			return obj.hashCode() == hashCode();
+		}
+		return super.equals( obj );
+	}
 }

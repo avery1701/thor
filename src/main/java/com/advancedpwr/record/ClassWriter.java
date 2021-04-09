@@ -120,18 +120,22 @@ public abstract class ClassWriter
 		return this;
 	}
 
-	public ClassDescriptor getDescriptor()
+	protected abstract ClassReference createDefaultDescriptor();
+
+	public ClassReference getDescriptor()
 	{
-		return getObjectDescriptor().getClassDescriptor();
+		if ( fieldClassReference == null )
+		{
+			fieldClassReference = createDefaultDescriptor();
+		}
+		return fieldClassReference;
 	}
 
-	protected abstract ClassDescriptor createDefaultDescriptor();
-
-	//FIXME: Replace the mechanism for managing output class name. 
 	public void setDescriptor( ClassReference descriptor )
 	{
 		fieldClassReference = descriptor;
 	}
+
 	/**
 	 * This method is a "short cut" to easily set the ClassDescriptor
 	 * @param The fully qualified class name

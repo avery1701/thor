@@ -22,7 +22,7 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
-import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassReference;
 import com.advancedpwr.samples.Family;
 import com.advancedpwr.samples.Person;
 import com.advancedpwr.samples.StringArrayHolder;
@@ -35,7 +35,7 @@ public class ArrayTest extends AbstractRecorderTest {
 		Person[] array = new Person[] { person.getDad(), person.getMom(), person };
 		recorder.setClassName("com.example.array.PersonArrayFactory1");
 		recorder.record(array);
-		ClassDescriptor defaultDescriptor = recorder.createDefaultDescriptor();
+		ClassReference defaultDescriptor = recorder.createDefaultDescriptor();
 		assertEquals("com.advancedpwr.samples.generated.PersonArrayFactory", defaultDescriptor.getPackageName() + "." + defaultDescriptor.getClassName());
 		assertResult();
 	}

@@ -27,7 +27,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassReference;
+import com.advancedpwr.record.descriptor.SimpleClassReference;
 import com.advancedpwr.record.methods.URLBuilderFactory;
 import com.advancedpwr.samples.NoDefaultConstructorPerson;
 import com.advancedpwr.samples.Person;
@@ -50,7 +51,7 @@ public class BeanRecorderTest extends AbstractRecorderTest {
 
 	@Test
 	public void testSetDescriptor() {
-		ClassDescriptor descriptor = new ClassDescriptor() {
+		ClassReference descriptor = new ClassReference() {
 
 			public String getPackageName() { return "foo"; }
 

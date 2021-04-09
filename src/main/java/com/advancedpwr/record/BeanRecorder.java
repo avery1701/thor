@@ -140,6 +140,15 @@ public class BeanRecorder extends AbstractRecorder
 		fieldInstanceTree = createInstanceTree( object );
 	}
 
+	protected void setObject( Object object )
+	{
+		if ( object == null )
+		{
+			throw new RecorderException( "Called setObject with null argument" );
+		}
+		setObject( new JavaObjectDescriptor( object ) );
+	}
+
 	protected InstanceTree createInstanceTree( ObjectDescriptor object )
 	{
 		return new InstanceTree( getStopClasses(), getClassesForInterfaces(), object );

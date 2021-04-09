@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.Writer;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassReference;
+import com.advancedpwr.record.descriptor.SimpleClassReference;
 
 /**
  * <code>AbstractRecorder</code> is the common base class for recorders.  This class provides
@@ -42,7 +44,7 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 	{
 		WrappedIO wrapper = new WrappedIO()
 		{
-			
+
 			public Object exec() throws IOException
 			{
 				return new FileWriter( inFile );
@@ -57,7 +59,7 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 		{
 			fieldJavaFileWriter = createFileWriter( javaFile() );
 		}
-	
+
 		return fieldJavaFileWriter;
 	}
 
@@ -70,7 +72,7 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 
 	protected File javaFile()
 	{
-		return new File( parentDirectory(), getClassName() + ".java");
+		return new File( parentDirectory(), getClassName() + ".java" );
 	}
 
 	protected String packagePath()
@@ -92,7 +94,7 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 	{
 		fieldDestinationDirectory = testDirectory;
 	}
-	
+
 	/**
 	 * Set the generated output directory as the name of a {@link File}.
 	 * 
@@ -127,6 +129,15 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 		{
 			close( getJavaFileWriter() );
 		}
+	}
+
+	protected ClassReference createDefaultDescriptor()
+	{
+		ClassDescriptor descriptor = getObjectDescriptor().getClassDescriptor();
+		SimpleClassReference reference = new SimpleClassReference(  );
+		reference.setClassName( descriptor.getClassName() );
+		reference.setPackageName( descriptor.getPackageName() );
+		return descriptor;
 	}
 
 }

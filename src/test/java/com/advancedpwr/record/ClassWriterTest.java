@@ -25,79 +25,98 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ClassReference;
+import com.advancedpwr.record.descriptor.JavaObjectDescriptor;
+import com.advancedpwr.record.descriptor.SimpleClassReference;
 
-public class ClassWriterTest {
+public class ClassWriterTest
+{
 	ClassWriter writer;
 	StringWriter out;
 
-	public ClassWriterTest() {
-		writer = new ClassWriter() {
+	public ClassWriterTest()
+	{
+		writer = new ClassWriter()
+		{
 
-			protected Set<Class> classes() {
+			protected Set<ClassReference> classes()
+			{
 				return null;
 			}
 
-			protected ClassDescriptor createDefaultDescriptor() {
+			protected ClassDescriptor createDefaultDescriptor()
+			{
 				return null;
 			}
 
-			protected void writeObjectBuilderMethod() {}
+			protected void writeObjectBuilderMethod()
+			{
+			}
 		};
 		out = new StringWriter();
-		writer.setWriter(new PrintWriter(out));
+		writer.setWriter( new PrintWriter( out ) );
 	}
 
 	@Test
-	public void testGettersSetters() {
-		writer.setObject(ClassWriter.class);
-		assertEquals(ClassWriter.class, writer.getObjectDescriptor());
-	}
-	
-	@Test
-	public void testExtendsClass() {
-		writer.setSuperClass(null);
-		assertEquals("", writer.extendClass());
-		writer.setSuperClass(String.class);
-		assertEquals(" extends " + writer.getSuperClass().getSimpleName(), writer.extendClass());
-	}
-	
-	@Test
-	public void testWriteLine() {
-		writer.writeLine("package com.advancedpwr.foo");
-		assertResult("package com.advancedpwr.foo;\n");
-	}
-
-	public void assertResult(String inString) {
-		assertEquals(inString, out.toString().replaceAll("\r\n", "\n"));
+	public void testGettersSetters()
+	{
+		JavaObjectDescriptor descriptor = new JavaObjectDescriptor( new String() );
+		writer.setObject( descriptor );
+		assertEquals( descriptor, writer.getObjectDescriptor() );
 	}
 
 	@Test
-	public void testWrite() {
-		writer.write("if ( foo == null )");
-		assertResult("if ( foo == null )\n");
+	public void testExtendsClass()
+	{
+		writer.setSuperClass( null );
+		assertEquals( "", writer.extendClass() );
+		SimpleClassReference ref = new SimpleClassReference();
+		writer.setSuperClass( ref );
+		assertEquals( " extends " + writer.getSuperClass().getClassName(), writer.extendClass() );
 	}
 
 	@Test
-	public void testOpenCloseBrace() {
+	public void testWriteLine()
+	{
+		writer.writeLine( "package com.advancedpwr.foo" );
+		assertResult( "package com.advancedpwr.foo;\n" );
+	}
+
+	public void assertResult( String inString )
+	{
+		assertEquals( inString, out.toString().replaceAll( "\r\n", "\n" ) );
+	}
+
+	@Test
+	public void testWrite()
+	{
+		writer.write( "if ( foo == null )" );
+		assertResult( "if ( foo == null )\n" );
+	}
+
+	@Test
+	public void testOpenCloseBrace()
+	{
 		writer.openBrace();
-		writer.write("if ( foo == null )");
+		writer.write( "if ( foo == null )" );
 		writer.openBrace();
-		writer.writeLine("bar");
+		writer.writeLine( "bar" );
 		writer.closeBrace();
 		writer.closeBrace();
 
-		assertResult("{\n" + "\tif ( foo == null )\n" + "\t{\n" + "\t\tbar;\n" + "\t}\n" + "}\n");
+		assertResult( "{\n" + "\tif ( foo == null )\n" + "\t{\n" + "\t\tbar;\n" + "\t}\n" + "}\n" );
 
-		assertThrows(ClassWriterException.class, () -> {
+		assertThrows( ClassWriterException.class, () -> {
 			writer.closeBrace();
-		});
+		} );
 	}
 
 	@Test
-	public void testSetClassName() {
-		writer.setClassName("com.company.BusinessFactory");
-		assertEquals("com.company", writer.getDescriptor().getPackageName());
-		assertEquals("BusinessFactory", writer.getDescriptor().getClassName());
+	public void testSetClassName()
+	{
+		writer.setClassName( "com.company.BusinessFactory" );
+		assertEquals( "com.company", writer.getDescriptor().getPackageName() );
+		assertEquals( "BusinessFactory", writer.getDescriptor().getClassName() );
 	}
 
 }

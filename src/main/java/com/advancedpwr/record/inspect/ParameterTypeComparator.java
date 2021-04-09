@@ -30,15 +30,15 @@ public abstract class ParameterTypeComparator implements Comparator<MethodDescri
 		{
 			ClassDescriptor c1 = parameterClass( m1 );
 			ClassDescriptor c2 = parameterClass( m2 );
-			if (isParameterType( c1 ) == isParameterType( c2 ) )
+			if ( isParameterType( c1 ) == isParameterType( c2 ) )
 			{
 				return 0;
 			}
-			if( !isParameterType( c1 ) && isParameterType( c2 ) )
+			if ( !isParameterType( c1 ) && isParameterType( c2 ) )
 			{
 				return -1;
 			}
-			if( isParameterType( c1 ) && !isParameterType( c2 ) )
+			if ( isParameterType( c1 ) && !isParameterType( c2 ) )
 			{
 				return 1;
 			}
@@ -55,10 +55,7 @@ public abstract class ParameterTypeComparator implements Comparator<MethodDescri
 
 	protected boolean isSetter( MethodDescriptor method )
 	{
-		System.out.println( method.getModifiers() );
-		return method.getModifiers()
-				.contains( StateModifier.PUBLIC ) 
-				&& method.getName().startsWith( "set" ) 
-				&& method.getParameterTypes().size() == 1;
+		return method.getModifiers().contains( StateModifier.PUBLIC )
+				&& method.getName().startsWith( "set" ) && method.getParameterTypes().size() == 1;
 	}
 }
