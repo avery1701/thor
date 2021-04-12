@@ -1,23 +1,59 @@
 package com.example.array;
 
-import com.advancedpwr.record.factory.BaseFactory;
+import com.advancedpwr.record.factory.generatedBaseFactoryFactory;
 
-public class IntArrayFactory extends BaseFactory
+public class IntArrayFactory extends BaseFactoryFactory
 {
 
-	protected int[] intArray;
+	protected intArrayFactory intarrayfactory;
 
-	public int[] buildintArray()
+	public intArrayFactory buildintArrayFactory()
 	{
-		if ( intArray != null ) 
+		if ( intarrayfactory != null ) 
 		{
-			return intArray;
+			return intarrayfactory;
 		}
-		intArray = new int[3];
-		intArray[0] = new Integer( 10 );
-		intArray[1] = new Integer( 12 );
-		intArray[2] = new Integer( 14 );
-		return intArray;
+		intarrayfactory = (intArrayFactory)newInstance( intArrayFactory.class );
+		intarrayfactory.( buildintFactory_1_1() );
+		intarrayfactory.( buildintFactory_2_1() );
+		intarrayfactory.( buildintFactory_3_1() );
+		return intarrayfactory;
+	}
+
+	protected IntegerFactory intfactory_1_1;
+
+	protected IntegerFactory buildintFactory_1_1()
+	{
+		if ( intfactory_1_1 != null ) 
+		{
+			return intfactory_1_1;
+		}
+		intfactory_1_1 = (IntegerFactory)newInstance( IntegerFactory.class );
+		return intfactory_1_1;
+	}
+
+	protected IntegerFactory intfactory_2_1;
+
+	protected IntegerFactory buildintFactory_2_1()
+	{
+		if ( intfactory_2_1 != null ) 
+		{
+			return intfactory_2_1;
+		}
+		intfactory_2_1 = (IntegerFactory)newInstance( IntegerFactory.class );
+		return intfactory_2_1;
+	}
+
+	protected IntegerFactory intfactory_3_1;
+
+	protected IntegerFactory buildintFactory_3_1()
+	{
+		if ( intfactory_3_1 != null ) 
+		{
+			return intfactory_3_1;
+		}
+		intfactory_3_1 = (IntegerFactory)newInstance( IntegerFactory.class );
+		return intfactory_3_1;
 	}
 
 }

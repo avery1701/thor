@@ -31,7 +31,10 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 	@Override
 	public ClassDescriptor getClassDescriptor()
 	{
-		return new JavaClassDescriptor( subject().getClass() );
+		if(subject().getClass().isArray()) {
+			return new JavaArrayClassDescriptor( subject().getClass() );
+		}
+		return new JavaClassDescriptor( subject().getClass() );			
 	}
 
 	@Override

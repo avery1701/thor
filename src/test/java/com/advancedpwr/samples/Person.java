@@ -24,8 +24,8 @@ public class Person implements Being
 {
 	protected Person fieldDad;
 	protected Person fieldMom;
-	protected List fieldChildren;
-	protected Map fieldRelatives;
+	protected List<?> fieldChildren;
+	protected Map<?, ?> fieldRelatives;
 	protected Calendar fieldBirthday;
 	protected Date fieldAnniversary;
 	
@@ -49,22 +49,22 @@ public class Person implements Being
 		fieldBirthday = birthday;
 	}
 
-	public Map getRelatives()
+	public Map<?, ?> getRelatives()
 	{
 		return fieldRelatives;
 	}
 
-	public void setRelatives( Map relatives )
+	public void setRelatives( Map<?, ?> relatives )
 	{
 		fieldRelatives = relatives;
 	}
 
-	public List getChildren()
+	public List<?> getChildren()
 	{
 		return fieldChildren;
 	}
 
-	public void setChildren( List children )
+	public void setChildren( List<?> children )
 	{
 		fieldChildren = children;
 	}

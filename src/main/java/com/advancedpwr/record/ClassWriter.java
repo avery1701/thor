@@ -176,7 +176,7 @@ public abstract class ClassWriter
 		writeStaticImports();
 		for ( ClassReference aClass : classes() )
 		{
-			writeLine( IMPORT + aClass.getClassName().replace( "$", "." ) );
+			writeLine( IMPORT + aClass.getPackageName() + aClass.getClassName().replace( "$", "." ) );
 		}
 		newLine();
 	}

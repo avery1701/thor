@@ -9,7 +9,7 @@ public class SimpleClassReference implements ClassReference
 {
 	protected String fieldClassName;
 	protected String fieldPackageName;
-
+	
 	public String getClassName()
 	{
 		return fieldClassName;

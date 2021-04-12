@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BadPerson extends Person
 {
-	public List getChildren()
+	public List<?> getChildren()
 	{
 		throw new RuntimeException( "bad stuff" );
 	}

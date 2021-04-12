@@ -22,7 +22,6 @@ import java.io.Writer;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.record.descriptor.ClassReference;
-import com.advancedpwr.record.descriptor.SimpleClassReference;
 
 /**
  * <code>AbstractRecorder</code> is the common base class for recorders.  This class provides
@@ -134,9 +133,6 @@ public abstract class AbstractRecorder extends ClassWriter implements ObjectReco
 	protected ClassReference createDefaultDescriptor()
 	{
 		ClassDescriptor descriptor = getObjectDescriptor().getClassDescriptor();
-		SimpleClassReference reference = new SimpleClassReference(  );
-		reference.setClassName( descriptor.getClassName() );
-		reference.setPackageName( descriptor.getPackageName() );
 		return descriptor;
 	}
 

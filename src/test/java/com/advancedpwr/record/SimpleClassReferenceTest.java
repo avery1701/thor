@@ -16,25 +16,27 @@
 package com.advancedpwr.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Locale;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-import com.advancedpwr.record.descriptor.ClassReference;
-import com.advancedpwr.samples.Family;
-import com.advancedpwr.samples.Person;
+import com.advancedpwr.record.descriptor.SimpleClassReference;
 
-public class FamilyTest extends AbstractRecorderTest {
+public class SimpleClassReferenceTest
+{
+	SimpleClassReference descriptor;
+
 	@Test
-	public void testRecordFamily() {
-		Person person = Person.createExamplePerson();
-		Family family = new Family(person.getDad(), person.getMom());
-		family.setLocale(Locale.CANADA);
-		recorder.setClassName("com.example.recorded.FamilyFactory1");
-		recorder.record(family);
-		ClassReference defaultDescriptor = recorder.createDefaultDescriptor();
-		assertEquals("com.advancedpwr.samples.generated.FamilyFactory", defaultDescriptor.getPackageName() + "." + defaultDescriptor.getClassName());
-		assertResult();
+	public void testIt()
+	{
+		descriptor = new SimpleClassReference();
+		assertNull( descriptor.getClassName() );
+		assertNull( descriptor.getPackageName() );
+		descriptor.setClassName( "ListExampleFactory" );
+		assertEquals( "ListExampleFactory", descriptor.getClassName() );
+		descriptor.setPackageName( "com.advancedpwr.samples.generated" );
+		assertEquals( "com.advancedpwr.samples.generated", descriptor.getPackageName() );
+		assertEquals( "com.advancedpwr.samples.generated.ListExampleFactory",
+				descriptor.toString() );
 	}
 }

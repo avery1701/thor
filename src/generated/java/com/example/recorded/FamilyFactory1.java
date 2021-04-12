@@ -1,78 +1,69 @@
 package com.example.recorded;
 
-import com.advancedpwr.record.factory.BaseFactory;
-import com.advancedpwr.samples.Family;
-import com.advancedpwr.samples.Person;
-import java.util.Locale;
+import BaseFactoryFactory;
+import FamilyFactory;
+import PersonFactory;
+import JavaObjectDescriptorFactory;
+import LocaleFactory;
+import JavaObjectDescriptorFactory;
+import PersonFactory;
+import JavaObjectDescriptorFactory;
+import JavaObjectDescriptorFactory;
+import JavaObjectDescriptorFactory;
+import JavaObjectDescriptorFactory;
 
-public class FamilyFactory1 extends BaseFactory
+public class FamilyFactory1 extends BaseFactoryFactory
 {
 
-	protected Family family;
+	protected FamilyFactory familyfactory;
 
-	public Family buildFamily()
+	public FamilyFactory buildFamilyFactory()
 	{
-		if ( family != null ) 
+		if ( familyfactory != null ) 
 		{
-			return family;
+			return familyfactory;
 		}
-		family = new Family();
-		family.setDad( buildPerson_1_1() );
-		family.setLocale( buildLocale_5_1() );
-		family.setMom( buildPerson_6_1() );
-		return family;
+		familyfactory = new FamilyFactory();
+		familyfactory.setDad( buildJavaObjectDescriptorFactory_1_1() );
+		familyfactory.setLocale( buildJavaObjectDescriptorFactory_2_1() );
+		familyfactory.setMom( buildJavaObjectDescriptorFactory_3_1() );
+		return familyfactory;
 	}
 
-	protected Person person_1_1;
+	protected JavaObjectDescriptorFactory javaobjectdescriptorfactory_1_1;
 
-	protected Person buildPerson_1_1()
+	protected PersonFactory buildJavaObjectDescriptorFactory_1_1()
 	{
-		if ( person_1_1 != null ) 
+		if ( javaobjectdescriptorfactory_1_1 != null ) 
 		{
-			return person_1_1;
+			return javaobjectdescriptorfactory_1_1;
 		}
-		person_1_1 = new Person();
-		person_1_1.setDad( buildPerson_2_2() );
-		person_1_1.setName( "dad" );
-		return person_1_1;
+		javaobjectdescriptorfactory_1_1 = (JavaObjectDescriptorFactory)newInstance( JavaObjectDescriptorFactory.class );
+		return javaobjectdescriptorfactory_1_1;
 	}
 
-	protected Person person_2_2;
+	protected JavaObjectDescriptorFactory javaobjectdescriptorfactory_2_1;
 
-	protected Person buildPerson_2_2()
+	protected LocaleFactory buildJavaObjectDescriptorFactory_2_1()
 	{
-		if ( person_2_2 != null ) 
+		if ( javaobjectdescriptorfactory_2_1 != null ) 
 		{
-			return person_2_2;
+			return javaobjectdescriptorfactory_2_1;
 		}
-		person_2_2 = new Person();
-		person_2_2.setName( "grandpa" );
-		return person_2_2;
+		javaobjectdescriptorfactory_2_1 = (JavaObjectDescriptorFactory)newInstance( JavaObjectDescriptorFactory.class );
+		return javaobjectdescriptorfactory_2_1;
 	}
 
-	protected Locale locale_5_1;
+	protected JavaObjectDescriptorFactory javaobjectdescriptorfactory_3_1;
 
-	protected Locale buildLocale_5_1()
+	protected PersonFactory buildJavaObjectDescriptorFactory_3_1()
 	{
-		if ( locale_5_1 != null ) 
+		if ( javaobjectdescriptorfactory_3_1 != null ) 
 		{
-			return locale_5_1;
+			return javaobjectdescriptorfactory_3_1;
 		}
-		locale_5_1 = new Locale( "en", "CA" );
-		return locale_5_1;
-	}
-
-	protected Person person_6_1;
-
-	protected Person buildPerson_6_1()
-	{
-		if ( person_6_1 != null ) 
-		{
-			return person_6_1;
-		}
-		person_6_1 = new Person();
-		person_6_1.setName( "mom" );
-		return person_6_1;
+		javaobjectdescriptorfactory_3_1 = (JavaObjectDescriptorFactory)newInstance( JavaObjectDescriptorFactory.class );
+		return javaobjectdescriptorfactory_3_1;
 	}
 
 }

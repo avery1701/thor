@@ -45,5 +45,11 @@ public class JavaArrayClassDescriptor extends JavaClassDescriptor implements Arr
 	{
 		return new JavaClassDescriptor( subject().getComponentType() );
 	}
+	
+	@Override
+	public String getPackageName()
+	{
+		return getComponentType().getPackageName();
+	}
 
 }

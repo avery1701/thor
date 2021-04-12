@@ -18,4 +18,6 @@ package com.advancedpwr.samples;
 public class BirthdayException extends Exception
 {
 
+	private static final long serialVersionUID = 1L;
+
 }
