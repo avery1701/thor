@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import com.advancedpwr.record.AccessPath;
+import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 
 public class AbstractDefaultFactoryTest {
 
@@ -32,7 +33,7 @@ public class AbstractDefaultFactoryTest {
 			}
 		};
 
-		assertTrue(factory.accept(getClass()));
+		assertTrue(factory.accept(new JavaClassDescriptor()));
 		assertTrue(factory.accept(null));
 	}
 }

@@ -16,7 +16,6 @@
 package com.advancedpwr.record.methods;
 
 import com.advancedpwr.record.AccessPath;
-import com.advancedpwr.record.descriptor.ArrayClassDescriptor;
 
 public class ArrayBuilder extends AbstractMultiBuilder
 {
@@ -44,7 +43,7 @@ public class ArrayBuilder extends AbstractMultiBuilder
 	
 	protected String nameRoot()
 	{
-		return ((ArrayClassDescriptor) getAccessPath().getResultClass()).getComponentType().getClassName();
+		return getAccessPath().getResultClass().getComponentType().getClassName();
 	}
 	
 	protected void writeInstance()

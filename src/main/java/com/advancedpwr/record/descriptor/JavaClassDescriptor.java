@@ -135,6 +135,12 @@ public class JavaClassDescriptor implements ClassDescriptor
 	}
 
 	@Override
+	public int hashCode()
+	{
+		return subject().hashCode();
+	}
+	
+	@Override
 	public boolean equals( Object obj )
 	{
 		if ( obj instanceof ClassReference )
