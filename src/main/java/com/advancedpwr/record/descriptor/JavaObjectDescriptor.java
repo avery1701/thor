@@ -31,10 +31,11 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 	@Override
 	public ClassDescriptor getClassDescriptor()
 	{
-		if(subject().getClass().isArray()) {
+		if ( subject().getClass().isArray() )
+		{
 			return new JavaArrayClassDescriptor( subject().getClass() );
 		}
-		return new JavaClassDescriptor( subject().getClass() );			
+		return new JavaClassDescriptor( subject().getClass() );
 	}
 
 	@Override
@@ -55,7 +56,7 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 		{
 			method.setAccessible( true );
 			//TODO: method.invoke(subject()) could return null, will JavaObjectDescriptor handle that, or should we return null?
-			return new JavaObjectDescriptor( method.invoke(subject()) );
+			return new JavaObjectDescriptor( method.invoke( subject() ) );
 		}
 		catch ( Exception e )
 		{
@@ -85,7 +86,7 @@ public class JavaObjectDescriptor implements ObjectDescriptor
 	@Override
 	public MapObjectDescriptor asMapDescriptor()
 	{
-		return new JavaMapObjectDescriptor(subject());
+		return new JavaMapObjectDescriptor( subject() );
 	}
 
 }

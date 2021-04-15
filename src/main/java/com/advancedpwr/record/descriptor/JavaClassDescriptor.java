@@ -144,13 +144,14 @@ public class JavaClassDescriptor implements ClassDescriptor
 		return getPackageName() + "." + getClassName();
 	}
 
-	//FIXME: This how you do it?
 	@Override
 	public boolean equals( Object obj )
 	{
-		if ( obj instanceof JavaClassDescriptor )
+		if ( obj instanceof ClassReference )
 		{
-			return subject().equals( ( (JavaClassDescriptor) obj ).subject() );
+			ClassReference lhs = (ClassReference) obj;
+			return getPackageName().equals( lhs.getPackageName() )
+					&& getClassName().equals( lhs.getClassName() );
 		}
 		else
 		{

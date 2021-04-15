@@ -28,12 +28,12 @@ package com.advancedpwr.record.descriptor;
 public class JavaArrayClassDescriptor extends JavaClassDescriptor implements ArrayClassDescriptor
 {
 
+	public static final String ARRAY = "Array";
+
 	public JavaArrayClassDescriptor( Class<?> inClass )
 	{
 		super( inClass );
 	}
-
-	public static final String ARRAY = "Array";
 
 	public String getClassName()
 	{
@@ -45,7 +45,7 @@ public class JavaArrayClassDescriptor extends JavaClassDescriptor implements Arr
 	{
 		return new JavaClassDescriptor( subject().getComponentType() );
 	}
-	
+
 	@Override
 	public String getPackageName()
 	{
