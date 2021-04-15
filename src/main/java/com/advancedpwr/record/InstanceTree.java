@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
-import com.advancedpwr.record.descriptor.JavaArrayClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaArrayClassReference;
 import com.advancedpwr.record.descriptor.JavaClassDescriptor;
 import com.advancedpwr.record.descriptor.MethodDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
@@ -225,7 +225,7 @@ public class InstanceTree
 		}
 		if ( inClass.isArray() )
 		{
-			inClass = ( (JavaArrayClassDescriptor) inClass ).getComponentType();
+			inClass = inClass.getComponentType();
 			if ( inClass.isPrimitive() )
 			{
 				return;

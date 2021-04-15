@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-import com.advancedpwr.record.descriptor.JavaArrayClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaArrayClassReference;
 
 class ArrayClassDescriptorTest
 {
@@ -13,7 +13,7 @@ class ArrayClassDescriptorTest
 	@Test
 	void test() {
 		String[] strings = {"hello", "world"};
-		JavaArrayClassDescriptor desc = new JavaArrayClassDescriptor(strings.getClass());
+		JavaArrayClassReference desc = new JavaArrayClassReference(strings.getClass());
 		assertNotNull(desc.subject());
 		assertEquals("StringArrayFactory", desc.getClassName());
 		assertEquals(desc.subject(), String.class);
