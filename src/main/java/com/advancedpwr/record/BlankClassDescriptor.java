@@ -82,12 +82,6 @@ public class BlankClassDescriptor implements ClassDescriptor
 	}
 
 	@Override
-	public ArrayClassDescriptor asArrayDescriptor()
-	{
-		return null;
-	}
-
-	@Override
 	public boolean isPrimitive()
 	{
 		return false;

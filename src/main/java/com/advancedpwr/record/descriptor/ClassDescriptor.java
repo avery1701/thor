@@ -43,10 +43,10 @@ public interface ClassDescriptor extends ClassReference
 
 	boolean isArray();
 	
-	ArrayClassDescriptor asArrayDescriptor();
-
 	boolean isPrimitive();
 
 	boolean isEnum();
+	
+	ClassDescriptor getComponentType();
 
 }

@@ -25,7 +25,7 @@ package com.advancedpwr.record.descriptor;
  * @author Matthew Avery, mavery@advancedpwr.com on Sep 30, 2010
  *
  */
-public class JavaArrayClassDescriptor extends JavaClassDescriptor implements ArrayClassDescriptor
+public class JavaArrayClassDescriptor extends JavaClassDescriptor
 {
 
 	public static final String ARRAY = "Array";
@@ -41,15 +41,10 @@ public class JavaArrayClassDescriptor extends JavaClassDescriptor implements Arr
 	}
 
 	@Override
-	public ClassDescriptor getComponentType()
+	public Class<?> subject()
 	{
-		return new JavaClassDescriptor( subject().getComponentType() );
-	}
-
-	@Override
-	public String getPackageName()
-	{
-		return getComponentType().getPackageName();
+		// TODO Auto-generated method stub
+		return super.subject();
 	}
 
 }

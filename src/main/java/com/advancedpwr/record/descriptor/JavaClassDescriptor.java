@@ -25,10 +25,6 @@ import java.util.Set;
 public class JavaClassDescriptor implements ClassDescriptor
 {
 
-	public static final String GENERATED = ".generated";
-
-	public static final String FACTORY = "Factory";
-
 	protected Class<?> fieldClass;
 
 	public JavaClassDescriptor()
@@ -121,12 +117,6 @@ public class JavaClassDescriptor implements ClassDescriptor
 	}
 
 	@Override
-	public ArrayClassDescriptor asArrayDescriptor()
-	{
-		return new JavaArrayClassDescriptor( subject() );
-	}
-
-	@Override
 	public boolean isPrimitive()
 	{
 		return subject().isPrimitive();
@@ -157,5 +147,16 @@ public class JavaClassDescriptor implements ClassDescriptor
 		{
 			return super.equals( obj );
 		}
+	}
+
+	@Override
+	public ClassDescriptor getComponentType()
+	{
+		if ( isArray() )
+		{
+			return new JavaClassDescriptor( subject().getComponentType() );
+		}
+		
+		return null;
 	}
 }

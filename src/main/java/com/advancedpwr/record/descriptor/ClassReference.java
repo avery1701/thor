@@ -21,6 +21,10 @@ package com.advancedpwr.record.descriptor;
  */
 public interface ClassReference
 {
+	public static final String GENERATED = ".generated";
+
+	public static final String FACTORY = "Factory";
+	
 	String getClassName();
 
 	String getPackageName();

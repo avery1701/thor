@@ -22,7 +22,7 @@ public class ArrayInspector extends Inspector
 			{
 				MultiPath path = new MultiPath();
 				path.setTree( createInstanceTree( member ) );
-				path.setInstanceName( objectClass().asArrayDescriptor().getComponentType().getClassName() );
+				path.setInstanceName( objectClass().getComponentType().getClassName() );
 				addAccessPath( path );
 			}
 		}
