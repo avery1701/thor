@@ -54,7 +54,10 @@ public class JavaClassDescriptor implements ClassDescriptor
 
 	public String getPackageName()
 	{
-		return subject().getPackage().getName() + GENERATED;
+		if(!subject().isPrimitive()) {
+			return subject().getPackage().getName() + GENERATED;			
+		}
+		return "";
 	}
 
 	@Override
@@ -89,13 +92,28 @@ public class JavaClassDescriptor implements ClassDescriptor
 		{
 			interfaces.add( new JavaClassDescriptor( anInterface ) );
 		}
+		if(subject().isInterface()) {
+			interfaces.add( this );
+		}
 		return interfaces;
 	}
 
+	protected Set<ClassDescriptor> getAllSuperClasses()
+	{
+		Set<ClassDescriptor> superClasses = new HashSet<ClassDescriptor>();
+		Class<?> superClass = subject();
+		while(superClass != null) {
+			superClasses.add( new JavaClassDescriptor( superClass ) );
+			superClass = superClass.getSuperclass();
+		}
+		return superClasses;
+	}
+	
 	@Override
 	public boolean isAssignableFrom( ClassDescriptor inClass )
 	{
-		return getInterfaces().contains( inClass );
+		return getInterfaces().contains( inClass ) 
+				|| inClass.equals( this ) || getAllSuperClasses().contains( inClass );
 	}
 
 	@Override

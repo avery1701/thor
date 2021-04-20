@@ -1,7 +1,6 @@
 package com.advancedpwr.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +13,8 @@ class ArrayClassDescriptorTest
 	void test() {
 		String[] strings = {"hello", "world"};
 		JavaArrayClassReference desc = new JavaArrayClassReference(strings.getClass());
-		assertNotNull(desc.subject());
 		assertEquals("StringArrayFactory", desc.getClassName());
-		assertEquals(desc.subject(), String.class);
+		assertEquals("java.lang", desc.getPackageName());
 	}
 
 }

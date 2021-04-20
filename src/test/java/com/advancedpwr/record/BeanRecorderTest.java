@@ -28,6 +28,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.advancedpwr.record.descriptor.ClassReference;
+import com.advancedpwr.record.descriptor.JavaObjectDescriptor;
 import com.advancedpwr.record.descriptor.SimpleClassReference;
 import com.advancedpwr.record.methods.URLBuilderFactory;
 import com.advancedpwr.samples.NoDefaultConstructorPerson;
@@ -45,8 +46,9 @@ public class BeanRecorderTest extends AbstractRecorderTest {
 	@Test
 	public void testSetGetObject() {
 		Person person = Person.createExamplePerson();
+		JavaObjectDescriptor personDescriptor = new JavaObjectDescriptor( person );
 		recorder.setObject(person);
-		assertEquals(person, recorder.getObjectDescriptor());
+		assertEquals(personDescriptor, recorder.getObjectDescriptor());
 	}
 
 	@Test
