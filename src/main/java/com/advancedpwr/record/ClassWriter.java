@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.record.descriptor.ClassReference;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
 import com.advancedpwr.record.descriptor.SimpleClassReference;
@@ -176,7 +175,8 @@ public abstract class ClassWriter
 		writeStaticImports();
 		for ( ClassReference aClass : classes() )
 		{
-			writeLine( IMPORT + aClass.getPackageName() + aClass.getClassName().replace( "$", "." ) );
+			writeLine( IMPORT + aClass.getPackageName() + "."
+					+ aClass.getClassName().replace( "$", "." ) );
 		}
 		newLine();
 	}
@@ -238,7 +238,7 @@ public abstract class ClassWriter
 		return fieldStaticClassNames;
 	}
 
-	public void addStaticImport( ClassDescriptor inClass )
+	public void addStaticImport( ClassReference inClass )
 	{
 		getStaticClassNames().add( inClass.getClassName().replace( "$", "." ) );
 	}

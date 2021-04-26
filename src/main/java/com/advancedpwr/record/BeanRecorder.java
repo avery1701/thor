@@ -28,6 +28,7 @@ import java.util.Set;
 import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.record.descriptor.ClassReference;
 import com.advancedpwr.record.descriptor.JavaClassDescriptor;
+import com.advancedpwr.record.descriptor.JavaClassReference;
 import com.advancedpwr.record.descriptor.JavaObjectDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
 import com.advancedpwr.record.factory.BaseFactory;
@@ -200,8 +201,8 @@ public class BeanRecorder extends AbstractRecorder
 			classes.add( getSuperClass() );
 		}
 		classes.addAll( getInstanceTree().getFactory().classes() );
-		JavaClassDescriptor utilDate = new JavaClassDescriptor( java.util.Date.class );
-		JavaClassDescriptor sqlDate = new JavaClassDescriptor( java.sql.Date.class );
+		JavaClassReference utilDate = new JavaClassReference( java.util.Date.class );
+		JavaClassReference sqlDate = new JavaClassReference( java.sql.Date.class );
 		if ( classes.contains( utilDate ) && classes.contains( sqlDate ) )
 		{
 			classes.remove( sqlDate );

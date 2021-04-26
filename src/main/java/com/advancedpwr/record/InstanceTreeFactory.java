@@ -19,11 +19,10 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
 import com.advancedpwr.record.descriptor.ObjectDescriptor;
-
-import java.util.Set;
 
 public class InstanceTreeFactory
 {

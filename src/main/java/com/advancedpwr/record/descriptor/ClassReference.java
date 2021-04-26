@@ -28,4 +28,8 @@ public interface ClassReference
 	String getClassName();
 
 	String getPackageName();
+	
+	String getFactoryClassName();
+	
+	String getFactoryPackageName();
 }

@@ -25,8 +25,6 @@ import com.advancedpwr.record.AccessPath;
 import com.advancedpwr.record.BeanRecorder;
 import com.advancedpwr.record.ClassWriter;
 import com.advancedpwr.record.InstanceTree;
-import com.advancedpwr.record.descriptor.JavaObjectDescriptor;
-import com.advancedpwr.record.descriptor.ObjectDescriptor;
 import com.advancedpwr.samples.Person;
 
 public class MethodBuilderTest {
@@ -47,9 +45,8 @@ public class MethodBuilderTest {
 		AccessPath result = new AccessPath();
 		assertEquals("", result.pathName());
 		Person person = new Person();
-		ObjectDescriptor personDescriptor = new JavaObjectDescriptor( person );
 		person.setName("Joe");
-		result.setTree(new InstanceTree(personDescriptor));
+		result.setTree(new InstanceTree(person));
 		builder.setAccessPath(result);
 		builder.buildMethod();
 		assertEquals("\n" + "protected Person person;\n" + "\n" + "protected Person buildPerson()\n" + "{\n"

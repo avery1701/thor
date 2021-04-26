@@ -34,7 +34,8 @@ public class FamilyTest extends AbstractRecorderTest {
 		recorder.setClassName("com.example.recorded.FamilyFactory1");
 		recorder.record(family);
 		ClassReference defaultDescriptor = recorder.createDefaultDescriptor();
-		assertEquals("com.advancedpwr.samples.generated.FamilyFactory", defaultDescriptor.getPackageName() + "." + defaultDescriptor.getClassName());
+		assertEquals( "com.advancedpwr.samples.Family" , defaultDescriptor.getPackageName() + "." + defaultDescriptor.getClassName());
+		assertEquals("com.advancedpwr.samples.generated.FamilyFactory", defaultDescriptor.getFactoryPackageName() + "." + defaultDescriptor.getFactoryClassName());
 		assertResult();
 	}
 }

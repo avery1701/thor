@@ -13,8 +13,7 @@ class ArrayClassDescriptorTest
 	void test() {
 		String[] strings = {"hello", "world"};
 		JavaArrayClassReference desc = new JavaArrayClassReference(strings.getClass());
-		assertEquals("StringArrayFactory", desc.getClassName());
-		assertEquals("java.lang", desc.getPackageName());
+		assertEquals("StringArray", desc.getClassName());
 	}
 
 }

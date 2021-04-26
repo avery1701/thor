@@ -22,42 +22,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JavaClassDescriptor implements ClassDescriptor
+public class JavaClassDescriptor extends JavaClassReference implements ClassDescriptor
 {
-
-	protected Class<?> fieldClass;
-
-	public JavaClassDescriptor()
-	{
-
-	}
 
 	public JavaClassDescriptor( Class<?> inClass )
 	{
-		setClass( inClass );
-	}
-
-	public Class<?> subject()
-	{
-		return fieldClass;
-	}
-
-	public void setClass( Class<?> inClass )
-	{
-		fieldClass = inClass;
-	}
-
-	public String getClassName()
-	{
-		return subject().getSimpleName() + FACTORY;
-	}
-
-	public String getPackageName()
-	{
-		if(!subject().isPrimitive()) {
-			return subject().getPackage().getName() + GENERATED;			
-		}
-		return "";
+		super( inClass );
 	}
 
 	@Override
@@ -92,28 +62,13 @@ public class JavaClassDescriptor implements ClassDescriptor
 		{
 			interfaces.add( new JavaClassDescriptor( anInterface ) );
 		}
-		if(subject().isInterface()) {
-			interfaces.add( this );
-		}
 		return interfaces;
 	}
 
-	protected Set<ClassDescriptor> getAllSuperClasses()
-	{
-		Set<ClassDescriptor> superClasses = new HashSet<ClassDescriptor>();
-		Class<?> superClass = subject();
-		while(superClass != null) {
-			superClasses.add( new JavaClassDescriptor( superClass ) );
-			superClass = superClass.getSuperclass();
-		}
-		return superClasses;
-	}
-	
 	@Override
 	public boolean isAssignableFrom( ClassDescriptor inClass )
 	{
-		return getInterfaces().contains( inClass ) 
-				|| inClass.equals( this ) || getAllSuperClasses().contains( inClass );
+		return getInterfaces().contains( inClass );
 	}
 
 	@Override
@@ -157,7 +112,7 @@ public class JavaClassDescriptor implements ClassDescriptor
 	{
 		return subject().hashCode();
 	}
-	
+
 	@Override
 	public boolean equals( Object obj )
 	{
@@ -180,7 +135,7 @@ public class JavaClassDescriptor implements ClassDescriptor
 		{
 			return new JavaClassDescriptor( subject().getComponentType() );
 		}
-		
+
 		return null;
 	}
 }

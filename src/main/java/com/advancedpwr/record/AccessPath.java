@@ -19,6 +19,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.advancedpwr.record.descriptor.ClassDescriptor;
+import com.advancedpwr.record.descriptor.ObjectDescriptor;
 
 /**
  * <code>AccessPath</code> represents the code path leading to the access of an object in the {@link InstanceTree}
@@ -32,7 +33,7 @@ public class AccessPath
 {
 	protected InstanceTree fieldInstanceTree;
 
-	public Object getResult()
+	public ObjectDescriptor getResult()
 	{
 		return getInstanceTree().getObject();
 	}
