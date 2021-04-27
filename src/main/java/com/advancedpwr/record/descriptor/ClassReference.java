@@ -29,7 +29,11 @@ public interface ClassReference
 
 	String getPackageName();
 	
-	String getFactoryClassName();
+	boolean isAnonymousClass();
+
+	boolean isArray();
 	
-	String getFactoryPackageName();
+	boolean isPrimitive();
+
+	boolean isEnum();
 }

@@ -15,6 +15,8 @@
  */
 package com.advancedpwr.record.descriptor;
 
+import com.advancedpwr.record.RecorderException;
+
 /**
  * A {@link ClassDescriptor} for array factories.  If the object to be recorded is a Java array, this
  * class descriptor will create an appropriately named class.
@@ -27,21 +29,39 @@ package com.advancedpwr.record.descriptor;
  */
 public class JavaArrayClassDescriptor extends JavaClassDescriptor implements ClassDescriptor
 {
+	public static final String ARRAY = "Array";
+
 	public JavaArrayClassDescriptor( Class<?> inClass )
 	{
-		super( inClass );
+		super( inClass.getComponentType() );
+		if ( !inClass.isArray() )
+		{
+			throw new RecorderException( "bad stuff" );
+		}
+	}
+
+	@Override
+	public boolean isArray()
+	{
+		return true;
+	}
+
+	@Override
+	public ClassDescriptor getComponentType()
+	{
+		return new JavaClassDescriptor( subject() );
 	}
 
 	@Override
 	public String getClassName()
 	{
-		return subject().getComponentType().getSimpleName() + "Array";
+		return subject().getSimpleName() + ARRAY + FACTORY;
 	}
 
 	@Override
 	public String getPackageName()
 	{
-		return subject().getComponentType().getPackage().getName();
+		return subject().getPackage().getName() + GENERATED;
 	}
 
 }

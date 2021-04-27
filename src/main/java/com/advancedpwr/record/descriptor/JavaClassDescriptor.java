@@ -55,50 +55,54 @@ public class JavaClassDescriptor extends JavaClassReference implements ClassDesc
 	}
 
 	@Override
-	public Set<ClassDescriptor> getInterfaces()
+	public Set<ClassReference> getInterfaces()
 	{
-		Set<ClassDescriptor> interfaces = new HashSet<ClassDescriptor>();
+		Set<ClassReference> interfaces = new HashSet<ClassReference>();
 		for ( Class<?> anInterface : subject().getInterfaces() )
 		{
 			interfaces.add( new JavaClassDescriptor( anInterface ) );
 		}
+		if ( subject().isInterface() )
+		{
+			interfaces.add( this );
+		}
 		return interfaces;
+	}
+
+	protected Set<ClassDescriptor> getAllSuperClasses()
+	{
+		Set<ClassDescriptor> superClasses = new HashSet<ClassDescriptor>();
+		Class<?> superClass = subject();
+		while ( superClass != null )
+		{
+			superClasses.add( new JavaClassDescriptor( superClass ) );
+			superClass = superClass.getSuperclass();
+		}
+		return superClasses;
 	}
 
 	@Override
 	public boolean isAssignableFrom( ClassDescriptor inClass )
 	{
-		return getInterfaces().contains( inClass );
+		return getInterfaces().contains( inClass ) || inClass.equals( this )
+				|| getAllSuperClasses().contains( inClass );
 	}
 
 	@Override
-	public ClassDescriptor getSuperclass()
+	public ClassReference getSuperclass()
 	{
 		return new JavaClassDescriptor( subject().getSuperclass() );
 	}
 
 	@Override
-	public boolean isAnonymousClass()
+	public ClassDescriptor getComponentType()
 	{
-		return subject().isAnonymousClass();
-	}
+		if ( isArray() )
+		{
+			return new JavaClassDescriptor( subject().getComponentType() );
+		}
 
-	@Override
-	public boolean isArray()
-	{
-		return subject().isArray();
-	}
-
-	@Override
-	public boolean isPrimitive()
-	{
-		return subject().isPrimitive();
-	}
-
-	@Override
-	public boolean isEnum()
-	{
-		return subject().isEnum();
+		return null;
 	}
 
 	@Override
@@ -128,14 +132,4 @@ public class JavaClassDescriptor extends JavaClassReference implements ClassDesc
 		}
 	}
 
-	@Override
-	public ClassDescriptor getComponentType()
-	{
-		if ( isArray() )
-		{
-			return new JavaClassDescriptor( subject().getComponentType() );
-		}
-
-		return null;
-	}
 }

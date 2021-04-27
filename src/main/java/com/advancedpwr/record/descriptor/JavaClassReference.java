@@ -5,19 +5,19 @@ public class JavaClassReference implements ClassReference
 
 	protected Class<?> fieldClass;
 
-	public JavaClassReference( Class<?> inClass )
-	{
-		setClass( inClass );
-	}
-
-	public Class<?> subject()
+	protected Class<?> subject()
 	{
 		return fieldClass;
 	}
 
-	public void setClass( Class<?> inClass )
+	protected void setClass( Class<?> inClass )
 	{
 		fieldClass = inClass;
+	}
+
+	public JavaClassReference( Class<?> inClass )
+	{
+		setClass( inClass );
 	}
 
 	@Override
@@ -32,13 +32,27 @@ public class JavaClassReference implements ClassReference
 		return subject().getPackage().getName();
 	}
 
-	public String getFactoryClassName()
+	@Override
+	public boolean isAnonymousClass()
 	{
-		return getClassName() + FACTORY;
+		return subject().isAnonymousClass();
 	}
 
-	public String getFactoryPackageName()
+	@Override
+	public boolean isArray()
 	{
-		return getPackageName() + GENERATED;
+		return subject().isArray();
+	}
+
+	@Override
+	public boolean isPrimitive()
+	{
+		return subject().isPrimitive();
+	}
+
+	@Override
+	public boolean isEnum()
+	{
+		return subject().isEnum();
 	}
 }

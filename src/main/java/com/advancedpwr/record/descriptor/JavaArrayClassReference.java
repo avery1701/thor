@@ -25,26 +25,13 @@ package com.advancedpwr.record.descriptor;
  * @author Matthew Avery, mavery@advancedpwr.com on Sep 30, 2010
  *
  */
-public class JavaArrayClassReference implements ClassReference
+public class JavaArrayClassReference extends JavaClassReference implements ClassReference
 {
-
 	public static final String ARRAY = "Array";
-
-	protected Class<?> fieldClass;
-
-	protected Class<?> subject()
-	{
-		return fieldClass.getComponentType();
-	}
-
-	protected void setClass( Class<?> class1 )
-	{
-		fieldClass = class1;
-	}
 
 	public JavaArrayClassReference( Class<?> inClass )
 	{
-		setClass( inClass );
+		super( inClass );
 	}
 
 	public String getClassName()
@@ -56,17 +43,5 @@ public class JavaArrayClassReference implements ClassReference
 	public String getPackageName()
 	{
 		return subject().getComponentType().getPackage().getName();
-	}
-
-	@Override
-	public String getFactoryClassName()
-	{
-		return getClassName() + FACTORY;
-	}
-
-	@Override
-	public String getFactoryPackageName()
-	{
-		return getPackageName() + GENERATED;
 	}
 }

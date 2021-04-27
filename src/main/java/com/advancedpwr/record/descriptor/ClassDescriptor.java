@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Matthew Avery, mavery@advancedpwr.com
+ * Copyright 2021 Matthew Avery, mavery@advancedpwr.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,26 +27,16 @@ import com.advancedpwr.record.ClassWriter;
  *
  */
 public interface ClassDescriptor extends ClassReference
-{	
-
+{
 	Set<ConstructorDescriptor> getConstructors();
 
 	List<MethodDescriptor> getMethods();
 
-	Set<ClassDescriptor> getInterfaces();
+	Set<ClassReference> getInterfaces();
 
 	boolean isAssignableFrom( ClassDescriptor inClass );
 
-	ClassDescriptor getSuperclass();
-
-	boolean isAnonymousClass();
-
-	boolean isArray();
+	ClassReference getSuperclass();
 	
-	boolean isPrimitive();
-
-	boolean isEnum();
-	
-	ClassDescriptor getComponentType();
-
+	ClassReference getComponentType();
 }
